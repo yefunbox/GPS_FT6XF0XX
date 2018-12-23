@@ -1,0 +1,552 @@
+//Deviec:FT60F01X
+//-----------------------Variable---------------------------------
+		_par1		EQU		2AF1C8H
+		_par2		EQU		2AF1C8H
+		_par3		EQU		2AF1C8H
+//-----------------------Variable END---------------------------------
+		ORG		0000H
+		LJUMP 	328H 			//0000 	3B28
+		LDWI 	0H 			//0001 	2A00
+		STR 	PCLATH 			//0002 	018A
+		LDR 	FSR,0 			//0003 	0804
+		INCR	FSR,1 			//0004 	0984
+		ADDWR 	PCL,1 			//0005 	0B82
+		RETW 	0H 			//0006 	2100
+		RETW 	B5H 			//0007 	21B5
+		ORG		0008H
+		RETW 	62H 			//0008 	2162
+		RETW 	6H 			//0009 	2106
+		RETW 	3EH 			//000A 	213E
+		RETW 	3CH 			//000B 	213C
+		RETW 	0H 			//000C 	2100
+		RETW 	0H 			//000D 	2100
+		RETW 	0H 			//000E 	2100
+		RETW 	20H 			//000F 	2120
+		ORG		0010H
+		RETW 	7H 			//0010 	2107
+		RETW 	0H 			//0011 	2100
+		RETW 	8H 			//0012 	2108
+		RETW 	10H 			//0013 	2110
+		RETW 	0H 			//0014 	2100
+		RETW 	1H 			//0015 	2101
+		RETW 	0H 			//0016 	2100
+		RETW 	1H 			//0017 	2101
+		ORG		0018H
+		RETW 	1H 			//0018 	2101
+		RETW 	1H 			//0019 	2101
+		RETW 	1H 			//001A 	2101
+		RETW 	3H 			//001B 	2103
+		RETW 	0H 			//001C 	2100
+		RETW 	0H 			//001D 	2100
+		RETW 	0H 			//001E 	2100
+		RETW 	1H 			//001F 	2101
+		ORG		0020H
+		RETW 	1H 			//0020 	2101
+		RETW 	2H 			//0021 	2102
+		RETW 	4H 			//0022 	2104
+		RETW 	8H 			//0023 	2108
+		RETW 	0H 			//0024 	2100
+		RETW 	0H 			//0025 	2100
+		RETW 	0H 			//0026 	2100
+		RETW 	1H 			//0027 	2101
+		ORG		0028H
+		RETW 	1H 			//0028 	2101
+		RETW 	3H 			//0029 	2103
+		RETW 	8H 			//002A 	2108
+		RETW 	10H 			//002B 	2110
+		RETW 	0H 			//002C 	2100
+		RETW 	0H 			//002D 	2100
+		RETW 	0H 			//002E 	2100
+		RETW 	1H 			//002F 	2101
+		ORG		0030H
+		RETW 	1H 			//0030 	2101
+		RETW 	4H 			//0031 	2104
+		RETW 	0H 			//0032 	2100
+		RETW 	8H 			//0033 	2108
+		RETW 	0H 			//0034 	2100
+		RETW 	0H 			//0035 	2100
+		RETW 	0H 			//0036 	2100
+		RETW 	1H 			//0037 	2101
+		ORG		0038H
+		RETW 	1H 			//0038 	2101
+		RETW 	5H 			//0039 	2105
+		RETW 	0H 			//003A 	2100
+		RETW 	3H 			//003B 	2103
+		RETW 	0H 			//003C 	2100
+		RETW 	1H 			//003D 	2101
+		RETW 	0H 			//003E 	2100
+		RETW 	1H 			//003F 	2101
+		ORG		0040H
+		RETW 	1H 			//0040 	2101
+		RETW 	6H 			//0041 	2106
+		RETW 	8H 			//0042 	2108
+		RETW 	EH 			//0043 	210E
+		RETW 	0H 			//0044 	2100
+		RETW 	1H 			//0045 	2101
+		RETW 	0H 			//0046 	2100
+		RETW 	1H 			//0047 	2101
+		ORG		0048H
+		RETW 	1H 			//0048 	2101
+		RETW 	2EH 			//0049 	212E
+		RETW 	5DH 			//004A 	215D
+		RETW 	B5H 			//004B 	21B5
+		RETW 	62H 			//004C 	2162
+		RETW 	6H 			//004D 	2106
+		RETW 	0H 			//004E 	2100
+		RETW 	14H 			//004F 	2114
+		ORG		0050H
+		RETW 	0H 			//0050 	2100
+		RETW 	1H 			//0051 	2101
+		RETW 	0H 			//0052 	2100
+		RETW 	0H 			//0053 	2100
+		RETW 	0H 			//0054 	2100
+		RETW 	D0H 			//0055 	21D0
+		RETW 	8H 			//0056 	2108
+		RETW 	0H 			//0057 	2100
+		ORG		0058H
+		RETW 	0H 			//0058 	2100
+		RETW 	0H 			//0059 	2100
+		RETW 	96H 			//005A 	2196
+		RETW 	0H 			//005B 	2100
+		RETW 	0H 			//005C 	2100
+		RETW 	2H 			//005D 	2102
+		RETW 	0H 			//005E 	2100
+		RETW 	2H 			//005F 	2102
+		ORG		0060H
+		RETW 	0H 			//0060 	2100
+		RETW 	0H 			//0061 	2100
+		RETW 	0H 			//0062 	2100
+		RETW 	0H 			//0063 	2100
+		RETW 	0H 			//0064 	2100
+		RETW 	8DH 			//0065 	218D
+		RETW 	62H 			//0066 	2162
+		RETW 	B5H 			//0067 	21B5
+		ORG		0068H
+		RETW 	62H 			//0068 	2162
+		RETW 	6H 			//0069 	2106
+		RETW 	8H 			//006A 	2108
+		RETW 	6H 			//006B 	2106
+		RETW 	0H 			//006C 	2100
+		RETW 	C8H 			//006D 	21C8
+		RETW 	0H 			//006E 	2100
+		RETW 	1H 			//006F 	2101
+		ORG		0070H
+		RETW 	0H 			//0070 	2100
+		RETW 	1H 			//0071 	2101
+		RETW 	0H 			//0072 	2100
+		RETW 	DEH 			//0073 	21DE
+		RETW 	6AH 			//0074 	216A
+		ORG		0328H
+		CLRR 	STATUS 			//0328 	0103
+		LJUMP 	3B6H 			//0329 	3BB6
+		STR 	40H 			//032A 	01C0
+
+		//;TEST_60F01x_IIC.c: 81: unsigned char a;
+		//;TEST_60F01x_IIC.c: 82: for(a=0;a<Time;a++)
+		CLRR 	41H 			//032B 	0141
+		LDR 	40H,0 			//032C 	0840
+		SUBWR 	41H,0 			//032D 	0C41
+		BTSC 	STATUS,0 		//032E 	1403
+		RET		 					//032F 	0004
+		ORG		0330H
+
+		//;TEST_60F01x_IIC.c: 83: {
+		//;TEST_60F01x_IIC.c: 84: _nop();
+		NOP		 					//0330 	0000
+		INCR	41H,1 			//0331 	09C1
+		LJUMP 	32CH 			//0332 	3B2C
+
+		//;TEST_60F01x_IIC.c: 55: OSCCON = 0X00|0X70|0X01;
+		LDWI 	71H 			//0333 	2A71
+		BSR 	STATUS,5 		//0334 	1A83
+		STR 	FH 			//0335 	018F
+
+		//;TEST_60F01x_IIC.c: 59: INTCON = 0;
+		CLRR 	INTCON 			//0336 	010B
+
+		//;TEST_60F01x_IIC.c: 60: PORTA = 0B00000000;
+		BCR 	STATUS,5 		//0337 	1283
+		ORG		0338H
+		CLRR 	5H 			//0338 	0105
+
+		//;TEST_60F01x_IIC.c: 61: TRISA = 0B11101011;
+		LDWI 	EBH 			//0339 	2AEB
+		BSR 	STATUS,5 		//033A 	1A83
+		STR 	5H 			//033B 	0185
+
+		//;TEST_60F01x_IIC.c: 62: WPUA = 0B00000000;
+		CLRR 	15H 			//033C 	0115
+
+		//;TEST_60F01x_IIC.c: 65: OPTION = 0B00001000;
+		LDWI 	8H 			//033D 	2A08
+		STR 	1H 			//033E 	0181
+
+		//;TEST_60F01x_IIC.c: 67: MSCKCON = 0B00000000;
+		BCR 	STATUS,5 		//033F 	1283
+		ORG		0340H
+		CLRR 	1BH 			//0340 	011B
+		RET		 					//0341 	0004
+		LDWI 	AH 			//0342 	2A0A
+
+		//;TEST_60F01x_IIC.c: 129: TRISA2 =0;
+		BSR 	STATUS,5 		//0343 	1A83
+		BCR 	5H,2 			//0344 	1105
+
+		//;TEST_60F01x_IIC.c: 130: RA2=1;
+		BCR 	STATUS,5 		//0345 	1283
+		BSR 	5H,2 			//0346 	1905
+
+		//;TEST_60F01x_IIC.c: 131: RA4=1;
+		BSR 	5H,4 			//0347 	1A05
+		ORG		0348H
+
+		//;TEST_60F01x_IIC.c: 132: DelayUs(10);
+		LCALL 	32AH 			//0348 	332A
+		LDWI 	AH 			//0349 	2A0A
+
+		//;TEST_60F01x_IIC.c: 133: RA2=0;
+		BCR 	STATUS,5 		//034A 	1283
+		BCR 	5H,2 			//034B 	1105
+
+		//;TEST_60F01x_IIC.c: 134: DelayUs(10);
+		LCALL 	32AH 			//034C 	332A
+		LDWI 	AH 			//034D 	2A0A
+
+		//;TEST_60F01x_IIC.c: 135: RA4=0;
+		BCR 	STATUS,5 		//034E 	1283
+		BCR 	5H,4 			//034F 	1205
+		ORG		0350H
+
+		//;TEST_60F01x_IIC.c: 136: DelayUs(10);
+		LJUMP 	32AH 			//0350 	3B2A
+		LDWI 	AH 			//0351 	2A0A
+
+		//;TEST_60F01x_IIC.c: 146: TRISA2 =0;
+		BSR 	STATUS,5 		//0352 	1A83
+		BCR 	5H,2 			//0353 	1105
+
+		//;TEST_60F01x_IIC.c: 147: RA4=0;
+		BCR 	STATUS,5 		//0354 	1283
+		BCR 	5H,4 			//0355 	1205
+
+		//;TEST_60F01x_IIC.c: 148: RA2=0;
+		BCR 	5H,2 			//0356 	1105
+
+		//;TEST_60F01x_IIC.c: 149: DelayUs(10);
+		LCALL 	32AH 			//0357 	332A
+		ORG		0358H
+		LDWI 	AH 			//0358 	2A0A
+
+		//;TEST_60F01x_IIC.c: 150: RA4=1;
+		BCR 	STATUS,5 		//0359 	1283
+		BSR 	5H,4 			//035A 	1A05
+
+		//;TEST_60F01x_IIC.c: 151: DelayUs(10);
+		LCALL 	32AH 			//035B 	332A
+		LDWI 	AH 			//035C 	2A0A
+
+		//;TEST_60F01x_IIC.c: 152: RA2=1;
+		BCR 	STATUS,5 		//035D 	1283
+		BSR 	5H,2 			//035E 	1905
+
+		//;TEST_60F01x_IIC.c: 153: DelayUs(10);
+		LJUMP 	32AH 			//035F 	3B2A
+		ORG		0360H
+		STR 	42H 			//0360 	01C2
+
+		//;TEST_60F01x_IIC.c: 95: unsigned char a,b;
+		//;TEST_60F01x_IIC.c: 96: for(a=0;a<Time;a++)
+		CLRR 	43H 			//0361 	0143
+		LDR 	42H,0 			//0362 	0842
+		SUBWR 	43H,0 			//0363 	0C43
+		BTSC 	STATUS,0 		//0364 	1403
+		RET		 					//0365 	0004
+
+		//;TEST_60F01x_IIC.c: 97: {
+		//;TEST_60F01x_IIC.c: 98: for(b=0;b<5;b++)
+		CLRR 	44H 			//0366 	0144
+
+		//;TEST_60F01x_IIC.c: 99: {
+		//;TEST_60F01x_IIC.c: 100: DelayUs(98);
+		LDWI 	62H 			//0367 	2A62
+		ORG		0368H
+		LCALL 	32AH 			//0368 	332A
+		LDWI 	5H 			//0369 	2A05
+		INCR	44H,1 			//036A 	09C4
+		SUBWR 	44H,0 			//036B 	0C44
+		BTSS 	STATUS,0 		//036C 	1C03
+		LJUMP 	367H 			//036D 	3B67
+		INCR	43H,1 			//036E 	09C3
+		LJUMP 	362H 			//036F 	3B62
+		ORG		0370H
+		STR 	45H 			//0370 	01C5
+
+		//;TEST_60F01x_IIC.c: 112: unsigned char a,b;
+		//;TEST_60F01x_IIC.c: 113: for(a=0;a<Time;a++)
+		CLRR 	46H 			//0371 	0146
+		LDR 	45H,0 			//0372 	0845
+		SUBWR 	46H,0 			//0373 	0C46
+		BTSC 	STATUS,0 		//0374 	1403
+		RET		 					//0375 	0004
+
+		//;TEST_60F01x_IIC.c: 114: {
+		//;TEST_60F01x_IIC.c: 115: for(b=0;b<10;b++)
+		CLRR 	47H 			//0376 	0147
+
+		//;TEST_60F01x_IIC.c: 116: {
+		//;TEST_60F01x_IIC.c: 117: DelayMs(100);
+		LDWI 	64H 			//0377 	2A64
+		ORG		0378H
+		LCALL 	360H 			//0378 	3360
+		LDWI 	AH 			//0379 	2A0A
+		INCR	47H,1 			//037A 	09C7
+		SUBWR 	47H,0 			//037B 	0C47
+		BTSS 	STATUS,0 		//037C 	1C03
+		LJUMP 	377H 			//037D 	3B77
+		INCR	46H,1 			//037E 	09C6
+		LJUMP 	372H 			//037F 	3B72
+		ORG		0380H
+		LDWI 	5H 			//0380 	2A05
+
+		//;TEST_60F01x_IIC.c: 164: unsigned char ucErrTime=0;
+		CLRR 	42H 			//0381 	0142
+
+		//;TEST_60F01x_IIC.c: 165: TRISA2 =1;
+		BSR 	STATUS,5 		//0382 	1A83
+		BSR 	5H,2 			//0383 	1905
+
+		//;TEST_60F01x_IIC.c: 166: RA2=1;
+		BCR 	STATUS,5 		//0384 	1283
+		BSR 	5H,2 			//0385 	1905
+
+		//;TEST_60F01x_IIC.c: 167: DelayUs(5);
+		LCALL 	32AH 			//0386 	332A
+		LDWI 	5H 			//0387 	2A05
+		ORG		0388H
+
+		//;TEST_60F01x_IIC.c: 168: RA4=1;
+		BCR 	STATUS,5 		//0388 	1283
+		BSR 	5H,4 			//0389 	1A05
+
+		//;TEST_60F01x_IIC.c: 169: DelayUs(5);
+		LCALL 	32AH 			//038A 	332A
+
+		//;TEST_60F01x_IIC.c: 170: while(RA2)
+		BCR 	STATUS,5 		//038B 	1283
+		BTSS 	5H,2 			//038C 	1D05
+		LJUMP 	395H 			//038D 	3B95
+		LDWI 	FBH 			//038E 	2AFB
+
+		//;TEST_60F01x_IIC.c: 171: {
+		//;TEST_60F01x_IIC.c: 172: ucErrTime++;
+		INCR	42H,1 			//038F 	09C2
+		ORG		0390H
+
+		//;TEST_60F01x_IIC.c: 173: if(ucErrTime>250)
+		SUBWR 	42H,0 			//0390 	0C42
+		BTSS 	STATUS,0 		//0391 	1C03
+		LJUMP 	38BH 			//0392 	3B8B
+
+		//;TEST_60F01x_IIC.c: 174: {
+		//;TEST_60F01x_IIC.c: 175: IIC_Stop();
+		LCALL 	351H 			//0393 	3351
+
+		//;TEST_60F01x_IIC.c: 176: return 1;
+		RETW 	1H 			//0394 	2101
+		LDWI 	0H 			//0395 	2A00
+
+		//;TEST_60F01x_IIC.c: 177: }
+		//;TEST_60F01x_IIC.c: 178: }
+		//;TEST_60F01x_IIC.c: 179: RA4=0;
+		BCR 	5H,4 			//0396 	1205
+
+		//;TEST_60F01x_IIC.c: 180: return 0;
+		RET		 					//0397 	0004
+		ORG		0398H
+		STR 	48H 			//0398 	01C8
+
+		//;TEST_60F01x_IIC.c: 334: unsigned char i;
+		//;TEST_60F01x_IIC.c: 335: IIC_Start();
+		LCALL 	342H 			//0399 	3342
+
+		//;TEST_60F01x_IIC.c: 336: IIC_Send_Byte(chip_addr);
+		LDR 	48H,0 			//039A 	0848
+		LCALL 	3D9H 			//039B 	33D9
+
+		//;TEST_60F01x_IIC.c: 338: if(IIC_Wait_Ack()==1){
+		LCALL 	380H 			//039C 	3380
+		XORWI 	1H 			//039D 	2601
+		BTSC 	STATUS,2 		//039E 	1503
+		RET		 					//039F 	0004
+		ORG		03A0H
+
+		//;TEST_60F01x_IIC.c: 341: }
+		//;TEST_60F01x_IIC.c: 343: for(i=0; i<Number; i++) {
+		CLRR 	49H 			//03A0 	0149
+		LDR 	47H,0 			//03A1 	0847
+		XORWI 	80H 			//03A2 	2680
+		SUBWI 	80H 			//03A3 	2880
+		BTSS 	STATUS,2 		//03A4 	1D03
+		LJUMP 	3A8H 			//03A5 	3BA8
+		LDR 	46H,0 			//03A6 	0846
+		SUBWR 	49H,0 			//03A7 	0C49
+		ORG		03A8H
+		BTSC 	STATUS,0 		//03A8 	1403
+		LJUMP 	3B5H 			//03A9 	3BB5
+
+		//;TEST_60F01x_IIC.c: 344: IIC_Send_Byte(*buffer);
+		LDR 	45H,0 			//03AA 	0845
+		STR 	FSR 			//03AB 	0184
+		LCALL 	1H 			//03AC 	3001
+		LCALL 	3D9H 			//03AD 	33D9
+
+		//;TEST_60F01x_IIC.c: 345: if(IIC_Wait_Ack()==1) {
+		LCALL 	380H 			//03AE 	3380
+		XORWI 	1H 			//03AF 	2601
+		ORG		03B0H
+		BTSC 	STATUS,2 		//03B0 	1503
+		RET		 					//03B1 	0004
+
+		//;TEST_60F01x_IIC.c: 348: }
+		//;TEST_60F01x_IIC.c: 349: buffer++;
+		INCR	45H,1 			//03B2 	09C5
+		INCR	49H,1 			//03B3 	09C9
+		LJUMP 	3A1H 			//03B4 	3BA1
+
+		//;TEST_60F01x_IIC.c: 350: }
+		//;TEST_60F01x_IIC.c: 351: IIC_Stop();
+		LJUMP 	351H 			//03B5 	3B51
+
+		//;TEST_60F01x_IIC.c: 362: POWER_INITIAL();
+		LCALL 	333H 			//03B6 	3333
+
+		//;TEST_60F01x_IIC.c: 363: DelayS(1);
+		LDWI 	1H 			//03B7 	2A01
+		ORG		03B8H
+		LCALL 	370H 			//03B8 	3370
+
+		//;TEST_60F01x_IIC.c: 364: I2C_SendString(0x84,par1,sizeof(par1));
+		LDWI 	45H 			//03B9 	2A45
+		STR 	45H 			//03BA 	01C5
+		LDWI 	1CH 			//03BB 	2A1C
+		STR 	46H 			//03BC 	01C6
+		LDWI 	84H 			//03BD 	2A84
+		CLRR 	47H 			//03BE 	0147
+		LCALL 	398H 			//03BF 	3398
+		ORG		03C0H
+
+		//;TEST_60F01x_IIC.c: 365: DelayS(1);
+		LDWI 	1H 			//03C0 	2A01
+		LCALL 	370H 			//03C1 	3370
+
+		//;TEST_60F01x_IIC.c: 366: I2C_SendString(0x84,par2,sizeof(par2));
+		LDWI 	61H 			//03C2 	2A61
+		STR 	45H 			//03C3 	01C5
+		LDWI 	EH 			//03C4 	2A0E
+		STR 	46H 			//03C5 	01C6
+		LDWI 	84H 			//03C6 	2A84
+		CLRR 	47H 			//03C7 	0147
+		ORG		03C8H
+		LCALL 	398H 			//03C8 	3398
+
+		//;TEST_60F01x_IIC.c: 367: DelayS(1);
+		LDWI 	1H 			//03C9 	2A01
+		LCALL 	370H 			//03CA 	3370
+
+		//;TEST_60F01x_IIC.c: 368: I2C_SendString(0x84,par3,sizeof(par3));
+		LDWI 	1H 			//03CB 	2A01
+		STR 	45H 			//03CC 	01C5
+		LDWI 	44H 			//03CD 	2A44
+		STR 	46H 			//03CE 	01C6
+		LDWI 	84H 			//03CF 	2A84
+		ORG		03D0H
+		CLRR 	47H 			//03D0 	0147
+		LCALL 	398H 			//03D1 	3398
+
+		//;TEST_60F01x_IIC.c: 369: DelayS(1);
+		LDWI 	1H 			//03D2 	2A01
+		LCALL 	370H 			//03D3 	3370
+
+		//;TEST_60F01x_IIC.c: 370: TRISA2 =1;
+		BSR 	STATUS,5 		//03D4 	1A83
+		BSR 	5H,2 			//03D5 	1905
+
+		//;TEST_60F01x_IIC.c: 371: TRISA4 =1;
+		BSR 	5H,4 			//03D6 	1A05
+
+		//;TEST_60F01x_IIC.c: 373: {
+		//;TEST_60F01x_IIC.c: 374: _nop();
+		NOP		 					//03D7 	0000
+		ORG		03D8H
+		LJUMP 	3D7H 			//03D8 	3BD7
+		STR 	43H 			//03D9 	01C3
+
+		//;TEST_60F01x_IIC.c: 222: unsigned char t;
+		//;TEST_60F01x_IIC.c: 223: TRISA2 =0;
+		BSR 	STATUS,5 		//03DA 	1A83
+		BCR 	5H,2 			//03DB 	1105
+
+		//;TEST_60F01x_IIC.c: 224: RA4=0;
+		BCR 	STATUS,5 		//03DC 	1283
+		BCR 	5H,4 			//03DD 	1205
+
+		//;TEST_60F01x_IIC.c: 225: for(t=0;t<8;t++)
+		CLRR 	44H 			//03DE 	0144
+
+		//;TEST_60F01x_IIC.c: 226: {
+		//;TEST_60F01x_IIC.c: 227: if((txd&0x80)>>7)
+		LDR 	43H,0 			//03DF 	0843
+		ORG		03E0H
+		STR 	42H 			//03E0 	01C2
+		LDWI 	7H 			//03E1 	2A07
+		BCR 	STATUS,0 		//03E2 	1003
+		RRR	42H,1 			//03E3 	06C2
+		ADDWI 	FFH 			//03E4 	27FF
+		BTSS 	STATUS,2 		//03E5 	1D03
+		LJUMP 	3E2H 			//03E6 	3BE2
+		BTSS 	42H,0 			//03E7 	1C42
+		ORG		03E8H
+		LJUMP 	3ECH 			//03E8 	3BEC
+
+		//;TEST_60F01x_IIC.c: 228: RA2=1;
+		BCR 	STATUS,5 		//03E9 	1283
+		BSR 	5H,2 			//03EA 	1905
+		LJUMP 	3EEH 			//03EB 	3BEE
+
+		//;TEST_60F01x_IIC.c: 229: else
+		//;TEST_60F01x_IIC.c: 230: RA2=0;
+		BCR 	STATUS,5 		//03EC 	1283
+		BCR 	5H,2 			//03ED 	1105
+		LDWI 	5H 			//03EE 	2A05
+
+		//;TEST_60F01x_IIC.c: 231: txd<<=1;
+		BCR 	STATUS,0 		//03EF 	1003
+		ORG		03F0H
+		RLR 	43H,1 			//03F0 	05C3
+
+		//;TEST_60F01x_IIC.c: 232: DelayUs(5);
+		LCALL 	32AH 			//03F1 	332A
+		LDWI 	5H 			//03F2 	2A05
+
+		//;TEST_60F01x_IIC.c: 233: RA4=1;
+		BCR 	STATUS,5 		//03F3 	1283
+		BSR 	5H,4 			//03F4 	1A05
+
+		//;TEST_60F01x_IIC.c: 234: DelayUs(5);
+		LCALL 	32AH 			//03F5 	332A
+		LDWI 	5H 			//03F6 	2A05
+
+		//;TEST_60F01x_IIC.c: 235: RA4=0;
+		BCR 	STATUS,5 		//03F7 	1283
+		ORG		03F8H
+		BCR 	5H,4 			//03F8 	1205
+
+		//;TEST_60F01x_IIC.c: 236: DelayUs(5);
+		LCALL 	32AH 			//03F9 	332A
+		LDWI 	8H 			//03FA 	2A08
+		INCR	44H,1 			//03FB 	09C4
+		SUBWR 	44H,0 			//03FC 	0C44
+		BTSC 	STATUS,0 		//03FD 	1403
+		RET		 					//03FE 	0004
+		LJUMP 	3DFH 			//03FF 	3BDF
+			END
