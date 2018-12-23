@@ -1,0 +1,2 @@
+# GPS_FT6XF0XX
+通过I2C配置GPS参数
