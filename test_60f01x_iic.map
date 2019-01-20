@@ -23,43 +23,45 @@ Machine type is 16F684
                 Name                               Link     Load   Length Selector   Space Scale
 startup.obj     end_init                              0        0        1        0       0
 test_60f01x_iic.obj
-                text111                             333      333        F      666       0
-                text110                             32A      32A        9      654       0
-                text109                             360      360       10      6C0       0
-                text108                             342      342        F      684       0
-                text107                             351      351        F      6A2       0
-                text106                             3D9      3D9       27      7B2       0
-                text105                             370      370       10      6E0       0
-                text104                             380      380       18      700       0
-                text103                             398      398       1E      730       0
-                maintext                            3B6      3B6       23      76C       0
-                cstackCOMMON                         40       40        A       40       1
-                cinit                               328      328        2      650       0
-                strings                               1        1       74        2       0
+                text117                             30B      30B        F      616       0
+                text116                             2F8      2F8        9      5F0       0
+                text115                             338      338       10      670       0
+                text114                             31A      31A        F      634       0
+                text113                             329      329        F      652       0
+                text112                             38E      38E       27      71C       0
+                text111                             348      348       10      690       0
+                text110                             358      358       18      6B0       0
+                text109                             301      301        A      602       0
+                text108                             370      370       1E      6E0       0
+                maintext                            3B5      3B5       4B      76A       0
+                cstackCOMMON                         40       40        B       40       1
+                cinit                               2F6      2F6        2      5EC       0
+                strings                               1        1       EE        2       0
 
 TOTAL           Name                               Link     Load   Length     Space
         CLASS   CONST          
 
         CLASS   CODE           
                 end_init                              0        0        1         0
-                text111                             333      333        F         0
-                text110                             32A      32A        9         0
-                text109                             360      360       10         0
-                text108                             342      342        F         0
-                text107                             351      351        F         0
-                text106                             3D9      3D9       27         0
-                text105                             370      370       10         0
-                text104                             380      380       18         0
-                text103                             398      398       1E         0
-                maintext                            3B6      3B6       23         0
-                cinit                               328      328        2         0
+                text117                             30B      30B        F         0
+                text116                             2F8      2F8        9         0
+                text115                             338      338       10         0
+                text114                             31A      31A        F         0
+                text113                             329      329        F         0
+                text112                             38E      38E       27         0
+                text111                             348      348       10         0
+                text110                             358      358       18         0
+                text109                             301      301        A         0
+                text108                             370      370       1E         0
+                maintext                            3B5      3B5       4B         0
+                cinit                               2F6      2F6        2         0
 
         CLASS   STRCODE        
 
         CLASS   ENTRY          
 
         CLASS   STRING         
-                strings                               1        1       74         0
+                strings                               1        1       EE         0
 
         CLASS   BANK0          
 
@@ -72,7 +74,7 @@ TOTAL           Name                               Link     Load   Length     Sp
                 abs_s1                               7E       7E       22         1
 
         CLASS   COMMON         
-                cstackCOMMON                         40       40        A         1
+                cstackCOMMON                         40       40        B         1
 
         CLASS   SFR0           
 
@@ -89,36 +91,38 @@ TOTAL           Name                               Link     Load   Length     Sp
 SEGMENTS        Name                           Load    Length   Top    Selector   Space  Class     Delta
 
                 reset_vec                      000000  000001  000001         0       0  CODE        2
-                strings                        000001  000074  000075         2       0  STRING      2
-                cstackCOMMON                   000040  00000A  00004A        40       1  COMMON      1
-                cinit                          000328  000002  00032A       650       0  CODE        2
-                text110                        00032A  000009  000333       654       0  CODE        2
-                text111                        000333  00000F  000342       666       0  CODE        2
-                text108                        000342  00000F  000351       684       0  CODE        2
-                text107                        000351  00000F  000360       6A2       0  CODE        2
-                text109                        000360  000010  000370       6C0       0  CODE        2
-                text105                        000370  000010  000380       6E0       0  CODE        2
-                text104                        000380  000018  000398       700       0  CODE        2
-                text103                        000398  00001E  0003B6       730       0  CODE        2
-                maintext                       0003B6  000023  0003D9       76C       0  CODE        2
-                text106                        0003D9  000027  000400       7B2       0  CODE        2
+                strings                        000001  0000EE  0000EF         2       0  STRING      2
+                cstackCOMMON                   000040  00000B  00004B        40       1  COMMON      1
+                cinit                          0002F6  000002  0002F8       5EC       0  CODE        2
+                text116                        0002F8  000009  000301       5F0       0  CODE        2
+                text109                        000301  00000A  00030B       602       0  CODE        2
+                text117                        00030B  00000F  00031A       616       0  CODE        2
+                text114                        00031A  00000F  000329       634       0  CODE        2
+                text113                        000329  00000F  000338       652       0  CODE        2
+                text115                        000338  000010  000348       670       0  CODE        2
+                text111                        000348  000010  000358       690       0  CODE        2
+                text110                        000358  000018  000370       6B0       0  CODE        2
+                text108                        000370  00001E  00038E       6E0       0  CODE        2
+                text112                        00038E  000027  0003B5       71C       0  CODE        2
+                maintext                       0003B5  00004B  000400       76A       0  CODE        2
 
 
 UNUSED ADDRESS RANGES
 
         Name                Unused          Largest block    Delta
-        CODE             075-327           2B3           2
-        COMMON           04A-07D            34           1
+        CODE             0EF-2F5           207           2
+        COMMON           04B-07D            33           1
         CONFIG           2007-2007             1           2
-        CONST            075-327           100           2
+        CONST            0EF-2F5           100           2
         EEDATA           2100-21FF           100           2
-        ENTRY            075-327           100           2
+        ENTRY            0EF-2F5           100           2
         IDLOC            2000-2003             4           2
-        STRCODE          075-327           2B3           2
-        STRING           075-327           100           2
+        STRCODE          0EF-2F5           207           2
+        STRING           0EF-2F5           100           2
 
                                   Symbol Table
 
+??_DelayM                cstackCOMMON 048
 ??_DelayMs               cstackCOMMON 042
 ??_DelayS                cstackCOMMON 045
 ??_DelayUs               cstackCOMMON 040
@@ -129,6 +133,7 @@ UNUSED ADDRESS RANGES
 ??_IIC_Wait_Ack          cstackCOMMON 042
 ??_POWER_INITIAL         cstackCOMMON 040
 ??_main                  cstackCOMMON 04A
+?_DelayM                 cstackCOMMON 040
 ?_DelayMs                cstackCOMMON 040
 ?_DelayS                 cstackCOMMON 040
 ?_DelayUs                cstackCOMMON 040
@@ -139,6 +144,8 @@ UNUSED ADDRESS RANGES
 ?_IIC_Wait_Ack           cstackCOMMON 040
 ?_POWER_INITIAL          cstackCOMMON 040
 ?_main                   cstackCOMMON 040
+DelayM@Time              cstackCOMMON 048
+DelayM@a                 cstackCOMMON 049
 DelayMs@Time             cstackCOMMON 042
 DelayMs@a                cstackCOMMON 043
 DelayMs@b                cstackCOMMON 044
@@ -211,9 +218,10 @@ _CMCON1                  (abs)        01A
 _DC                      (abs)        019
 _DC1B0                   (abs)        0AC
 _DC1B1                   (abs)        0AD
-_DelayMs                 text109      360
-_DelayS                  text105      370
-_DelayUs                 text110      32A
+_DelayM                  text109      301
+_DelayMs                 text115      338
+_DelayS                  text111      348
+_DelayUs                 text116      2F8
 _ECCPAS                  (abs)        017
 _ECCPAS0                 (abs)        0BC
 _ECCPAS1                 (abs)        0BD
@@ -238,11 +246,11 @@ _GO_nDONE                (abs)        0F9
 _HC                      (abs)        019
 _HFIOFR                  (abs)        47A
 _HTS                     (abs)        47A
-_I2C_SendString          text103      398
-_IIC_Send_Byte           text106      3D9
-_IIC_Start               text108      342
-_IIC_Stop                text107      351
-_IIC_Wait_Ack            text104      380
+_I2C_SendString          text108      370
+_IIC_Send_Byte           text112      38E
+_IIC_Start               text114      31A
+_IIC_Stop                text113      329
+_IIC_Wait_Ack            text110      358
 _INDF                    (abs)        000
 _INTCON                  (abs)        00B
 _INTCONbits              (abs)        00B
@@ -313,7 +321,7 @@ _PIR1bits                (abs)        00C
 _PORTA                   (abs)        005
 _PORTAbits               (abs)        005
 _PORTC                   (abs)        007
-_POWER_INITIAL           text111      333
+_POWER_INITIAL           text117      30B
 _PR2                     (abs)        092
 _PRSEN                   (abs)        0B7
 _PS0                     (abs)        408
@@ -559,31 +567,34 @@ __Lsfr1                  sfr1         000
 __Lstrings               strings      000
 __Ltext                  text         000
 __S0                     (abs)        400
-__S1                     (abs)        04A
+__S1                     (abs)        04B
 __S2                     (abs)        000
-__end_of_DelayMs         text109      370
-__end_of_DelayS          text105      380
-__end_of_DelayUs         text110      333
-__end_of_I2C_SendString  text103      3B6
-__end_of_IIC_Send_Byte   text106      400
-__end_of_IIC_Start       text108      351
-__end_of_IIC_Stop        text107      360
-__end_of_IIC_Wait_Ack    text104      398
-__end_of_POWER_INITIAL   text111      342
-__end_of_main            maintext     3D9
+__end_of_DelayM          text109      30B
+__end_of_DelayMs         text115      348
+__end_of_DelayS          text111      358
+__end_of_DelayUs         text116      301
+__end_of_I2C_SendString  text108      38E
+__end_of_IIC_Send_Byte   text112      3B5
+__end_of_IIC_Start       text114      329
+__end_of_IIC_Stop        text113      338
+__end_of_IIC_Wait_Ack    text110      370
+__end_of_POWER_INITIAL   text117      31A
+__end_of_main            maintext     400
 __pcstackCOMMON          cstackCOMMON 040
-__pmaintext              maintext     3B6
+__pmaintext              maintext     3B5
 __pstrings               strings      001
-__ptext103               text103      398
-__ptext104               text104      380
-__ptext105               text105      370
-__ptext106               text106      3D9
-__ptext107               text107      351
-__ptext108               text108      342
-__ptext109               text109      360
-__ptext110               text110      32A
-__ptext111               text111      333
-__ptext112               text112      000
+__ptext108               text108      370
+__ptext109               text109      301
+__ptext110               text110      358
+__ptext111               text111      348
+__ptext112               text112      38E
+__ptext113               text113      329
+__ptext114               text114      31A
+__ptext115               text115      338
+__ptext116               text116      2F8
+__ptext117               text117      30B
+__ptext118               text118      000
+__size_of_DelayM         (abs)        000
 __size_of_DelayMs        (abs)        000
 __size_of_DelayS         (abs)        000
 __size_of_DelayUs        (abs)        000
@@ -595,7 +606,7 @@ __size_of_IIC_Wait_Ack   (abs)        000
 __size_of_POWER_INITIAL  (abs)        000
 __size_of_main           (abs)        000
 _exit                    init         000
-_main                    maintext     3B6
+_main                    maintext     3B5
 _nBOD                    (abs)        470
 _nBOR                    (abs)        470
 _nDONE                   (abs)        0F9
@@ -607,70 +618,83 @@ _nRAPU                   (abs)        40F
 _nT1SYNC                 (abs)        082
 _nTF                     (abs)        01C
 _nTO                     (abs)        01C
-_par1                    strings      04B
-_par2                    strings      067
-_par3                    strings      007
+_par1                    strings      0CF
+_par2                    strings      007
+_par3                    strings      07B
+_par4                    strings      04B
+_par5                    strings      0A7
+_par6                    strings      0E3
 btemp                    (abs)        07E
-end_of_initialization    cinit        328
+end_of_initialization    cinit        2F6
 intlevel0                functab      000
 intlevel1                functab      000
 intlevel2                functab      000
 intlevel3                functab      000
 intlevel4                functab      000
 intlevel5                functab      000
-l1446                                    
-l1448                                    
-l1450                                    
-l1452                                    
-l1454                                    
-l1456                                    
-l1458                                    
-l1462                                    
-l1472                                    
-l1474                                    
-l1480                                    
-l1482                                    
-l1484                                    
-l1486                                    
-l1490                                    
-l1492                                    
-l1494                                    
-l1496                                    
-l1498                                    
-l1508                                    
-l1510                                    
-l1512                                    
-l1514                                    
-l1516                                    
-l1518                                    
-l1528                                    
-l1530                                    
-l1536                                    
-l1538                                    
-l1540                                    
-l1542                                    
-l1544                                    
-l1546                                    
-l1550                                    
-l1554                                    
-l1558                                    
-l1562                                    
-l1570                                    
-l1582                                    
-l1584                                    
-l1586                                    
-l1588                                    
-l1590                                    
-l1592                                    
-l1594                                    
-l439                                     
+l1463                                    
+l1465                                    
+l1467                                    
+l1469                                    
+l1471                                    
+l1473                                    
+l1475                                    
+l1479                                    
+l1489                                    
+l1491                                    
+l1497                                    
+l1499                                    
+l1501                                    
+l1503                                    
+l1507                                    
+l1509                                    
+l1511                                    
+l1513                                    
+l1515                                    
+l1525                                    
+l1527                                    
+l1529                                    
+l1531                                    
+l1533                                    
+l1535                                    
+l1545                                    
+l1547                                    
+l1553                                    
+l1555                                    
+l1557                                    
+l1559                                    
+l1561                                    
+l1563                                    
+l1567                                    
+l1571                                    
+l1575                                    
+l1579                                    
+l1583                                    
+l1587                                    
+l1595                                    
+l1607                                    
+l1609                                    
+l1611                                    
+l1613                                    
+l1615                                    
+l1617                                    
+l1619                                    
+l1621                                    
+l1623                                    
+l1631                                    
+l1633                                    
+l1635                                    
+l1639                                    
 l445                                     
-l453                                     
-l461                                     
-l464                                     
+l451                                     
+l459                                     
 l467                                     
-l487                                     
+l473                                     
+l476                                     
+l479                                     
+l499                                     
+main@i                   cstackCOMMON 04A
 reset_vec                reset_vec    000
 start                    init         000
-start_initialization     cinit        328
+start_initialization     cinit        2F6
 wtemp0                   (abs)        07E

@@ -299,27 +299,29 @@
 [v _DelayMs `(v  1 e 0 0 ]
 "111
 [v _DelayS `(v  1 e 0 0 ]
-"128
+"123
+[v _DelayM `(v  1 e 0 0 ]
+"137
 [v _IIC_Start `(v  1 e 0 0 ]
-"145
+"154
 [v _IIC_Stop `(v  1 e 0 0 ]
-"163
+"172
 [v _IIC_Wait_Ack `(uc  1 e 1 0 ]
-"189
+"198
 [v _IIC_Ack `(v  1 e 0 0 ]
-"205
+"214
 [v _IIC_NAck `(v  1 e 0 0 ]
-"221
+"230
 [v _IIC_Send_Byte `(v  1 e 0 0 ]
-"246
+"255
 [v _IIC_Read_Byte `(uc  1 e 1 0 ]
-"269
+"278
 [v _IIC_READ `(uc  1 e 1 0 ]
-"291
+"300
 [v _IIC_WRITE `(v  1 e 0 0 ]
-"333
+"395
 [v _I2C_SendString `(uc  1 e 1 0 ]
-"361
+"423
 [v _main `(v  1 e 0 0 ]
 "90 /hitech/products/compilers/pic/pro/9.83/dist/linux/include/pic16f684.h
 [v _INDF `VEuc  1 e 1 @0 ]
@@ -1037,35 +1039,53 @@
 [v _SFR9E `VEuc  1 e 1 @158 ]
 "634
 [v _SFR9F `VEuc  1 e 1 @159 ]
-"318 TEST_60F01x_IIC.c
-[v _par1 `DC[28]uc  1 e 28 0 ]
-"323
-[v _par2 `DC[14]uc  1 e 14 0 ]
-"326
-[v _par3 `DC[68]uc  1 e 68 0 ]
-"361
+"327 TEST_60F01x_IIC.c
+[v _par1 `DC[20]uc  1 e 20 0 ]
+"342
+[v _par2 `DC[68]uc  1 e 68 0 ]
+"358
+[v _par3 `DC[44]uc  1 e 44 0 ]
+"373
+[v _par4 `DC[48]uc  1 e 48 0 ]
+"383
+[v _par5 `DC[40]uc  1 e 40 0 ]
+"390
+[v _par6 `DC[12]uc  1 e 12 0 ]
+"423
 [v _main `(v  1 e 0 0 ]
 {
-"377
+"424
+[v main@i `uc  1 a 1 10 ]
+"453
 } 0
-"333
+"395
 [v _I2C_SendString `(uc  1 e 1 0 ]
 {
 [v I2C_SendString@chip_addr `uc  1 a 1 wreg ]
-"334
+"396
 [v I2C_SendString@i `uc  1 a 1 9 ]
-"333
+"395
 [v I2C_SendString@chip_addr `uc  1 a 1 wreg ]
 [v I2C_SendString@buffer `*.cDCuc  1 p 1 5 ]
 [v I2C_SendString@Number `i  1 p 2 6 ]
-"353
+"415
 } 0
-"163
+"123
+[v _DelayM `(v  1 e 0 0 ]
+{
+[v DelayM@Time `uc  1 a 1 wreg ]
+"124
+[v DelayM@a `uc  1 a 1 9 ]
+"123
+[v DelayM@Time `uc  1 a 1 wreg ]
+"129
+} 0
+"172
 [v _IIC_Wait_Ack `(uc  1 e 1 0 ]
 {
-"164
+"173
 [v IIC_Wait_Ack@ucErrTime `uc  1 a 1 2 ]
-"181
+"190
 } 0
 "111
 [v _DelayS `(v  1 e 0 0 ]
@@ -1078,25 +1098,25 @@
 [v DelayS@Time `uc  1 a 1 wreg ]
 "120
 } 0
-"221
+"230
 [v _IIC_Send_Byte `(v  1 e 0 0 ]
 {
 [v IIC_Send_Byte@txd `uc  1 a 1 wreg ]
-"222
+"231
 [v IIC_Send_Byte@t `uc  1 a 1 4 ]
-"221
+"230
 [v IIC_Send_Byte@txd `uc  1 a 1 wreg ]
-"238
+"247
 } 0
-"145
+"154
 [v _IIC_Stop `(v  1 e 0 0 ]
 {
-"154
+"163
 } 0
-"128
+"137
 [v _IIC_Start `(v  1 e 0 0 ]
 {
-"137
+"146
 } 0
 "94
 [v _DelayMs `(v  1 e 0 0 ]

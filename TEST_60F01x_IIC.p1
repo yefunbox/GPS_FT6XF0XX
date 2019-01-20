@@ -518,12 +518,18 @@ Version 3.2 HI-TECH Software Intermediate Code
 "28 C:\Program Files (x86)\HI-TECH Software\PICC\9.83\include\SYSCFG.h
 [v __nop `(v  0 ef ]
 [p i __nop ]
-"318 TEST_60F01x_IIC.c
-[v _par1 `Cuc  -> 28 `i e ]
-"323 TEST_60F01x_IIC.c
-[v _par2 `Cuc  -> 14 `i e ]
-"326 TEST_60F01x_IIC.c
-[v _par3 `Cuc  -> 68 `i e ]
+"327 TEST_60F01x_IIC.c
+[v _par1 `Cuc  -> 0 `x e ]
+"342 TEST_60F01x_IIC.c
+[v _par2 `Cuc  -> 0 `x e ]
+"358 TEST_60F01x_IIC.c
+[v _par3 `Cuc  -> 0 `x e ]
+"373 TEST_60F01x_IIC.c
+[v _par4 `Cuc  -> 0 `x e ]
+"383 TEST_60F01x_IIC.c
+[v _par5 `Cuc  -> 0 `x e ]
+"390 TEST_60F01x_IIC.c
+[v _par6 `Cuc  -> 0 `x e ]
 [p mainexit ]
 [; ;pic16f684.h: 90: volatile unsigned char INDF @ 0x000;
 [; ;pic16f684.h: 94: volatile unsigned char TMR0 @ 0x001;
@@ -1126,522 +1132,523 @@ Version 3.2 HI-TECH Software Intermediate Code
 "120
 [e :UE 59 ]
 }
-"128
-[v _IIC_Start `(v  1 ef ]
+"123
+[v _DelayM `(v  1 ef1`uc ]
 {
-[; ;TEST_60F01x_IIC.c: 127: void IIC_Start(void)
-[; ;TEST_60F01x_IIC.c: 128: {
-[e :U _IIC_Start ]
+[; ;TEST_60F01x_IIC.c: 122: void DelayM(unsigned char Time)
+[; ;TEST_60F01x_IIC.c: 123: {
+[e :U _DelayM ]
+[v _Time `uc  1 r1 ]
 [f ]
-[; ;TEST_60F01x_IIC.c: 129: TRISA2 =0;
+"124
+[v _a `uc  1 a ]
+[; ;TEST_60F01x_IIC.c: 124: unsigned char a;
+[; ;TEST_60F01x_IIC.c: 125: for(a=0;a<Time;a++)
+"125
+{
+[e = _a -> -> 0 `i `uc ]
+[e $U 71  ]
+"126
+[e :U 68 ]
+[; ;TEST_60F01x_IIC.c: 126: {
+{
+[; ;TEST_60F01x_IIC.c: 127: DelayS(60);
+"127
+[e ( _DelayS (1 -> -> 60 `i `uc ]
+"128
+}
+"125
+[e ++ _a -> -> 1 `i `uc ]
+[e :U 71 ]
+[e $ < -> _a `i -> _Time `i 68  ]
+[e :U 69 ]
+"128
+}
+[; ;TEST_60F01x_IIC.c: 128: }
+[; ;TEST_60F01x_IIC.c: 129: }
 "129
-[e = _TRISA2 -> -> 0 `i `b ]
-[; ;TEST_60F01x_IIC.c: 130: RA2=1;
-"130
-[e = _RA2 -> -> 1 `i `b ]
-[; ;TEST_60F01x_IIC.c: 131: RA4=1;
-"131
-[e = _RA4 -> -> 1 `i `b ]
-[; ;TEST_60F01x_IIC.c: 132: DelayUs(10);
-"132
-[e ( _DelayUs (1 -> -> 10 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 133: RA2=0;
-"133
-[e = _RA2 -> -> 0 `i `b ]
-[; ;TEST_60F01x_IIC.c: 134: DelayUs(10);
-"134
-[e ( _DelayUs (1 -> -> 10 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 135: RA4=0;
-"135
-[e = _RA4 -> -> 0 `i `b ]
-[; ;TEST_60F01x_IIC.c: 136: DelayUs(10);
-"136
-[e ( _DelayUs (1 -> -> 10 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 137: }
-"137
 [e :UE 67 ]
 }
+"137
+[v _IIC_Start `(v  1 ef ]
+{
+[; ;TEST_60F01x_IIC.c: 136: void IIC_Start(void)
+[; ;TEST_60F01x_IIC.c: 137: {
+[e :U _IIC_Start ]
+[f ]
+[; ;TEST_60F01x_IIC.c: 138: TRISA2 =0;
+"138
+[e = _TRISA2 -> -> 0 `i `b ]
+[; ;TEST_60F01x_IIC.c: 139: RA2=1;
+"139
+[e = _RA2 -> -> 1 `i `b ]
+[; ;TEST_60F01x_IIC.c: 140: RA4=1;
+"140
+[e = _RA4 -> -> 1 `i `b ]
+[; ;TEST_60F01x_IIC.c: 141: DelayUs(10);
+"141
+[e ( _DelayUs (1 -> -> 10 `i `uc ]
+[; ;TEST_60F01x_IIC.c: 142: RA2=0;
+"142
+[e = _RA2 -> -> 0 `i `b ]
+[; ;TEST_60F01x_IIC.c: 143: DelayUs(10);
+"143
+[e ( _DelayUs (1 -> -> 10 `i `uc ]
+[; ;TEST_60F01x_IIC.c: 144: RA4=0;
+"144
+[e = _RA4 -> -> 0 `i `b ]
+[; ;TEST_60F01x_IIC.c: 145: DelayUs(10);
 "145
+[e ( _DelayUs (1 -> -> 10 `i `uc ]
+[; ;TEST_60F01x_IIC.c: 146: }
+"146
+[e :UE 72 ]
+}
+"154
 [v _IIC_Stop `(v  1 ef ]
 {
-[; ;TEST_60F01x_IIC.c: 144: void IIC_Stop(void)
-[; ;TEST_60F01x_IIC.c: 145: {
+[; ;TEST_60F01x_IIC.c: 153: void IIC_Stop(void)
+[; ;TEST_60F01x_IIC.c: 154: {
 [e :U _IIC_Stop ]
 [f ]
-[; ;TEST_60F01x_IIC.c: 146: TRISA2 =0;
-"146
+[; ;TEST_60F01x_IIC.c: 155: TRISA2 =0;
+"155
 [e = _TRISA2 -> -> 0 `i `b ]
-[; ;TEST_60F01x_IIC.c: 147: RA4=0;
-"147
+[; ;TEST_60F01x_IIC.c: 156: RA4=0;
+"156
 [e = _RA4 -> -> 0 `i `b ]
-[; ;TEST_60F01x_IIC.c: 148: RA2=0;
-"148
+[; ;TEST_60F01x_IIC.c: 157: RA2=0;
+"157
 [e = _RA2 -> -> 0 `i `b ]
-[; ;TEST_60F01x_IIC.c: 149: DelayUs(10);
-"149
+[; ;TEST_60F01x_IIC.c: 158: DelayUs(10);
+"158
 [e ( _DelayUs (1 -> -> 10 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 150: RA4=1;
-"150
+[; ;TEST_60F01x_IIC.c: 159: RA4=1;
+"159
 [e = _RA4 -> -> 1 `i `b ]
-[; ;TEST_60F01x_IIC.c: 151: DelayUs(10);
-"151
+[; ;TEST_60F01x_IIC.c: 160: DelayUs(10);
+"160
 [e ( _DelayUs (1 -> -> 10 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 152: RA2=1;
-"152
+[; ;TEST_60F01x_IIC.c: 161: RA2=1;
+"161
 [e = _RA2 -> -> 1 `i `b ]
-[; ;TEST_60F01x_IIC.c: 153: DelayUs(10);
-"153
+[; ;TEST_60F01x_IIC.c: 162: DelayUs(10);
+"162
 [e ( _DelayUs (1 -> -> 10 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 154: }
-"154
-[e :UE 68 ]
-}
+[; ;TEST_60F01x_IIC.c: 163: }
 "163
+[e :UE 73 ]
+}
+"172
 [v _IIC_Wait_Ack `(uc  1 ef ]
 {
-[; ;TEST_60F01x_IIC.c: 162: unsigned char IIC_Wait_Ack(void)
-[; ;TEST_60F01x_IIC.c: 163: {
+[; ;TEST_60F01x_IIC.c: 171: unsigned char IIC_Wait_Ack(void)
+[; ;TEST_60F01x_IIC.c: 172: {
 [e :U _IIC_Wait_Ack ]
 [f ]
-"164
-[v _ucErrTime `uc  1 a ]
-[; ;TEST_60F01x_IIC.c: 164: unsigned char ucErrTime=0;
-[e = _ucErrTime -> -> 0 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 165: TRISA2 =1;
-"165
-[e = _TRISA2 -> -> 1 `i `b ]
-[; ;TEST_60F01x_IIC.c: 166: RA2=1;
-"166
-[e = _RA2 -> -> 1 `i `b ]
-[; ;TEST_60F01x_IIC.c: 167: DelayUs(5);
-"167
-[e ( _DelayUs (1 -> -> 5 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 168: RA4=1;
-"168
-[e = _RA4 -> -> 1 `i `b ]
-[; ;TEST_60F01x_IIC.c: 169: DelayUs(5);
-"169
-[e ( _DelayUs (1 -> -> 5 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 170: while(RA2)
-"170
-[e $U 70  ]
-[e :U 71 ]
-[; ;TEST_60F01x_IIC.c: 171: {
-"171
-{
-[; ;TEST_60F01x_IIC.c: 172: ucErrTime++;
-"172
-[e ++ _ucErrTime -> -> 1 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 173: if(ucErrTime>250)
 "173
-[e $ ! > -> _ucErrTime `i -> 250 `i 73  ]
-[; ;TEST_60F01x_IIC.c: 174: {
+[v _ucErrTime `uc  1 a ]
+[; ;TEST_60F01x_IIC.c: 173: unsigned char ucErrTime=0;
+[e = _ucErrTime -> -> 0 `i `uc ]
+[; ;TEST_60F01x_IIC.c: 174: TRISA2 =1;
 "174
-{
-[; ;TEST_60F01x_IIC.c: 175: IIC_Stop();
+[e = _TRISA2 -> -> 1 `i `b ]
+[; ;TEST_60F01x_IIC.c: 175: RA2=1;
 "175
-[e ( _IIC_Stop ..  ]
-[; ;TEST_60F01x_IIC.c: 176: return 1;
+[e = _RA2 -> -> 1 `i `b ]
+[; ;TEST_60F01x_IIC.c: 176: DelayUs(5);
 "176
-[e ) -> -> 1 `i `uc ]
-[e $UE 69  ]
+[e ( _DelayUs (1 -> -> 5 `i `uc ]
+[; ;TEST_60F01x_IIC.c: 177: RA4=1;
 "177
-}
-[e :U 73 ]
-"178
-}
-[e :U 70 ]
-"170
-[e $ _RA2 71  ]
-[e :U 72 ]
-[; ;TEST_60F01x_IIC.c: 177: }
-[; ;TEST_60F01x_IIC.c: 178: }
-[; ;TEST_60F01x_IIC.c: 179: RA4=0;
-"179
-[e = _RA4 -> -> 0 `i `b ]
-[; ;TEST_60F01x_IIC.c: 180: return 0;
-"180
-[e ) -> -> 0 `i `uc ]
-[e $UE 69  ]
-[; ;TEST_60F01x_IIC.c: 181: }
-"181
-[e :UE 69 ]
-}
-"189
-[v _IIC_Ack `(v  1 ef ]
-{
-[; ;TEST_60F01x_IIC.c: 188: void IIC_Ack(void)
-[; ;TEST_60F01x_IIC.c: 189: {
-[e :U _IIC_Ack ]
-[f ]
-[; ;TEST_60F01x_IIC.c: 190: RA4=0;
-"190
-[e = _RA4 -> -> 0 `i `b ]
-[; ;TEST_60F01x_IIC.c: 191: TRISA2 =0;
-"191
-[e = _TRISA2 -> -> 0 `i `b ]
-[; ;TEST_60F01x_IIC.c: 192: RA2=0;
-"192
-[e = _RA2 -> -> 0 `i `b ]
-[; ;TEST_60F01x_IIC.c: 193: DelayUs(5);
-"193
-[e ( _DelayUs (1 -> -> 5 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 194: RA4=1;
-"194
 [e = _RA4 -> -> 1 `i `b ]
-[; ;TEST_60F01x_IIC.c: 195: DelayUs(5);
-"195
+[; ;TEST_60F01x_IIC.c: 178: DelayUs(5);
+"178
 [e ( _DelayUs (1 -> -> 5 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 196: RA4=0;
-"196
+[; ;TEST_60F01x_IIC.c: 179: while(RA2)
+"179
+[e $U 75  ]
+[e :U 76 ]
+[; ;TEST_60F01x_IIC.c: 180: {
+"180
+{
+[; ;TEST_60F01x_IIC.c: 181: ucErrTime++;
+"181
+[e ++ _ucErrTime -> -> 1 `i `uc ]
+[; ;TEST_60F01x_IIC.c: 182: if(ucErrTime>250)
+"182
+[e $ ! > -> _ucErrTime `i -> 250 `i 78  ]
+[; ;TEST_60F01x_IIC.c: 183: {
+"183
+{
+[; ;TEST_60F01x_IIC.c: 184: IIC_Stop();
+"184
+[e ( _IIC_Stop ..  ]
+[; ;TEST_60F01x_IIC.c: 185: return 1;
+"185
+[e ) -> -> 1 `i `uc ]
+[e $UE 74  ]
+"186
+}
+[e :U 78 ]
+"187
+}
+[e :U 75 ]
+"179
+[e $ _RA2 76  ]
+[e :U 77 ]
+[; ;TEST_60F01x_IIC.c: 186: }
+[; ;TEST_60F01x_IIC.c: 187: }
+[; ;TEST_60F01x_IIC.c: 188: RA4=0;
+"188
 [e = _RA4 -> -> 0 `i `b ]
-[; ;TEST_60F01x_IIC.c: 197: }
-"197
+[; ;TEST_60F01x_IIC.c: 189: return 0;
+"189
+[e ) -> -> 0 `i `uc ]
+[e $UE 74  ]
+[; ;TEST_60F01x_IIC.c: 190: }
+"190
 [e :UE 74 ]
 }
+"198
+[v _IIC_Ack `(v  1 ef ]
+{
+[; ;TEST_60F01x_IIC.c: 197: void IIC_Ack(void)
+[; ;TEST_60F01x_IIC.c: 198: {
+[e :U _IIC_Ack ]
+[f ]
+[; ;TEST_60F01x_IIC.c: 199: RA4=0;
+"199
+[e = _RA4 -> -> 0 `i `b ]
+[; ;TEST_60F01x_IIC.c: 200: TRISA2 =0;
+"200
+[e = _TRISA2 -> -> 0 `i `b ]
+[; ;TEST_60F01x_IIC.c: 201: RA2=0;
+"201
+[e = _RA2 -> -> 0 `i `b ]
+[; ;TEST_60F01x_IIC.c: 202: DelayUs(5);
+"202
+[e ( _DelayUs (1 -> -> 5 `i `uc ]
+[; ;TEST_60F01x_IIC.c: 203: RA4=1;
+"203
+[e = _RA4 -> -> 1 `i `b ]
+[; ;TEST_60F01x_IIC.c: 204: DelayUs(5);
+"204
+[e ( _DelayUs (1 -> -> 5 `i `uc ]
+[; ;TEST_60F01x_IIC.c: 205: RA4=0;
 "205
+[e = _RA4 -> -> 0 `i `b ]
+[; ;TEST_60F01x_IIC.c: 206: }
+"206
+[e :UE 79 ]
+}
+"214
 [v _IIC_NAck `(v  1 ef ]
 {
-[; ;TEST_60F01x_IIC.c: 204: void IIC_NAck(void)
-[; ;TEST_60F01x_IIC.c: 205: {
+[; ;TEST_60F01x_IIC.c: 213: void IIC_NAck(void)
+[; ;TEST_60F01x_IIC.c: 214: {
 [e :U _IIC_NAck ]
 [f ]
-[; ;TEST_60F01x_IIC.c: 206: RA4=0;
-"206
+[; ;TEST_60F01x_IIC.c: 215: RA4=0;
+"215
 [e = _RA4 -> -> 0 `i `b ]
-[; ;TEST_60F01x_IIC.c: 207: TRISA2 =0;
-"207
+[; ;TEST_60F01x_IIC.c: 216: TRISA2 =0;
+"216
 [e = _TRISA2 -> -> 0 `i `b ]
-[; ;TEST_60F01x_IIC.c: 208: RA2=1;
-"208
+[; ;TEST_60F01x_IIC.c: 217: RA2=1;
+"217
 [e = _RA2 -> -> 1 `i `b ]
-[; ;TEST_60F01x_IIC.c: 209: DelayUs(5);
-"209
+[; ;TEST_60F01x_IIC.c: 218: DelayUs(5);
+"218
 [e ( _DelayUs (1 -> -> 5 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 210: RA4=1;
-"210
+[; ;TEST_60F01x_IIC.c: 219: RA4=1;
+"219
 [e = _RA4 -> -> 1 `i `b ]
-[; ;TEST_60F01x_IIC.c: 211: DelayUs(5);
-"211
+[; ;TEST_60F01x_IIC.c: 220: DelayUs(5);
+"220
 [e ( _DelayUs (1 -> -> 5 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 212: RA4=0;
-"212
-[e = _RA4 -> -> 0 `i `b ]
-[; ;TEST_60F01x_IIC.c: 213: }
-"213
-[e :UE 75 ]
-}
+[; ;TEST_60F01x_IIC.c: 221: RA4=0;
 "221
+[e = _RA4 -> -> 0 `i `b ]
+[; ;TEST_60F01x_IIC.c: 222: }
+"222
+[e :UE 80 ]
+}
+"230
 [v _IIC_Send_Byte `(v  1 ef1`uc ]
 {
-[; ;TEST_60F01x_IIC.c: 220: void IIC_Send_Byte(unsigned char txd)
-[; ;TEST_60F01x_IIC.c: 221: {
+[; ;TEST_60F01x_IIC.c: 229: void IIC_Send_Byte(unsigned char txd)
+[; ;TEST_60F01x_IIC.c: 230: {
 [e :U _IIC_Send_Byte ]
 [v _txd `uc  1 r1 ]
 [f ]
-"222
+"231
 [v _t `uc  1 a ]
-[; ;TEST_60F01x_IIC.c: 222: unsigned char t;
-[; ;TEST_60F01x_IIC.c: 223: TRISA2 =0;
-"223
+[; ;TEST_60F01x_IIC.c: 231: unsigned char t;
+[; ;TEST_60F01x_IIC.c: 232: TRISA2 =0;
+"232
 [e = _TRISA2 -> -> 0 `i `b ]
-[; ;TEST_60F01x_IIC.c: 224: RA4=0;
-"224
+[; ;TEST_60F01x_IIC.c: 233: RA4=0;
+"233
 [e = _RA4 -> -> 0 `i `b ]
-[; ;TEST_60F01x_IIC.c: 225: for(t=0;t<8;t++)
-"225
+[; ;TEST_60F01x_IIC.c: 234: for(t=0;t<8;t++)
+"234
 {
 [e = _t -> -> 0 `i `uc ]
-[e $ < -> _t `i -> 8 `i 77  ]
-[e $U 78  ]
-"226
-[e :U 77 ]
-[; ;TEST_60F01x_IIC.c: 226: {
-{
-[; ;TEST_60F01x_IIC.c: 227: if((txd&0x80)>>7)
-"227
-[e $ ! != >> & -> _txd `i -> 128 `i -> 7 `i -> 0 `i 80  ]
-[; ;TEST_60F01x_IIC.c: 228: RA2=1;
-"228
-[e = _RA2 -> -> 1 `i `b ]
-[e $U 81  ]
-"229
-[e :U 80 ]
-[; ;TEST_60F01x_IIC.c: 229: else
-[; ;TEST_60F01x_IIC.c: 230: RA2=0;
-"230
-[e = _RA2 -> -> 0 `i `b ]
-[e :U 81 ]
-[; ;TEST_60F01x_IIC.c: 231: txd<<=1;
-"231
-[e =<< _txd -> 1 `i ]
-[; ;TEST_60F01x_IIC.c: 232: DelayUs(5);
-"232
-[e ( _DelayUs (1 -> -> 5 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 233: RA4=1;
-"233
-[e = _RA4 -> -> 1 `i `b ]
-[; ;TEST_60F01x_IIC.c: 234: DelayUs(5);
-"234
-[e ( _DelayUs (1 -> -> 5 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 235: RA4=0;
+[e $ < -> _t `i -> 8 `i 82  ]
+[e $U 83  ]
 "235
-[e = _RA4 -> -> 0 `i `b ]
-[; ;TEST_60F01x_IIC.c: 236: DelayUs(5);
+[e :U 82 ]
+[; ;TEST_60F01x_IIC.c: 235: {
+{
+[; ;TEST_60F01x_IIC.c: 236: if((txd&0x80)>>7)
 "236
-[e ( _DelayUs (1 -> -> 5 `i `uc ]
+[e $ ! != >> & -> _txd `i -> 128 `i -> 7 `i -> 0 `i 85  ]
+[; ;TEST_60F01x_IIC.c: 237: RA2=1;
 "237
-}
-"225
-[e ++ _t -> -> 1 `i `uc ]
-[e $ < -> _t `i -> 8 `i 77  ]
-[e :U 78 ]
-"237
-}
-[; ;TEST_60F01x_IIC.c: 237: }
-[; ;TEST_60F01x_IIC.c: 238: }
+[e = _RA2 -> -> 1 `i `b ]
+[e $U 86  ]
 "238
-[e :UE 76 ]
-}
+[e :U 85 ]
+[; ;TEST_60F01x_IIC.c: 238: else
+[; ;TEST_60F01x_IIC.c: 239: RA2=0;
+"239
+[e = _RA2 -> -> 0 `i `b ]
+[e :U 86 ]
+[; ;TEST_60F01x_IIC.c: 240: txd<<=1;
+"240
+[e =<< _txd -> 1 `i ]
+[; ;TEST_60F01x_IIC.c: 241: DelayUs(5);
+"241
+[e ( _DelayUs (1 -> -> 5 `i `uc ]
+[; ;TEST_60F01x_IIC.c: 242: RA4=1;
+"242
+[e = _RA4 -> -> 1 `i `b ]
+[; ;TEST_60F01x_IIC.c: 243: DelayUs(5);
+"243
+[e ( _DelayUs (1 -> -> 5 `i `uc ]
+[; ;TEST_60F01x_IIC.c: 244: RA4=0;
+"244
+[e = _RA4 -> -> 0 `i `b ]
+[; ;TEST_60F01x_IIC.c: 245: DelayUs(5);
+"245
+[e ( _DelayUs (1 -> -> 5 `i `uc ]
 "246
+}
+"234
+[e ++ _t -> -> 1 `i `uc ]
+[e $ < -> _t `i -> 8 `i 82  ]
+[e :U 83 ]
+"246
+}
+[; ;TEST_60F01x_IIC.c: 246: }
+[; ;TEST_60F01x_IIC.c: 247: }
+"247
+[e :UE 81 ]
+}
+"255
 [v _IIC_Read_Byte `(uc  1 ef ]
 {
-[; ;TEST_60F01x_IIC.c: 245: unsigned char IIC_Read_Byte(void)
-[; ;TEST_60F01x_IIC.c: 246: {
+[; ;TEST_60F01x_IIC.c: 254: unsigned char IIC_Read_Byte(void)
+[; ;TEST_60F01x_IIC.c: 255: {
 [e :U _IIC_Read_Byte ]
 [f ]
-"247
+"256
 [v _i `uc  1 a ]
 [v _receive `uc  1 a ]
-[; ;TEST_60F01x_IIC.c: 247: unsigned char i,receive=0;
+[; ;TEST_60F01x_IIC.c: 256: unsigned char i,receive=0;
 [e = _receive -> -> 0 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 248: TRISA2 =1;
-"248
+[; ;TEST_60F01x_IIC.c: 257: TRISA2 =1;
+"257
 [e = _TRISA2 -> -> 1 `i `b ]
-[; ;TEST_60F01x_IIC.c: 249: for(i=0;i<8;i++ )
-"249
+[; ;TEST_60F01x_IIC.c: 258: for(i=0;i<8;i++ )
+"258
 {
 [e = _i -> -> 0 `i `uc ]
-[e $ < -> _i `i -> 8 `i 83  ]
-[e $U 84  ]
-"250
-[e :U 83 ]
-[; ;TEST_60F01x_IIC.c: 250: {
+[e $ < -> _i `i -> 8 `i 88  ]
+[e $U 89  ]
+"259
+[e :U 88 ]
+[; ;TEST_60F01x_IIC.c: 259: {
 {
-[; ;TEST_60F01x_IIC.c: 251: RA4=0;
-"251
-[e = _RA4 -> -> 0 `i `b ]
-[; ;TEST_60F01x_IIC.c: 252: DelayUs(5);
-"252
-[e ( _DelayUs (1 -> -> 5 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 253: RA4=1;
-"253
-[e = _RA4 -> -> 1 `i `b ]
-[; ;TEST_60F01x_IIC.c: 254: receive<<=1;
-"254
-[e =<< _receive -> 1 `i ]
-[; ;TEST_60F01x_IIC.c: 255: if(RA2)receive++;
-"255
-[e $ ! _RA2 86  ]
-[e ++ _receive -> -> 1 `i `uc ]
-[e :U 86 ]
-[; ;TEST_60F01x_IIC.c: 256: DelayUs(5);
-"256
-[e ( _DelayUs (1 -> -> 5 `i `uc ]
-"257
-}
-"249
-[e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 8 `i 83  ]
-[e :U 84 ]
-"257
-}
-[; ;TEST_60F01x_IIC.c: 257: }
-[; ;TEST_60F01x_IIC.c: 258: IIC_NAck();
-"258
-[e ( _IIC_NAck ..  ]
-[; ;TEST_60F01x_IIC.c: 260: return receive;
+[; ;TEST_60F01x_IIC.c: 260: RA4=0;
 "260
-[e ) _receive ]
-[e $UE 82  ]
-[; ;TEST_60F01x_IIC.c: 261: }
+[e = _RA4 -> -> 0 `i `b ]
+[; ;TEST_60F01x_IIC.c: 261: DelayUs(5);
 "261
-[e :UE 82 ]
+[e ( _DelayUs (1 -> -> 5 `i `uc ]
+[; ;TEST_60F01x_IIC.c: 262: RA4=1;
+"262
+[e = _RA4 -> -> 1 `i `b ]
+[; ;TEST_60F01x_IIC.c: 263: receive<<=1;
+"263
+[e =<< _receive -> 1 `i ]
+[; ;TEST_60F01x_IIC.c: 264: if(RA2)receive++;
+"264
+[e $ ! _RA2 91  ]
+[e ++ _receive -> -> 1 `i `uc ]
+[e :U 91 ]
+[; ;TEST_60F01x_IIC.c: 265: DelayUs(5);
+"265
+[e ( _DelayUs (1 -> -> 5 `i `uc ]
+"266
 }
+"258
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 8 `i 88  ]
+[e :U 89 ]
+"266
+}
+[; ;TEST_60F01x_IIC.c: 266: }
+[; ;TEST_60F01x_IIC.c: 267: IIC_NAck();
+"267
+[e ( _IIC_NAck ..  ]
+[; ;TEST_60F01x_IIC.c: 269: return receive;
 "269
+[e ) _receive ]
+[e $UE 87  ]
+[; ;TEST_60F01x_IIC.c: 270: }
+"270
+[e :UE 87 ]
+}
+"278
 [v _IIC_READ `(uc  1 ef1`uc ]
 {
-[; ;TEST_60F01x_IIC.c: 268: unsigned char IIC_READ(unsigned char address)
-[; ;TEST_60F01x_IIC.c: 269: {
+[; ;TEST_60F01x_IIC.c: 277: unsigned char IIC_READ(unsigned char address)
+[; ;TEST_60F01x_IIC.c: 278: {
 [e :U _IIC_READ ]
 [v _address `uc  1 r1 ]
 [f ]
-"270
-[v _iicdata `uc  1 a ]
-[; ;TEST_60F01x_IIC.c: 270: unsigned char iicdata = 0;
-[e = _iicdata -> -> 0 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 271: IIC_READ_Begin:
-"271
-[e :U 88 ]
-[; ;TEST_60F01x_IIC.c: 272: IIC_Start();
-"272
-[e ( _IIC_Start ..  ]
-[; ;TEST_60F01x_IIC.c: 273: IIC_Send_Byte(0xa0);
-"273
-[e ( _IIC_Send_Byte (1 -> -> 160 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 274: if(IIC_Wait_Ack())goto IIC_READ_Begin;
-"274
-[e $ ! != -> ( _IIC_Wait_Ack ..  `i -> -> -> 0 `i `uc `i 89  ]
-[e $U 88  ]
-[e :U 89 ]
-[; ;TEST_60F01x_IIC.c: 275: IIC_Send_Byte(address);
-"275
-[e ( _IIC_Send_Byte (1 _address ]
-[; ;TEST_60F01x_IIC.c: 276: if(IIC_Wait_Ack())goto IIC_READ_Begin;
-"276
-[e $ ! != -> ( _IIC_Wait_Ack ..  `i -> -> -> 0 `i `uc `i 90  ]
-[e $U 88  ]
-[e :U 90 ]
-[; ;TEST_60F01x_IIC.c: 277: IIC_Start();
-"277
-[e ( _IIC_Start ..  ]
-[; ;TEST_60F01x_IIC.c: 278: IIC_Send_Byte(0xa1);
-"278
-[e ( _IIC_Send_Byte (1 -> -> 161 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 279: if(IIC_Wait_Ack())goto IIC_READ_Begin;
 "279
-[e $ ! != -> ( _IIC_Wait_Ack ..  `i -> -> -> 0 `i `uc `i 91  ]
-[e $U 88  ]
-[e :U 91 ]
-[; ;TEST_60F01x_IIC.c: 280: iicdata=IIC_Read_Byte();
+[v _iicdata `uc  1 a ]
+[; ;TEST_60F01x_IIC.c: 279: unsigned char iicdata = 0;
+[e = _iicdata -> -> 0 `i `uc ]
+[; ;TEST_60F01x_IIC.c: 280: IIC_READ_Begin:
 "280
-[e = _iicdata ( _IIC_Read_Byte ..  ]
-[; ;TEST_60F01x_IIC.c: 281: IIC_Stop();
+[e :U 93 ]
+[; ;TEST_60F01x_IIC.c: 281: IIC_Start();
 "281
-[e ( _IIC_Stop ..  ]
-[; ;TEST_60F01x_IIC.c: 282: return iicdata;
+[e ( _IIC_Start ..  ]
+[; ;TEST_60F01x_IIC.c: 282: IIC_Send_Byte(0xa0);
 "282
-[e ) _iicdata ]
-[e $UE 87  ]
-[; ;TEST_60F01x_IIC.c: 283: }
+[e ( _IIC_Send_Byte (1 -> -> 160 `i `uc ]
+[; ;TEST_60F01x_IIC.c: 283: if(IIC_Wait_Ack())goto IIC_READ_Begin;
 "283
-[e :UE 87 ]
-}
+[e $ ! != -> ( _IIC_Wait_Ack ..  `i -> -> -> 0 `i `uc `i 94  ]
+[e $U 93  ]
+[e :U 94 ]
+[; ;TEST_60F01x_IIC.c: 284: IIC_Send_Byte(address);
+"284
+[e ( _IIC_Send_Byte (1 _address ]
+[; ;TEST_60F01x_IIC.c: 285: if(IIC_Wait_Ack())goto IIC_READ_Begin;
+"285
+[e $ ! != -> ( _IIC_Wait_Ack ..  `i -> -> -> 0 `i `uc `i 95  ]
+[e $U 93  ]
+[e :U 95 ]
+[; ;TEST_60F01x_IIC.c: 286: IIC_Start();
+"286
+[e ( _IIC_Start ..  ]
+[; ;TEST_60F01x_IIC.c: 287: IIC_Send_Byte(0xa1);
+"287
+[e ( _IIC_Send_Byte (1 -> -> 161 `i `uc ]
+[; ;TEST_60F01x_IIC.c: 288: if(IIC_Wait_Ack())goto IIC_READ_Begin;
+"288
+[e $ ! != -> ( _IIC_Wait_Ack ..  `i -> -> -> 0 `i `uc `i 96  ]
+[e $U 93  ]
+[e :U 96 ]
+[; ;TEST_60F01x_IIC.c: 289: iicdata=IIC_Read_Byte();
+"289
+[e = _iicdata ( _IIC_Read_Byte ..  ]
+[; ;TEST_60F01x_IIC.c: 290: IIC_Stop();
+"290
+[e ( _IIC_Stop ..  ]
+[; ;TEST_60F01x_IIC.c: 291: return iicdata;
 "291
+[e ) _iicdata ]
+[e $UE 92  ]
+[; ;TEST_60F01x_IIC.c: 292: }
+"292
+[e :UE 92 ]
+}
+"300
 [v _IIC_WRITE `(v  1 ef2`uc`uc ]
 {
-[; ;TEST_60F01x_IIC.c: 290: void IIC_WRITE(unsigned char address,unsigned char data)
-[; ;TEST_60F01x_IIC.c: 291: {
+[; ;TEST_60F01x_IIC.c: 299: void IIC_WRITE(unsigned char address,unsigned char data)
+[; ;TEST_60F01x_IIC.c: 300: {
 [e :U _IIC_WRITE ]
 [v _address `uc  1 r1 ]
 [v _data `uc  1 r2 ]
 [f ]
-[; ;TEST_60F01x_IIC.c: 292: IIC_WRITE_Begin:
-"292
-[e :U 93 ]
-[; ;TEST_60F01x_IIC.c: 293: IIC_Start();
-"293
-[e ( _IIC_Start ..  ]
-[; ;TEST_60F01x_IIC.c: 294: IIC_Send_Byte(0xa0);
-"294
-[e ( _IIC_Send_Byte (1 -> -> 160 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 295: if(IIC_Wait_Ack())goto IIC_WRITE_Begin;
-"295
-[e $ ! != -> ( _IIC_Wait_Ack ..  `i -> -> -> 0 `i `uc `i 94  ]
-[e $U 93  ]
-[e :U 94 ]
-[; ;TEST_60F01x_IIC.c: 297: IIC_Send_Byte(address);
-"297
-[e ( _IIC_Send_Byte (1 _address ]
-[; ;TEST_60F01x_IIC.c: 298: if(IIC_Wait_Ack())goto IIC_WRITE_Begin;
-"298
-[e $ ! != -> ( _IIC_Wait_Ack ..  `i -> -> -> 0 `i `uc `i 95  ]
-[e $U 93  ]
-[e :U 95 ]
-[; ;TEST_60F01x_IIC.c: 300: IIC_Send_Byte(data);
-"300
-[e ( _IIC_Send_Byte (1 _data ]
-[; ;TEST_60F01x_IIC.c: 301: if(IIC_Wait_Ack())goto IIC_WRITE_Begin;
+[; ;TEST_60F01x_IIC.c: 301: IIC_WRITE_Begin:
 "301
-[e $ ! != -> ( _IIC_Wait_Ack ..  `i -> -> -> 0 `i `uc `i 96  ]
-[e $U 93  ]
-[e :U 96 ]
-[; ;TEST_60F01x_IIC.c: 303: IIC_Stop();
+[e :U 98 ]
+[; ;TEST_60F01x_IIC.c: 302: IIC_Start();
+"302
+[e ( _IIC_Start ..  ]
+[; ;TEST_60F01x_IIC.c: 303: IIC_Send_Byte(0xa0);
 "303
-[e ( _IIC_Stop ..  ]
-[; ;TEST_60F01x_IIC.c: 304: }
+[e ( _IIC_Send_Byte (1 -> -> 160 `i `uc ]
+[; ;TEST_60F01x_IIC.c: 304: if(IIC_Wait_Ack())goto IIC_WRITE_Begin;
 "304
-[e :UE 92 ]
+[e $ ! != -> ( _IIC_Wait_Ack ..  `i -> -> -> 0 `i `uc `i 99  ]
+[e $U 98  ]
+[e :U 99 ]
+[; ;TEST_60F01x_IIC.c: 306: IIC_Send_Byte(address);
+"306
+[e ( _IIC_Send_Byte (1 _address ]
+[; ;TEST_60F01x_IIC.c: 307: if(IIC_Wait_Ack())goto IIC_WRITE_Begin;
+"307
+[e $ ! != -> ( _IIC_Wait_Ack ..  `i -> -> -> 0 `i `uc `i 100  ]
+[e $U 98  ]
+[e :U 100 ]
+[; ;TEST_60F01x_IIC.c: 309: IIC_Send_Byte(data);
+"309
+[e ( _IIC_Send_Byte (1 _data ]
+[; ;TEST_60F01x_IIC.c: 310: if(IIC_Wait_Ack())goto IIC_WRITE_Begin;
+"310
+[e $ ! != -> ( _IIC_Wait_Ack ..  `i -> -> -> 0 `i `uc `i 101  ]
+[e $U 98  ]
+[e :U 101 ]
+[; ;TEST_60F01x_IIC.c: 312: IIC_Stop();
+"312
+[e ( _IIC_Stop ..  ]
+[; ;TEST_60F01x_IIC.c: 313: }
+"313
+[e :UE 97 ]
 }
-"318
+"327
 [i _par1
 :U ..
-"319
+"340
 -> -> 181 `i `uc
 -> -> 98 `i `uc
 -> -> 6 `i `uc
--> -> 0 `i `uc
--> -> 20 `i `uc
--> -> 0 `i `uc
--> -> 1 `i `uc
+-> -> 65 `i `uc
+-> -> 12 `i `uc
 -> -> 0 `i `uc
 -> -> 0 `i `uc
 -> -> 0 `i `uc
--> -> 208 `i `uc
--> -> 8 `i `uc
-"320
--> -> 0 `i `uc
--> -> 0 `i `uc
--> -> 0 `i `uc
--> -> 150 `i `uc
--> -> 0 `i `uc
--> -> 0 `i `uc
--> -> 2 `i `uc
--> -> 0 `i `uc
--> -> 2 `i `uc
--> -> 0 `i `uc
--> -> 0 `i `uc
--> -> 0 `i `uc
-"321
--> -> 0 `i `uc
--> -> 0 `i `uc
--> -> 141 `i `uc
-"322
--> -> 98 `i `uc
+-> -> 3 `i `uc
+-> -> 31 `i `uc
+-> -> 120 `i `uc
+-> -> 183 `i `uc
+-> -> 88 `i `uc
+-> -> 183 `i `uc
+-> -> 255 `i `uc
+-> -> 118 `i `uc
+-> -> 207 `i `uc
+-> -> 255 `i `uc
+-> -> 246 `i `uc
+-> -> 107 `i `uc
 ..
 ]
-[; ;TEST_60F01x_IIC.c: 318: unsigned char const par1[28] = {
-[; ;TEST_60F01x_IIC.c: 319: 0xB5,0x62,0x06,0x00,0x14,0x00,0x01,0x00,0x00,0x00,0xD0,0x08,
-[; ;TEST_60F01x_IIC.c: 320: 0x00,0x00,0x00,0x96,0x00,0x00,0x02,0x00,0x02,0x00,0x00,0x00,
-[; ;TEST_60F01x_IIC.c: 321: 0x00,0x00,0x8D,0x62
-[; ;TEST_60F01x_IIC.c: 322: };
-"323
+[; ;TEST_60F01x_IIC.c: 327: unsigned char const par1[] = {
+[; ;TEST_60F01x_IIC.c: 340: 0xB5,0x62,0x06,0x41,0x0C,0x00,0x00,0x00,0x03,0x1F,0x78,0xB7,0x58,0xB7,0xFF,0x76,0xCF,0xFF,0xF6,0x6B,
+[; ;TEST_60F01x_IIC.c: 341: };
+"342
 [i _par2
 :U ..
-"324
--> -> 181 `i `uc
--> -> 98 `i `uc
--> -> 6 `i `uc
--> -> 8 `i `uc
--> -> 6 `i `uc
--> -> 0 `i `uc
--> -> 200 `i `uc
--> -> 0 `i `uc
--> -> 1 `i `uc
--> -> 0 `i `uc
--> -> 1 `i `uc
--> -> 0 `i `uc
--> -> 222 `i `uc
--> -> 106 `i `uc
-..
-]
-[; ;TEST_60F01x_IIC.c: 323: unsigned char const par2[14] = {
-[; ;TEST_60F01x_IIC.c: 324: 0xB5,0x62,0x06,0x08,0x06,0x00,0xC8,0x00,0x01,0x00,0x01,0x00,0xDE,0x6A,
-[; ;TEST_60F01x_IIC.c: 325: };
-"326
-[i _par3
-:U ..
-"327
+"350
 -> -> 181 `i `uc
 -> -> 98 `i `uc
 -> -> 6 `i `uc
@@ -1653,6 +1660,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> -> 32 `i `uc
 -> -> 7 `i `uc
 -> -> 0 `i `uc
+"351
 -> -> 8 `i `uc
 -> -> 16 `i `uc
 -> -> 0 `i `uc
@@ -1660,11 +1668,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> -> 0 `i `uc
 -> -> 1 `i `uc
 -> -> 1 `i `uc
-"328
 -> -> 1 `i `uc
 -> -> 1 `i `uc
 -> -> 3 `i `uc
 -> -> 0 `i `uc
+"352
 -> -> 0 `i `uc
 -> -> 0 `i `uc
 -> -> 1 `i `uc
@@ -1676,10 +1684,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> -> 0 `i `uc
 -> -> 0 `i `uc
 -> -> 1 `i `uc
+"353
 -> -> 1 `i `uc
 -> -> 3 `i `uc
 -> -> 8 `i `uc
-"329
 -> -> 16 `i `uc
 -> -> 0 `i `uc
 -> -> 0 `i `uc
@@ -1688,6 +1696,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> -> 1 `i `uc
 -> -> 4 `i `uc
 -> -> 0 `i `uc
+"354
 -> -> 8 `i `uc
 -> -> 0 `i `uc
 -> -> 0 `i `uc
@@ -1698,8 +1707,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> -> 0 `i `uc
 -> -> 3 `i `uc
 -> -> 0 `i `uc
-"330
 -> -> 1 `i `uc
+"355
 -> -> 0 `i `uc
 -> -> 1 `i `uc
 -> -> 1 `i `uc
@@ -1711,147 +1720,403 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> -> 0 `i `uc
 -> -> 1 `i `uc
 -> -> 1 `i `uc
+"356
 -> -> 46 `i `uc
 -> -> 93 `i `uc
 ..
 ]
-[; ;TEST_60F01x_IIC.c: 326: unsigned char const par3[68] = {
-[; ;TEST_60F01x_IIC.c: 327: 0xB5,0x62,0x06,0x3E,0x3C,0x00,0x00,0x00,0x20,0x07,0x00,0x08,0x10,0x00,0x01,0x00,0x01,0x01,
-[; ;TEST_60F01x_IIC.c: 328: 0x01,0x01,0x03,0x00,0x00,0x00,0x01,0x01,0x02,0x04,0x08,0x00,0x00,0x00,0x01,0x01,0x03,0x08,
-[; ;TEST_60F01x_IIC.c: 329: 0x10,0x00,0x00,0x00,0x01,0x01,0x04,0x00,0x08,0x00,0x00,0x00,0x01,0x01,0x05,0x00,0x03,0x00,
-[; ;TEST_60F01x_IIC.c: 330: 0x01,0x00,0x01,0x01,0x06,0x08,0x0E,0x00,0x01,0x00,0x01,0x01,0x2E,0x5D,
-[; ;TEST_60F01x_IIC.c: 331: };
-"333
+[; ;TEST_60F01x_IIC.c: 342: unsigned char const par2[] = {
+[; ;TEST_60F01x_IIC.c: 350: 0xB5,0x62,0x06,0x3E,0x3C,0x00,0x00,0x00,0x20,0x07,0x00,
+[; ;TEST_60F01x_IIC.c: 351: 0x08,0x10,0x00,0x01,0x00,0x01,0x01,0x01,0x01,0x03,0x00,
+[; ;TEST_60F01x_IIC.c: 352: 0x00,0x00,0x01,0x01,0x02,0x04,0x08,0x00,0x00,0x00,0x01,
+[; ;TEST_60F01x_IIC.c: 353: 0x01,0x03,0x08,0x10,0x00,0x00,0x00,0x01,0x01,0x04,0x00,
+[; ;TEST_60F01x_IIC.c: 354: 0x08,0x00,0x00,0x00,0x01,0x01,0x05,0x00,0x03,0x00,0x01,
+[; ;TEST_60F01x_IIC.c: 355: 0x00,0x01,0x01,0x06,0x08,0x0E,0x00,0x01,0x00,0x01,0x01,
+[; ;TEST_60F01x_IIC.c: 356: 0x2E,0x5D,
+[; ;TEST_60F01x_IIC.c: 357: };
+"358
+[i _par3
+:U ..
+"369
+-> -> 181 `i `uc
+-> -> 98 `i `uc
+-> -> 6 `i `uc
+-> -> 36 `i `uc
+-> -> 36 `i `uc
+-> -> 0 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 0 `i `uc
+-> -> 3 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 16 `i `uc
+-> -> 39 `i `uc
+"370
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 94 `i `uc
+-> -> 1 `i `uc
+-> -> 94 `i `uc
+-> -> 1 `i `uc
+-> -> 144 `i `uc
+-> -> 1 `i `uc
+-> -> 94 `i `uc
+-> -> 1 `i `uc
+-> -> 100 `i `uc
+-> -> 60 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+"371
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 10 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 222 `i `uc
+-> -> 69 `i `uc
+..
+]
+[; ;TEST_60F01x_IIC.c: 358: unsigned char const par3[] = {
+[; ;TEST_60F01x_IIC.c: 369: 0xB5,0x62,0x06,0x24,0x24,0x00,0xFF,0xFF,0x00,0x03,0x00,0x00,0x00,0x00,0x10,0x27,
+[; ;TEST_60F01x_IIC.c: 370: 0x00,0x00,0x00,0x00,0x5E,0x01,0x5E,0x01,0x90,0x01,0x5E,0x01,0x64,0x3C,0x00,0x00,
+[; ;TEST_60F01x_IIC.c: 371: 0x00,0x00,0x0A,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0xDE,0x45,
+[; ;TEST_60F01x_IIC.c: 372: };
+"373
+[i _par4
+:U ..
+"379
+-> -> 181 `i `uc
+-> -> 98 `i `uc
+-> -> 6 `i `uc
+-> -> 35 `i `uc
+-> -> 40 `i `uc
+-> -> 0 `i `uc
+-> -> 2 `i `uc
+-> -> 0 `i `uc
+-> -> 76 `i `uc
+-> -> 102 `i `uc
+-> -> 64 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+"380
+-> -> 3 `i `uc
+-> -> 32 `i `uc
+-> -> 6 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 75 `i `uc
+-> -> 7 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+"381
+-> -> 0 `i `uc
+-> -> 1 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 44 `i `uc
+-> -> 1 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 238 `i `uc
+-> -> 68 `i `uc
+..
+]
+[; ;TEST_60F01x_IIC.c: 373: unsigned char const par4[] = {
+[; ;TEST_60F01x_IIC.c: 379: 0xB5,0x62,0x06,0x23,0x28,0x00,0x02,0x00,0x4C,0x66,0x40,0x00,0x00,0x00,0x00,0x00,
+[; ;TEST_60F01x_IIC.c: 380: 0x03,0x20,0x06,0x00,0x00,0x00,0x00,0x00,0x4B,0x07,0x00,0x00,0x00,0x00,0x00,0x00,
+[; ;TEST_60F01x_IIC.c: 381: 0x00,0x01,0x00,0x00,0x2C,0x01,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0xEE,0x44,
+[; ;TEST_60F01x_IIC.c: 382: };
+"383
+[i _par5
+:U ..
+"385
+-> -> 181 `i `uc
+-> -> 98 `i `uc
+-> -> 6 `i `uc
+-> -> 49 `i `uc
+-> -> 32 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 1 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+"386
+-> -> 50 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 64 `i `uc
+-> -> 66 `i `uc
+-> -> 15 `i `uc
+-> -> 0 `i `uc
+-> -> 64 `i `uc
+-> -> 66 `i `uc
+"387
+-> -> 15 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 160 `i `uc
+-> -> 134 `i `uc
+-> -> 1 `i `uc
+-> -> 0 `i `uc
+"388
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 247 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 202 `i `uc
+-> -> 182 `i `uc
+..
+]
+[; ;TEST_60F01x_IIC.c: 383: unsigned char const par5[] = {
+[; ;TEST_60F01x_IIC.c: 385: 0xB5,0x62,0x06,0x31,0x20,0x00,0x00,0x01,0x00,0x00,
+[; ;TEST_60F01x_IIC.c: 386: 0x32,0x00,0x00,0x00,0x40,0x42,0x0F,0x00,0x40,0x42,
+[; ;TEST_60F01x_IIC.c: 387: 0x0F,0x00,0x00,0x00,0x00,0x00,0xA0,0x86,0x01,0x00,
+[; ;TEST_60F01x_IIC.c: 388: 0x00,0x00,0x00,0x00,0xF7,0x00,0x00,0x00,0xCA,0xB6,
+[; ;TEST_60F01x_IIC.c: 389: };
+"390
+[i _par6
+:U ..
+"392
+-> -> 181 `i `uc
+-> -> 98 `i `uc
+-> -> 9 `i `uc
+-> -> 20 `i `uc
+-> -> 4 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 33 `i `uc
+-> -> 236 `i `uc
+..
+]
+[; ;TEST_60F01x_IIC.c: 390: unsigned char const par6[] = {
+[; ;TEST_60F01x_IIC.c: 392: 0xB5,0x62,0x09,0x14,0x04,0x00,0x00,0x00,0x00,0x00,0x21,0xEC,
+[; ;TEST_60F01x_IIC.c: 393: };
+"395
 [v _I2C_SendString `(uc  1 ef3`uc`*Cuc`i ]
 {
-[; ;TEST_60F01x_IIC.c: 332: unsigned char I2C_SendString(unsigned char chip_addr, unsigned char const *buffer,int Number)
-[; ;TEST_60F01x_IIC.c: 333: {
+[; ;TEST_60F01x_IIC.c: 394: unsigned char I2C_SendString(unsigned char chip_addr, unsigned char const *buffer,int Number)
+[; ;TEST_60F01x_IIC.c: 395: {
 [e :U _I2C_SendString ]
 [v _chip_addr `uc  1 r1 ]
 [v _buffer `*Cuc  1 r2 ]
 [v _Number `i  1 r3 ]
 [f ]
-"334
+"396
 [v _i `uc  1 a ]
-[; ;TEST_60F01x_IIC.c: 334: unsigned char i;
-[; ;TEST_60F01x_IIC.c: 335: IIC_Start();
-"335
+[; ;TEST_60F01x_IIC.c: 396: unsigned char i;
+[; ;TEST_60F01x_IIC.c: 397: IIC_Start();
+"397
 [e ( _IIC_Start ..  ]
-[; ;TEST_60F01x_IIC.c: 336: IIC_Send_Byte(chip_addr);
-"336
+[; ;TEST_60F01x_IIC.c: 398: IIC_Send_Byte(chip_addr);
+"398
 [e ( _IIC_Send_Byte (1 _chip_addr ]
-[; ;TEST_60F01x_IIC.c: 338: if(IIC_Wait_Ack()==1){
-"338
-[e $ ! == -> ( _IIC_Wait_Ack ..  `i -> 1 `i 98  ]
-{
-[; ;TEST_60F01x_IIC.c: 340: return 0;
-"340
-[e ) -> -> 0 `i `uc ]
-[e $UE 97  ]
-"341
-}
-[e :U 98 ]
-[; ;TEST_60F01x_IIC.c: 341: }
-[; ;TEST_60F01x_IIC.c: 343: for(i=0; i<Number; i++) {
-"343
-{
-[e = _i -> -> 0 `i `uc ]
-[e $U 102  ]
-[e :U 99 ]
-{
-[; ;TEST_60F01x_IIC.c: 344: IIC_Send_Byte(*buffer);
-"344
-[e ( _IIC_Send_Byte (1 *U _buffer ]
-[; ;TEST_60F01x_IIC.c: 345: if(IIC_Wait_Ack()==1) {
-"345
+[; ;TEST_60F01x_IIC.c: 400: if(IIC_Wait_Ack()==1){
+"400
 [e $ ! == -> ( _IIC_Wait_Ack ..  `i -> 1 `i 103  ]
 {
-[; ;TEST_60F01x_IIC.c: 347: return 0;
-"347
+[; ;TEST_60F01x_IIC.c: 402: return 0;
+"402
 [e ) -> -> 0 `i `uc ]
-[e $UE 97  ]
-"348
+[e $UE 102  ]
+"403
 }
 [e :U 103 ]
-[; ;TEST_60F01x_IIC.c: 348: }
-[; ;TEST_60F01x_IIC.c: 349: buffer++;
-"349
+[; ;TEST_60F01x_IIC.c: 403: }
+[; ;TEST_60F01x_IIC.c: 405: for(i=0; i<Number; i++) {
+"405
+{
+[e = _i -> -> 0 `i `uc ]
+[e $U 107  ]
+[e :U 104 ]
+{
+[; ;TEST_60F01x_IIC.c: 406: IIC_Send_Byte(*buffer);
+"406
+[e ( _IIC_Send_Byte (1 *U _buffer ]
+[; ;TEST_60F01x_IIC.c: 407: if(IIC_Wait_Ack()==1) {
+"407
+[e $ ! == -> ( _IIC_Wait_Ack ..  `i -> 1 `i 108  ]
+{
+[; ;TEST_60F01x_IIC.c: 409: return 0;
+"409
+[e ) -> -> 0 `i `uc ]
+[e $UE 102  ]
+"410
+}
+[e :U 108 ]
+[; ;TEST_60F01x_IIC.c: 410: }
+[; ;TEST_60F01x_IIC.c: 411: buffer++;
+"411
 [e ++ _buffer * -> -> 1 `i `x -> -> # *U _buffer `i `x ]
-"350
+"412
 }
-"343
+"405
 [e ++ _i -> -> 1 `i `uc ]
-[e :U 102 ]
-[e $ < -> _i `i _Number 99  ]
-[e :U 100 ]
-"350
+[e :U 107 ]
+[e $ < -> _i `i _Number 104  ]
+[e :U 105 ]
+"412
 }
-[; ;TEST_60F01x_IIC.c: 350: }
-[; ;TEST_60F01x_IIC.c: 351: IIC_Stop();
-"351
+[; ;TEST_60F01x_IIC.c: 412: }
+[; ;TEST_60F01x_IIC.c: 413: IIC_Stop();
+"413
 [e ( _IIC_Stop ..  ]
-[; ;TEST_60F01x_IIC.c: 352: return 1;
-"352
+[; ;TEST_60F01x_IIC.c: 414: return 1;
+"414
 [e ) -> -> 1 `i `uc ]
-[e $UE 97  ]
-[; ;TEST_60F01x_IIC.c: 353: }
-"353
-[e :UE 97 ]
+[e $UE 102  ]
+[; ;TEST_60F01x_IIC.c: 415: }
+"415
+[e :UE 102 ]
 }
-"361
+"423
 [v _main `(v  1 ef ]
 {
-[; ;TEST_60F01x_IIC.c: 360: void main()
-[; ;TEST_60F01x_IIC.c: 361: {
+[; ;TEST_60F01x_IIC.c: 422: void main()
+[; ;TEST_60F01x_IIC.c: 423: {
 [e :U _main ]
 [f ]
-[; ;TEST_60F01x_IIC.c: 362: POWER_INITIAL();
-"362
+"424
+[v _i `uc  1 a ]
+[; ;TEST_60F01x_IIC.c: 424: char i;
+[; ;TEST_60F01x_IIC.c: 425: POWER_INITIAL();
+"425
 [e ( _POWER_INITIAL ..  ]
-[; ;TEST_60F01x_IIC.c: 363: DelayS(1);
-"363
+[; ;TEST_60F01x_IIC.c: 426: DelayS(1);
+"426
 [e ( _DelayS (1 -> -> 1 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 364: I2C_SendString(0x84,par1,sizeof(par1));
-"364
+[; ;TEST_60F01x_IIC.c: 427: I2C_SendString(0x84,par1,sizeof(par1));
+"427
 [e ( _I2C_SendString (3 , , -> -> 132 `i `uc &U _par1 -> -> # _par1 `ui `i ]
-[; ;TEST_60F01x_IIC.c: 365: DelayS(1);
-"365
-[e ( _DelayS (1 -> -> 1 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 366: I2C_SendString(0x84,par2,sizeof(par2));
-"366
+[; ;TEST_60F01x_IIC.c: 428: DelayMs(100);
+"428
+[e ( _DelayMs (1 -> -> 100 `i `uc ]
+[; ;TEST_60F01x_IIC.c: 429: I2C_SendString(0x84,par2,sizeof(par2));
+"429
 [e ( _I2C_SendString (3 , , -> -> 132 `i `uc &U _par2 -> -> # _par2 `ui `i ]
-[; ;TEST_60F01x_IIC.c: 367: DelayS(1);
-"367
-[e ( _DelayS (1 -> -> 1 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 368: I2C_SendString(0x84,par3,sizeof(par3));
-"368
+[; ;TEST_60F01x_IIC.c: 430: DelayMs(100);
+"430
+[e ( _DelayMs (1 -> -> 100 `i `uc ]
+[; ;TEST_60F01x_IIC.c: 431: I2C_SendString(0x84,par3,sizeof(par3));
+"431
 [e ( _I2C_SendString (3 , , -> -> 132 `i `uc &U _par3 -> -> # _par3 `ui `i ]
-[; ;TEST_60F01x_IIC.c: 369: DelayS(1);
-"369
-[e ( _DelayS (1 -> -> 1 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 370: TRISA2 =1;
-"370
-[e = _TRISA2 -> -> 1 `i `b ]
-[; ;TEST_60F01x_IIC.c: 371: TRISA4 =1;
-"371
-[e = _TRISA4 -> -> 1 `i `b ]
-[; ;TEST_60F01x_IIC.c: 372: while(1)
-"372
-[e :U 106 ]
-[; ;TEST_60F01x_IIC.c: 373: {
-"373
+[; ;TEST_60F01x_IIC.c: 432: DelayMs(100);
+"432
+[e ( _DelayMs (1 -> -> 100 `i `uc ]
+[; ;TEST_60F01x_IIC.c: 433: I2C_SendString(0x84,par4,sizeof(par4));
+"433
+[e ( _I2C_SendString (3 , , -> -> 132 `i `uc &U _par4 -> -> # _par4 `ui `i ]
+[; ;TEST_60F01x_IIC.c: 434: DelayMs(100);
+"434
+[e ( _DelayMs (1 -> -> 100 `i `uc ]
+[; ;TEST_60F01x_IIC.c: 435: I2C_SendString(0x84,par5,sizeof(par5));
+"435
+[e ( _I2C_SendString (3 , , -> -> 132 `i `uc &U _par5 -> -> # _par5 `ui `i ]
+[; ;TEST_60F01x_IIC.c: 436: DelayMs(100);
+"436
+[e ( _DelayMs (1 -> -> 100 `i `uc ]
+[; ;TEST_60F01x_IIC.c: 437: for(i = 0;i < 30;i++) {
+"437
 {
-[; ;TEST_60F01x_IIC.c: 374: _nop();
-"374
-[e ( __nop ..  ]
-"376
+[e = _i -> -> 0 `i `uc ]
+[e $ < -> _i `i -> 30 `i 110  ]
+[e $U 111  ]
+[e :U 110 ]
+{
+[; ;TEST_60F01x_IIC.c: 438: I2C_SendString(0x84,par6,sizeof(par6));
+"438
+[e ( _I2C_SendString (3 , , -> -> 132 `i `uc &U _par6 -> -> # _par6 `ui `i ]
+[; ;TEST_60F01x_IIC.c: 439: DelayS(10);
+"439
+[e ( _DelayS (1 -> -> 10 `i `uc ]
+"440
 }
-[e :U 105 ]
-"372
-[e $U 106  ]
-[e :U 107 ]
-[; ;TEST_60F01x_IIC.c: 376: }
-[; ;TEST_60F01x_IIC.c: 377: }
-"377
-[e :UE 104 ]
+"437
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 30 `i 110  ]
+[e :U 111 ]
+"440
+}
+[; ;TEST_60F01x_IIC.c: 440: }
+[; ;TEST_60F01x_IIC.c: 441: while(1){
+"441
+[e :U 114 ]
+{
+[; ;TEST_60F01x_IIC.c: 442: I2C_SendString(0x84,par6,sizeof(par6));
+"442
+[e ( _I2C_SendString (3 , , -> -> 132 `i `uc &U _par6 -> -> # _par6 `ui `i ]
+[; ;TEST_60F01x_IIC.c: 443: DelayM(50);
+"443
+[e ( _DelayM (1 -> -> 50 `i `uc ]
+"444
+}
+[e :U 113 ]
+"441
+[e $U 114  ]
+[e :U 115 ]
+[; ;TEST_60F01x_IIC.c: 444: }
+[; ;TEST_60F01x_IIC.c: 445: DelayS(1);
+"445
+[e ( _DelayS (1 -> -> 1 `i `uc ]
+[; ;TEST_60F01x_IIC.c: 446: TRISA2 =1;
+"446
+[e = _TRISA2 -> -> 1 `i `b ]
+[; ;TEST_60F01x_IIC.c: 447: TRISA4 =1;
+"447
+[e = _TRISA4 -> -> 1 `i `b ]
+[; ;TEST_60F01x_IIC.c: 448: while(1)
+"448
+[e :U 117 ]
+[; ;TEST_60F01x_IIC.c: 449: {
+"449
+{
+[; ;TEST_60F01x_IIC.c: 450: _nop();
+"450
+[e ( __nop ..  ]
+"452
+}
+[e :U 116 ]
+"448
+[e $U 117  ]
+[e :U 118 ]
+[; ;TEST_60F01x_IIC.c: 452: }
+[; ;TEST_60F01x_IIC.c: 453: }
+"453
+[e :UE 109 ]
 }
