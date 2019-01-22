@@ -74,81 +74,8 @@ __stringbase:
 	retlw	0
 psect	strings
 	file	"TEST_60F01x_IIC.c"
-	line	342
+	line	333
 _par2:
-	retlw	0B5h
-	retlw	062h
-	retlw	06h
-	retlw	03Eh
-	retlw	03Ch
-	retlw	0
-	retlw	0
-	retlw	0
-	retlw	020h
-	retlw	07h
-	retlw	0
-	retlw	08h
-	retlw	010h
-	retlw	0
-	retlw	01h
-	retlw	0
-	retlw	01h
-	retlw	01h
-	retlw	01h
-	retlw	01h
-	retlw	03h
-	retlw	0
-	retlw	0
-	retlw	0
-	retlw	01h
-	retlw	01h
-	retlw	02h
-	retlw	04h
-	retlw	08h
-	retlw	0
-	retlw	0
-	retlw	0
-	retlw	01h
-	retlw	01h
-	retlw	03h
-	retlw	08h
-	retlw	010h
-	retlw	0
-	retlw	0
-	retlw	0
-	retlw	01h
-	retlw	01h
-	retlw	04h
-	retlw	0
-	retlw	08h
-	retlw	0
-	retlw	0
-	retlw	0
-	retlw	01h
-	retlw	01h
-	retlw	05h
-	retlw	0
-	retlw	03h
-	retlw	0
-	retlw	01h
-	retlw	0
-	retlw	01h
-	retlw	01h
-	retlw	06h
-	retlw	08h
-	retlw	0Eh
-	retlw	0
-	retlw	01h
-	retlw	0
-	retlw	01h
-	retlw	01h
-	retlw	02Eh
-	retlw	05Dh
-	global	_par4
-psect	strings
-	file	"TEST_60F01x_IIC.c"
-	line	373
-_par4:
 	retlw	0B5h
 	retlw	062h
 	retlw	06h
@@ -197,11 +124,11 @@ _par4:
 	retlw	0
 	retlw	0EEh
 	retlw	044h
-	global	_par3
+	global	_par1
 psect	strings
 	file	"TEST_60F01x_IIC.c"
-	line	358
-_par3:
+	line	327
+_par1:
 	retlw	0B5h
 	retlw	062h
 	retlw	06h
@@ -246,81 +173,63 @@ _par3:
 	retlw	0
 	retlw	0DEh
 	retlw	045h
+	global	_par4
+psect	strings
+	file	"TEST_60F01x_IIC.c"
+	line	344
+_par4:
+	retlw	0B5h
+	retlw	062h
+	retlw	06h
+	retlw	0
+	retlw	014h
+	retlw	0
+	retlw	01h
+	retlw	0
+	retlw	0
+	retlw	0
+	retlw	0D0h
+	retlw	08h
+	retlw	0
+	retlw	0
+	retlw	0
+	retlw	096h
+	retlw	0
+	retlw	0
+	retlw	07h
+	retlw	0
+	retlw	03h
+	retlw	0
+	retlw	0
+	retlw	0
+	retlw	0
+	retlw	0
+	retlw	093h
+	retlw	090h
+	global	_par3
+psect	strings
+	file	"TEST_60F01x_IIC.c"
+	line	339
+_par3:
+	retlw	0B5h
+	retlw	062h
+	retlw	06h
+	retlw	08h
+	retlw	06h
+	retlw	0
+	retlw	064h
+	retlw	0
+	retlw	01h
+	retlw	0
+	retlw	01h
+	retlw	0
+	retlw	07Ah
+	retlw	012h
 	global	_par5
 psect	strings
 	file	"TEST_60F01x_IIC.c"
-	line	383
+	line	350
 _par5:
-	retlw	0B5h
-	retlw	062h
-	retlw	06h
-	retlw	031h
-	retlw	020h
-	retlw	0
-	retlw	0
-	retlw	01h
-	retlw	0
-	retlw	0
-	retlw	032h
-	retlw	0
-	retlw	0
-	retlw	0
-	retlw	040h
-	retlw	042h
-	retlw	0Fh
-	retlw	0
-	retlw	040h
-	retlw	042h
-	retlw	0Fh
-	retlw	0
-	retlw	0
-	retlw	0
-	retlw	0
-	retlw	0
-	retlw	0A0h
-	retlw	086h
-	retlw	01h
-	retlw	0
-	retlw	0
-	retlw	0
-	retlw	0
-	retlw	0
-	retlw	0F7h
-	retlw	0
-	retlw	0
-	retlw	0
-	retlw	0CAh
-	retlw	0B6h
-	global	_par1
-psect	strings
-	file	"TEST_60F01x_IIC.c"
-	line	327
-_par1:
-	retlw	0B5h
-	retlw	062h
-	retlw	06h
-	retlw	041h
-	retlw	0Ch
-	retlw	0
-	retlw	0
-	retlw	0
-	retlw	03h
-	retlw	01Fh
-	retlw	078h
-	retlw	0B7h
-	retlw	058h
-	retlw	0B7h
-	retlw	0FFh
-	retlw	076h
-	retlw	0CFh
-	retlw	0FFh
-	retlw	0F6h
-	retlw	06Bh
-	global	_par6
-psect	strings
-	file	"TEST_60F01x_IIC.c"
-	line	390
-_par6:
 	retlw	0B5h
 	retlw	062h
 	retlw	09h
@@ -334,11 +243,10 @@ _par6:
 	retlw	021h
 	retlw	0ECh
 	global	_par2
+	global	_par1
 	global	_par4
 	global	_par3
 	global	_par5
-	global	_par1
-	global	_par6
 	global	_FSR
 _FSR	set	4
 	DABS	1,4,1	;_FSR
@@ -1879,16 +1787,16 @@ I2C_SendString@i:	; 1 bytes @ 0x9
 	global	main@i
 main@i:	; 1 bytes @ 0xA
 	ds	1
-;;Data sizes: Strings 0, constant 232, data 0, bss 0, persistent 0 stack 0
+;;Data sizes: Strings 0, constant 146, data 0, bss 0, persistent 0 stack 0
 ;;Auto spaces:   Size  Autos    Used
 ;; COMMON          62     11      11
 
 ;;
 ;; Pointer list with targets:
 
-;; I2C_SendString@buffer	PTR const unsigned char  size(1) Largest target is 68
-;;		 -> par6(CODE[12]), par5(CODE[40]), par4(CODE[48]), par3(CODE[44]), 
-;;		 -> par2(CODE[68]), par1(CODE[20]), 
+;; I2C_SendString@buffer	PTR const unsigned char  size(1) Largest target is 48
+;;		 -> par5(CODE[12]), par4(CODE[28]), par3(CODE[14]), par2(CODE[48]), 
+;;		 -> par1(CODE[44]), 
 ;;
 
 
@@ -2015,7 +1923,7 @@ __pmaintext:
 
 ;; *************** function _main *****************
 ;; Defined at:
-;;		line 423 in file "TEST_60F01x_IIC.c"
+;;		line 385 in file "TEST_60F01x_IIC.c"
 ;; Parameters:    Size  Location     Type
 ;;		None
 ;; Auto vars:     Size  Location     Type
@@ -2047,168 +1955,153 @@ __pmaintext:
 ;;
 psect	maintext
 	file	"TEST_60F01x_IIC.c"
-	line	423
+	line	385
 	global	__size_of_main
 	__size_of_main	equ	__end_of_main-_main
 	
 _main:	
 	opt	stack 4
 ; Regs used in _main: [wreg-fsr0h+status,2+status,0+pclath+cstack]
-	line	425
+	line	387
 	
-l1607:	
-;TEST_60F01x_IIC.c: 424: char i;
-;TEST_60F01x_IIC.c: 425: POWER_INITIAL();
+l1605:	
+;TEST_60F01x_IIC.c: 386: char i;
+;TEST_60F01x_IIC.c: 387: POWER_INITIAL();
 	fcall	_POWER_INITIAL
-	line	426
-;TEST_60F01x_IIC.c: 426: DelayS(1);
+	line	388
+;TEST_60F01x_IIC.c: 388: DelayS(1);
 	movlw	(01h)
 	fcall	_DelayS
-	line	427
+	line	389
 	
-l1609:	
-;TEST_60F01x_IIC.c: 427: I2C_SendString(0x84,par1,sizeof(par1));
+l1607:	
+;TEST_60F01x_IIC.c: 389: I2C_SendString(0x84,par1,sizeof(par1));
 	movlw	((_par1-__stringbase))&0ffh
-	movwf	(?_I2C_SendString)
-	movlw	014h
-	movwf	0+(?_I2C_SendString)+01h
-	clrf	1+(?_I2C_SendString)+01h
-	movlw	(084h)
-	fcall	_I2C_SendString
-	line	428
-	
-l1611:	
-;TEST_60F01x_IIC.c: 428: DelayMs(100);
-	movlw	(064h)
-	fcall	_DelayMs
-	line	429
-;TEST_60F01x_IIC.c: 429: I2C_SendString(0x84,par2,sizeof(par2));
-	movlw	((_par2-__stringbase))&0ffh
-	movwf	(?_I2C_SendString)
-	movlw	044h
-	movwf	0+(?_I2C_SendString)+01h
-	clrf	1+(?_I2C_SendString)+01h
-	movlw	(084h)
-	fcall	_I2C_SendString
-	line	430
-	
-l1613:	
-;TEST_60F01x_IIC.c: 430: DelayMs(100);
-	movlw	(064h)
-	fcall	_DelayMs
-	line	431
-	
-l1615:	
-;TEST_60F01x_IIC.c: 431: I2C_SendString(0x84,par3,sizeof(par3));
-	movlw	((_par3-__stringbase))&0ffh
 	movwf	(?_I2C_SendString)
 	movlw	02Ch
 	movwf	0+(?_I2C_SendString)+01h
 	clrf	1+(?_I2C_SendString)+01h
 	movlw	(084h)
 	fcall	_I2C_SendString
-	line	432
-;TEST_60F01x_IIC.c: 432: DelayMs(100);
+	line	390
+	
+l1609:	
+;TEST_60F01x_IIC.c: 390: DelayMs(100);
 	movlw	(064h)
 	fcall	_DelayMs
-	line	433
-	
-l1617:	
-;TEST_60F01x_IIC.c: 433: I2C_SendString(0x84,par4,sizeof(par4));
-	movlw	((_par4-__stringbase))&0ffh
+	line	391
+;TEST_60F01x_IIC.c: 391: I2C_SendString(0x84,par2,sizeof(par2));
+	movlw	((_par2-__stringbase))&0ffh
 	movwf	(?_I2C_SendString)
 	movlw	030h
 	movwf	0+(?_I2C_SendString)+01h
 	clrf	1+(?_I2C_SendString)+01h
 	movlw	(084h)
 	fcall	_I2C_SendString
-	line	434
+	line	392
 	
-l1619:	
-;TEST_60F01x_IIC.c: 434: DelayMs(100);
+l1611:	
+;TEST_60F01x_IIC.c: 392: DelayMs(100);
 	movlw	(064h)
 	fcall	_DelayMs
-	line	435
-;TEST_60F01x_IIC.c: 435: I2C_SendString(0x84,par5,sizeof(par5));
-	movlw	((_par5-__stringbase))&0ffh
+	line	393
+	
+l1613:	
+;TEST_60F01x_IIC.c: 393: I2C_SendString(0x84,par3,sizeof(par3));
+	movlw	((_par3-__stringbase))&0ffh
 	movwf	(?_I2C_SendString)
-	movlw	028h
+	movlw	0Eh
 	movwf	0+(?_I2C_SendString)+01h
 	clrf	1+(?_I2C_SendString)+01h
 	movlw	(084h)
 	fcall	_I2C_SendString
-	line	436
-	
-l1621:	
-;TEST_60F01x_IIC.c: 436: DelayMs(100);
+	line	394
+;TEST_60F01x_IIC.c: 394: DelayMs(100);
 	movlw	(064h)
 	fcall	_DelayMs
-	line	437
+	line	395
 	
-l1623:	
-;TEST_60F01x_IIC.c: 437: for(i = 0;i < 30;i++) {
+l1615:	
+;TEST_60F01x_IIC.c: 395: I2C_SendString(0x84,par4,sizeof(par4));
+	movlw	((_par4-__stringbase))&0ffh
+	movwf	(?_I2C_SendString)
+	movlw	01Ch
+	movwf	0+(?_I2C_SendString)+01h
+	clrf	1+(?_I2C_SendString)+01h
+	movlw	(084h)
+	fcall	_I2C_SendString
+	line	396
+	
+l1617:	
+;TEST_60F01x_IIC.c: 396: DelayMs(100);
+	movlw	(064h)
+	fcall	_DelayMs
+	line	397
+	
+l1619:	
+;TEST_60F01x_IIC.c: 397: for(i = 0;i < 30;i++) {
 	clrf	(main@i)
-	line	438
+	line	398
 	
-l1629:	
-;TEST_60F01x_IIC.c: 438: I2C_SendString(0x84,par6,sizeof(par6));
-	movlw	((_par6-__stringbase))&0ffh
+l1625:	
+;TEST_60F01x_IIC.c: 398: I2C_SendString(0x84,par5,sizeof(par5));
+	movlw	((_par5-__stringbase))&0ffh
 	movwf	(?_I2C_SendString)
 	movlw	0Ch
 	movwf	0+(?_I2C_SendString)+01h
 	clrf	1+(?_I2C_SendString)+01h
 	movlw	(084h)
 	fcall	_I2C_SendString
-	line	439
+	line	399
 	
-l1631:	
-;TEST_60F01x_IIC.c: 439: DelayS(10);
+l1627:	
+;TEST_60F01x_IIC.c: 399: DelayS(10);
 	movlw	(0Ah)
 	fcall	_DelayS
-	line	437
+	line	397
 	
-l1633:	
+l1629:	
 	incf	(main@i),f
 	
-l1635:	
+l1631:	
 	movlw	(01Eh)
 	subwf	(main@i),w
 	skipc
 	goto	u151
 	goto	u150
 u151:
-	goto	l1629
+	goto	l1625
 u150:
-	line	442
+	line	402
 	
-l1637:	
-;TEST_60F01x_IIC.c: 442: I2C_SendString(0x84,par6,sizeof(par6));
-	movlw	((_par6-__stringbase))&0ffh
+l1633:	
+;TEST_60F01x_IIC.c: 402: I2C_SendString(0x84,par5,sizeof(par5));
+	movlw	((_par5-__stringbase))&0ffh
 	movwf	(?_I2C_SendString)
 	movlw	0Ch
 	movwf	0+(?_I2C_SendString)+01h
 	clrf	1+(?_I2C_SendString)+01h
 	movlw	(084h)
 	fcall	_I2C_SendString
-	line	443
+	line	403
 	
-l1639:	
-;TEST_60F01x_IIC.c: 443: DelayM(50);
-	movlw	(032h)
+l1635:	
+;TEST_60F01x_IIC.c: 403: DelayM(5);
+	movlw	(05h)
 	fcall	_DelayM
-	goto	l1637
-	line	450
+	goto	l1633
+	line	410
 	
-l1647:	
-;TEST_60F01x_IIC.c: 449: {
-;TEST_60F01x_IIC.c: 450: _nop();
+l1643:	
+;TEST_60F01x_IIC.c: 409: {
+;TEST_60F01x_IIC.c: 410: _nop();
 	nop
-	goto	l1647
+	goto	l1643
 	global	start
 	ljmp	start
 	opt stack 0
 psect	maintext
-	line	453
+	line	413
 GLOBAL	__end_of_main
 	__end_of_main:
 ;; =============== function _main ends ============
@@ -2221,12 +2114,12 @@ __ptext108:
 
 ;; *************** function _I2C_SendString *****************
 ;; Defined at:
-;;		line 395 in file "TEST_60F01x_IIC.c"
+;;		line 357 in file "TEST_60F01x_IIC.c"
 ;; Parameters:    Size  Location     Type
 ;;  chip_addr       1    wreg     unsigned char 
 ;;  buffer          1    5[COMMON] PTR const unsigned char 
-;;		 -> par6(12), par5(40), par4(48), par3(44), 
-;;		 -> par2(68), par1(20), 
+;;		 -> par5(12), par4(28), par3(14), par2(48), 
+;;		 -> par1(44), 
 ;;  Number          2    6[COMMON] int 
 ;; Auto vars:     Size  Location     Type
 ;;  chip_addr       1    8[COMMON] unsigned char 
@@ -2258,7 +2151,7 @@ __ptext108:
 ;;
 psect	text108
 	file	"TEST_60F01x_IIC.c"
-	line	395
+	line	357
 	global	__size_of_I2C_SendString
 	__size_of_I2C_SendString	equ	__end_of_I2C_SendString-_I2C_SendString
 	
@@ -2266,66 +2159,66 @@ _I2C_SendString:
 	opt	stack 4
 ; Regs used in _I2C_SendString: [wreg-fsr0h+status,2+status,0+pclath+cstack]
 ;I2C_SendString@chip_addr stored from wreg
-	line	397
+	line	359
 	movwf	(I2C_SendString@chip_addr)
 	
-l1587:	
-;TEST_60F01x_IIC.c: 396: unsigned char i;
-;TEST_60F01x_IIC.c: 397: IIC_Start();
+l1585:	
+;TEST_60F01x_IIC.c: 358: unsigned char i;
+;TEST_60F01x_IIC.c: 359: IIC_Start();
 	fcall	_IIC_Start
-	line	398
-;TEST_60F01x_IIC.c: 398: IIC_Send_Byte(chip_addr);
+	line	360
+;TEST_60F01x_IIC.c: 360: IIC_Send_Byte(chip_addr);
 	movf	(I2C_SendString@chip_addr),w
 	fcall	_IIC_Send_Byte
-	line	400
-;TEST_60F01x_IIC.c: 400: if(IIC_Wait_Ack()==1){
+	line	362
+;TEST_60F01x_IIC.c: 362: if(IIC_Wait_Ack()==1){
 	fcall	_IIC_Wait_Ack
 	xorlw	01h
 	skipz
 	goto	u121
 	goto	u120
 u121:
-	goto	l1591
+	goto	l1589
 u120:
-	goto	l523
-	line	405
+	goto	l521
+	line	367
+	
+l1589:	
+;TEST_60F01x_IIC.c: 365: }
+;TEST_60F01x_IIC.c: 367: for(i=0; i<Number; i++) {
+	clrf	(I2C_SendString@i)
+	goto	l1599
+	line	368
 	
 l1591:	
-;TEST_60F01x_IIC.c: 403: }
-;TEST_60F01x_IIC.c: 405: for(i=0; i<Number; i++) {
-	clrf	(I2C_SendString@i)
-	goto	l1601
-	line	406
-	
-l1593:	
-;TEST_60F01x_IIC.c: 406: IIC_Send_Byte(*buffer);
+;TEST_60F01x_IIC.c: 368: IIC_Send_Byte(*buffer);
 	movf	(I2C_SendString@buffer),w
 	movwf	fsr0
 	fcall	stringdir
 	fcall	_IIC_Send_Byte
-	line	407
+	line	369
 	
-l1595:	
-;TEST_60F01x_IIC.c: 407: if(IIC_Wait_Ack()==1) {
+l1593:	
+;TEST_60F01x_IIC.c: 369: if(IIC_Wait_Ack()==1) {
 	fcall	_IIC_Wait_Ack
 	xorlw	01h
 	skipz
 	goto	u131
 	goto	u130
 u131:
-	goto	l1599
+	goto	l1597
 u130:
-	goto	l523
-	line	411
+	goto	l521
+	line	373
 	
-l1599:	
-;TEST_60F01x_IIC.c: 410: }
-;TEST_60F01x_IIC.c: 411: buffer++;
+l1597:	
+;TEST_60F01x_IIC.c: 372: }
+;TEST_60F01x_IIC.c: 373: buffer++;
 	incf	(I2C_SendString@buffer),f
-	line	405
+	line	367
 	incf	(I2C_SendString@i),f
 	
-l1601:	
+l1599:	
 	movf	(I2C_SendString@Number+1),w
 	xorlw	80h
 	sublw	080h
@@ -2339,17 +2232,17 @@ u145:
 	goto	u141
 	goto	u140
 u141:
-	goto	l1593
+	goto	l1591
 u140:
-	line	413
+	line	375
 	
-l1603:	
-;TEST_60F01x_IIC.c: 412: }
-;TEST_60F01x_IIC.c: 413: IIC_Stop();
+l1601:	
+;TEST_60F01x_IIC.c: 374: }
+;TEST_60F01x_IIC.c: 375: IIC_Stop();
 	fcall	_IIC_Stop
-	line	415
+	line	377
 	
-l523:	
+l521:	
 	return
 	opt stack 0
 GLOBAL	__end_of_I2C_SendString
@@ -2405,35 +2298,35 @@ _DelayM:
 	line	125
 	movwf	(DelayM@Time)
 	
-l1579:	
+l1577:	
 ;TEST_60F01x_IIC.c: 124: unsigned char a;
 ;TEST_60F01x_IIC.c: 125: for(a=0;a<Time;a++)
 	clrf	(DelayM@a)
-	goto	l1585
+	goto	l1583
 	line	127
 	
-l1581:	
+l1579:	
 ;TEST_60F01x_IIC.c: 126: {
 ;TEST_60F01x_IIC.c: 127: DelayS(60);
 	movlw	(03Ch)
 	fcall	_DelayS
 	line	125
 	
-l1583:	
+l1581:	
 	incf	(DelayM@a),f
 	
-l1585:	
+l1583:	
 	movf	(DelayM@Time),w
 	subwf	(DelayM@a),w
 	skipc
 	goto	u111
 	goto	u110
 u111:
-	goto	l1581
+	goto	l1579
 u110:
 	line	129
 	
-l473:	
+l471:	
 	return
 	opt stack 0
 GLOBAL	__end_of_DelayM
@@ -2487,51 +2380,51 @@ _IIC_Wait_Ack:
 ; Regs used in _IIC_Wait_Ack: [wreg+status,2+status,0+pclath+cstack]
 	line	173
 	
-l1553:	
+l1551:	
 ;TEST_60F01x_IIC.c: 173: unsigned char ucErrTime=0;
 	clrf	(IIC_Wait_Ack@ucErrTime)
 	line	174
 	
-l1555:	
+l1553:	
 ;TEST_60F01x_IIC.c: 174: TRISA2 =1;
 	bsf	status, 5	;RP0=1, select bank1
 	bsf	(1066/8)^080h,(1066)&7
 	line	175
 	
-l1557:	
+l1555:	
 ;TEST_60F01x_IIC.c: 175: RA2=1;
 	bcf	status, 5	;RP0=0, select bank0
 	bsf	(42/8),(42)&7
 	line	176
 	
-l1559:	
+l1557:	
 ;TEST_60F01x_IIC.c: 176: DelayUs(5);
 	movlw	(05h)
 	fcall	_DelayUs
 	line	177
 	
-l1561:	
+l1559:	
 ;TEST_60F01x_IIC.c: 177: RA4=1;
 	bcf	status, 5	;RP0=0, select bank0
 	bsf	(44/8),(44)&7
 	line	178
 	
-l1563:	
+l1561:	
 ;TEST_60F01x_IIC.c: 178: DelayUs(5);
 	movlw	(05h)
 	fcall	_DelayUs
 	line	179
 ;TEST_60F01x_IIC.c: 179: while(RA2)
-	goto	l482
+	goto	l480
 	line	181
 	
-l1565:	
+l1563:	
 ;TEST_60F01x_IIC.c: 180: {
 ;TEST_60F01x_IIC.c: 181: ucErrTime++;
 	incf	(IIC_Wait_Ack@ucErrTime),f
 	line	182
 	
-l1567:	
+l1565:	
 ;TEST_60F01x_IIC.c: 182: if(ucErrTime>250)
 	movlw	(0FBh)
 	subwf	(IIC_Wait_Ack@ucErrTime),w
@@ -2539,33 +2432,33 @@ l1567:
 	goto	u91
 	goto	u90
 u91:
-	goto	l482
+	goto	l480
 u90:
 	line	184
 	
-l1569:	
+l1567:	
 ;TEST_60F01x_IIC.c: 183: {
 ;TEST_60F01x_IIC.c: 184: IIC_Stop();
 	fcall	_IIC_Stop
 	line	185
 	
-l1571:	
+l1569:	
 ;TEST_60F01x_IIC.c: 185: return 1;
 	movlw	(01h)
-	goto	l485
+	goto	l483
 	line	187
 	
-l482:	
+l480:	
 	line	179
 	bcf	status, 5	;RP0=0, select bank0
 	btfsc	(42/8),(42)&7
 	goto	u101
 	goto	u100
 u101:
-	goto	l1565
+	goto	l1563
 u100:
 	
-l486:	
+l484:	
 	line	188
 ;TEST_60F01x_IIC.c: 186: }
 ;TEST_60F01x_IIC.c: 187: }
@@ -2573,12 +2466,12 @@ l486:
 	bcf	(44/8),(44)&7
 	line	189
 	
-l1575:	
+l1573:	
 ;TEST_60F01x_IIC.c: 189: return 0;
 	movlw	(0)
 	line	190
 	
-l485:	
+l483:	
 	return
 	opt stack 0
 GLOBAL	__end_of_IIC_Wait_Ack
@@ -2636,55 +2529,55 @@ _DelayS:
 	line	113
 	movwf	(DelayS@Time)
 	
-l1535:	
+l1533:	
 ;TEST_60F01x_IIC.c: 112: unsigned char a,b;
 ;TEST_60F01x_IIC.c: 113: for(a=0;a<Time;a++)
 	clrf	(DelayS@a)
-	goto	l1551
+	goto	l1549
 	line	115
 	
-l1537:	
+l1535:	
 ;TEST_60F01x_IIC.c: 114: {
 ;TEST_60F01x_IIC.c: 115: for(b=0;b<10;b++)
 	clrf	(DelayS@b)
 	line	117
 	
-l1543:	
+l1541:	
 ;TEST_60F01x_IIC.c: 116: {
 ;TEST_60F01x_IIC.c: 117: DelayMs(100);
 	movlw	(064h)
 	fcall	_DelayMs
 	line	115
 	
-l1545:	
+l1543:	
 	incf	(DelayS@b),f
 	
-l1547:	
+l1545:	
 	movlw	(0Ah)
 	subwf	(DelayS@b),w
 	skipc
 	goto	u71
 	goto	u70
 u71:
-	goto	l1543
+	goto	l1541
 u70:
 	line	113
 	
-l1549:	
+l1547:	
 	incf	(DelayS@a),f
 	
-l1551:	
+l1549:	
 	movf	(DelayS@Time),w
 	subwf	(DelayS@a),w
 	skipc
 	goto	u81
 	goto	u80
 u81:
-	goto	l1537
+	goto	l1535
 u80:
 	line	120
 	
-l467:	
+l465:	
 	return
 	opt stack 0
 GLOBAL	__end_of_DelayS
@@ -2740,7 +2633,7 @@ _IIC_Send_Byte:
 	line	232
 	movwf	(IIC_Send_Byte@txd)
 	
-l1513:	
+l1511:	
 ;TEST_60F01x_IIC.c: 231: unsigned char t;
 ;TEST_60F01x_IIC.c: 232: TRISA2 =0;
 	bsf	status, 5	;RP0=1, select bank1
@@ -2751,12 +2644,12 @@ l1513:
 	bcf	(44/8),(44)&7
 	line	234
 	
-l1515:	
+l1513:	
 ;TEST_60F01x_IIC.c: 234: for(t=0;t<8;t++)
 	clrf	(IIC_Send_Byte@t)
 	line	236
 	
-l1521:	
+l1519:	
 ;TEST_60F01x_IIC.c: 235: {
 ;TEST_60F01x_IIC.c: 236: if((txd&0x80)>>7)
 	movf	(IIC_Send_Byte@txd),w
@@ -2772,38 +2665,38 @@ u45:
 	goto	u51
 	goto	u50
 u51:
-	goto	l497
+	goto	l495
 u50:
 	line	237
 	
-l1523:	
+l1521:	
 ;TEST_60F01x_IIC.c: 237: RA2=1;
 	bcf	status, 5	;RP0=0, select bank0
 	bsf	(42/8),(42)&7
-	goto	l498
+	goto	l496
 	line	238
 	
-l497:	
+l495:	
 	line	239
 ;TEST_60F01x_IIC.c: 238: else
 ;TEST_60F01x_IIC.c: 239: RA2=0;
 	bcf	status, 5	;RP0=0, select bank0
 	bcf	(42/8),(42)&7
 	
-l498:	
+l496:	
 	line	240
 ;TEST_60F01x_IIC.c: 240: txd<<=1;
 	clrc
 	rlf	(IIC_Send_Byte@txd),f
 	line	241
 	
-l1525:	
+l1523:	
 ;TEST_60F01x_IIC.c: 241: DelayUs(5);
 	movlw	(05h)
 	fcall	_DelayUs
 	line	242
 	
-l1527:	
+l1525:	
 ;TEST_60F01x_IIC.c: 242: RA4=1;
 	bcf	status, 5	;RP0=0, select bank0
 	bsf	(44/8),(44)&7
@@ -2813,7 +2706,7 @@ l1527:
 	fcall	_DelayUs
 	line	244
 	
-l1529:	
+l1527:	
 ;TEST_60F01x_IIC.c: 244: RA4=0;
 	bcf	status, 5	;RP0=0, select bank0
 	bcf	(44/8),(44)&7
@@ -2823,21 +2716,21 @@ l1529:
 	fcall	_DelayUs
 	line	234
 	
-l1531:	
+l1529:	
 	incf	(IIC_Send_Byte@t),f
 	
-l1533:	
+l1531:	
 	movlw	(08h)
 	subwf	(IIC_Send_Byte@t),w
 	skipc
 	goto	u61
 	goto	u60
 u61:
-	goto	l1521
+	goto	l1519
 u60:
 	line	247
 	
-l499:	
+l497:	
 	return
 	opt stack 0
 GLOBAL	__end_of_IIC_Send_Byte
@@ -2891,7 +2784,7 @@ _IIC_Stop:
 ; Regs used in _IIC_Stop: [wreg+status,2+status,0+pclath+cstack]
 	line	155
 	
-l1505:	
+l1503:	
 ;TEST_60F01x_IIC.c: 155: TRISA2 =0;
 	bsf	status, 5	;RP0=1, select bank1
 	bcf	(1066/8)^080h,(1066)&7
@@ -2904,13 +2797,13 @@ l1505:
 	bcf	(42/8),(42)&7
 	line	158
 	
-l1507:	
+l1505:	
 ;TEST_60F01x_IIC.c: 158: DelayUs(10);
 	movlw	(0Ah)
 	fcall	_DelayUs
 	line	159
 	
-l1509:	
+l1507:	
 ;TEST_60F01x_IIC.c: 159: RA4=1;
 	bcf	status, 5	;RP0=0, select bank0
 	bsf	(44/8),(44)&7
@@ -2920,7 +2813,7 @@ l1509:
 	fcall	_DelayUs
 	line	161
 	
-l1511:	
+l1509:	
 ;TEST_60F01x_IIC.c: 161: RA2=1;
 	bcf	status, 5	;RP0=0, select bank0
 	bsf	(42/8),(42)&7
@@ -2930,7 +2823,7 @@ l1511:
 	fcall	_DelayUs
 	line	163
 	
-l479:	
+l477:	
 	return
 	opt stack 0
 GLOBAL	__end_of_IIC_Stop
@@ -2983,7 +2876,7 @@ _IIC_Start:
 ; Regs used in _IIC_Start: [wreg+status,2+status,0+pclath+cstack]
 	line	138
 	
-l1497:	
+l1495:	
 ;TEST_60F01x_IIC.c: 138: TRISA2 =0;
 	bsf	status, 5	;RP0=1, select bank1
 	bcf	(1066/8)^080h,(1066)&7
@@ -2996,13 +2889,13 @@ l1497:
 	bsf	(44/8),(44)&7
 	line	141
 	
-l1499:	
+l1497:	
 ;TEST_60F01x_IIC.c: 141: DelayUs(10);
 	movlw	(0Ah)
 	fcall	_DelayUs
 	line	142
 	
-l1501:	
+l1499:	
 ;TEST_60F01x_IIC.c: 142: RA2=0;
 	bcf	status, 5	;RP0=0, select bank0
 	bcf	(42/8),(42)&7
@@ -3012,7 +2905,7 @@ l1501:
 	fcall	_DelayUs
 	line	144
 	
-l1503:	
+l1501:	
 ;TEST_60F01x_IIC.c: 144: RA4=0;
 	bcf	status, 5	;RP0=0, select bank0
 	bcf	(44/8),(44)&7
@@ -3022,7 +2915,7 @@ l1503:
 	fcall	_DelayUs
 	line	146
 	
-l476:	
+l474:	
 	return
 	opt stack 0
 GLOBAL	__end_of_IIC_Start
@@ -3080,55 +2973,55 @@ _DelayMs:
 	line	96
 	movwf	(DelayMs@Time)
 	
-l1479:	
+l1477:	
 ;TEST_60F01x_IIC.c: 95: unsigned char a,b;
 ;TEST_60F01x_IIC.c: 96: for(a=0;a<Time;a++)
 	clrf	(DelayMs@a)
-	goto	l1495
+	goto	l1493
 	line	98
 	
-l1481:	
+l1479:	
 ;TEST_60F01x_IIC.c: 97: {
 ;TEST_60F01x_IIC.c: 98: for(b=0;b<5;b++)
 	clrf	(DelayMs@b)
 	line	100
 	
-l1487:	
+l1485:	
 ;TEST_60F01x_IIC.c: 99: {
 ;TEST_60F01x_IIC.c: 100: DelayUs(98);
 	movlw	(062h)
 	fcall	_DelayUs
 	line	98
 	
-l1489:	
+l1487:	
 	incf	(DelayMs@b),f
 	
-l1491:	
+l1489:	
 	movlw	(05h)
 	subwf	(DelayMs@b),w
 	skipc
 	goto	u21
 	goto	u20
 u21:
-	goto	l1487
+	goto	l1485
 u20:
 	line	96
 	
-l1493:	
+l1491:	
 	incf	(DelayMs@a),f
 	
-l1495:	
+l1493:	
 	movf	(DelayMs@Time),w
 	subwf	(DelayMs@a),w
 	skipc
 	goto	u31
 	goto	u30
 u31:
-	goto	l1481
+	goto	l1479
 u30:
 	line	103
 	
-l459:	
+l457:	
 	return
 	opt stack 0
 GLOBAL	__end_of_DelayMs
@@ -3187,35 +3080,35 @@ _DelayUs:
 	line	82
 	movwf	(DelayUs@Time)
 	
-l1473:	
+l1471:	
 ;TEST_60F01x_IIC.c: 81: unsigned char a;
 ;TEST_60F01x_IIC.c: 82: for(a=0;a<Time;a++)
 	clrf	(DelayUs@a)
-	goto	l1477
+	goto	l1475
 	line	83
 	
-l449:	
+l447:	
 	line	84
 ;TEST_60F01x_IIC.c: 83: {
 ;TEST_60F01x_IIC.c: 84: _nop();
 	nop
 	line	82
 	
-l1475:	
+l1473:	
 	incf	(DelayUs@a),f
 	
-l1477:	
+l1475:	
 	movf	(DelayUs@Time),w
 	subwf	(DelayUs@a),w
 	skipc
 	goto	u11
 	goto	u10
 u11:
-	goto	l449
+	goto	l447
 u10:
 	line	86
 	
-l451:	
+l449:	
 	return
 	opt stack 0
 GLOBAL	__end_of_DelayUs
@@ -3267,19 +3160,19 @@ _POWER_INITIAL:
 ; Regs used in _POWER_INITIAL: [wreg+status,2]
 	line	55
 	
-l1463:	
+l1461:	
 ;TEST_60F01x_IIC.c: 55: OSCCON = 0X00|0X70|0X01;
 	movlw	(071h)
 	bsf	status, 5	;RP0=1, select bank1
 	movwf	(143)^080h	;volatile
 	line	59
 	
-l1465:	
+l1463:	
 ;TEST_60F01x_IIC.c: 59: INTCON = 0;
 	clrf	(11)	;volatile
 	line	60
 	
-l1467:	
+l1465:	
 ;TEST_60F01x_IIC.c: 60: PORTA = 0B00000000;
 	bcf	status, 5	;RP0=0, select bank0
 	clrf	(5)	;volatile
@@ -3290,12 +3183,12 @@ l1467:
 	movwf	(133)^080h	;volatile
 	line	62
 	
-l1469:	
+l1467:	
 ;TEST_60F01x_IIC.c: 62: WPUA = 0B00000000;
 	clrf	(149)^080h	;volatile
 	line	65
 	
-l1471:	
+l1469:	
 ;TEST_60F01x_IIC.c: 65: OPTION = 0B00001000;
 	movlw	(08h)
 	movwf	(129)^080h	;volatile
@@ -3305,7 +3198,7 @@ l1471:
 	clrf	(27)	;volatile
 	line	72
 	
-l445:	
+l443:	
 	return
 	opt stack 0
 GLOBAL	__end_of_POWER_INITIAL
