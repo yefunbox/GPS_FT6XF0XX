@@ -319,9 +319,9 @@
 [v _IIC_READ `(uc  1 e 1 0 ]
 "300
 [v _IIC_WRITE `(v  1 e 0 0 ]
-"357
+"354
 [v _I2C_SendString `(uc  1 e 1 0 ]
-"385
+"382
 [v _main `(v  1 e 0 0 ]
 "90 /hitech/products/compilers/pic/pro/9.83/dist/linux/include/pic16f684.h
 [v _INDF `VEuc  1 e 1 @0 ]
@@ -1039,34 +1039,36 @@
 [v _SFR9E `VEuc  1 e 1 @158 ]
 "634
 [v _SFR9F `VEuc  1 e 1 @159 ]
-"327 TEST_60F01x_IIC.c
-[v _par1 `DC[44]uc  1 e 44 0 ]
-"333
-[v _par2 `DC[48]uc  1 e 48 0 ]
-"339
-[v _par3 `DC[14]uc  1 e 14 0 ]
-"344
-[v _par4 `DC[28]uc  1 e 28 0 ]
-"350
-[v _par5 `DC[12]uc  1 e 12 0 ]
-"385
+"315 TEST_60F01x_IIC.c
+[v _par1 `DC[20]uc  1 e 20 0 ]
+"319
+[v _par2 `DC[68]uc  1 e 68 0 ]
+"329
+[v _par3 `DC[44]uc  1 e 44 0 ]
+"335
+[v _par4 `DC[48]uc  1 e 48 0 ]
+"341
+[v _par5 `DC[40]uc  1 e 40 0 ]
+"348
+[v _par6 `DC[12]uc  1 e 12 0 ]
+"382
 [v _main `(v  1 e 0 0 ]
 {
-"386
+"383
 [v main@i `uc  1 a 1 10 ]
-"413
+"412
 } 0
-"357
+"354
 [v _I2C_SendString `(uc  1 e 1 0 ]
 {
 [v I2C_SendString@chip_addr `uc  1 a 1 wreg ]
-"358
+"355
 [v I2C_SendString@i `uc  1 a 1 9 ]
-"357
+"354
 [v I2C_SendString@chip_addr `uc  1 a 1 wreg ]
 [v I2C_SendString@buffer `*.cDCuc  1 p 1 5 ]
 [v I2C_SendString@Number `i  1 p 2 6 ]
-"377
+"374
 } 0
 "123
 [v _DelayM `(v  1 e 0 0 ]
