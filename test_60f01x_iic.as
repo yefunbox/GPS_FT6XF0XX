@@ -57,24 +57,38 @@ pclath	equ	10
 	FNCALL	_IIC_Start,_DelayUs
 	FNCALL	_DelayMs,_DelayUs
 	FNROOT	_main
+	FNCALL	intlevel1,_ISR
+	global	intlevel1
+	FNROOT	intlevel1
 	global	_par2
-psect	strings,class=STRING,delta=2
-global __pstrings
-__pstrings:
-;	global	stringdir,stringtab,__stringbase
+psect	stringtext,class=STRCODE,delta=2,reloc=256
+global __pstringtext
+__pstringtext:
+;	global	stringtab,__stringbase
 stringtab:
-;	String table - string pointers are 1 byte each
-stringcode:stringdir:
-movlw high(stringdir)
-movwf pclath
-movf fsr,w
+;	String table - string pointers are 2 bytes each
+	btfsc	(btemp+1),7
+	ljmp	stringcode
+	bcf	status,7
+	btfsc	(btemp+1),0
+	bsf	status,7
+	movf	indf,w
+	incf fsr
+skipnz
+incf btemp+1
+	return
+stringcode:
+	movf btemp+1,w
+andlw 7Fh
+movwf	pclath
+	movf	fsr,w
 incf fsr
-	addwf pc
+skipnz
+incf btemp+1
+	movwf pc
 __stringbase:
-	retlw	0
-psect	strings
-	file	"TEST_60F01x_IIC.c"
-	line	319
+	file	"i2c.c"
+	line	500
 _par2:
 	retlw	0B5h
 	retlw	062h
@@ -138,16 +152,16 @@ _par2:
 	retlw	08h
 	retlw	0Eh
 	retlw	0
-	retlw	01h
+	retlw	0
 	retlw	0
 	retlw	01h
 	retlw	01h
-	retlw	02Eh
-	retlw	05Dh
+	retlw	02Dh
+	retlw	059h
 	global	_par4
-psect	strings
-	file	"TEST_60F01x_IIC.c"
-	line	335
+psect	stringtext
+	file	"i2c.c"
+	line	516
 _par4:
 	retlw	0B5h
 	retlw	062h
@@ -198,9 +212,9 @@ _par4:
 	retlw	0EEh
 	retlw	044h
 	global	_par3
-psect	strings
-	file	"TEST_60F01x_IIC.c"
-	line	329
+psect	stringtext
+	file	"i2c.c"
+	line	510
 _par3:
 	retlw	0B5h
 	retlw	062h
@@ -247,9 +261,9 @@ _par3:
 	retlw	0DEh
 	retlw	045h
 	global	_par5
-psect	strings
-	file	"TEST_60F01x_IIC.c"
-	line	341
+psect	stringtext
+	file	"i2c.c"
+	line	522
 _par5:
 	retlw	0B5h
 	retlw	062h
@@ -292,9 +306,9 @@ _par5:
 	retlw	0CAh
 	retlw	0B6h
 	global	_par1
-psect	strings
-	file	"TEST_60F01x_IIC.c"
-	line	315
+psect	stringtext
+	file	"i2c.c"
+	line	496
 _par1:
 	retlw	0B5h
 	retlw	062h
@@ -317,10 +331,31 @@ _par1:
 	retlw	0F6h
 	retlw	06Bh
 	global	_par6
-psect	strings
-	file	"TEST_60F01x_IIC.c"
-	line	348
+psect	stringtext
+	file	"i2c.c"
+	line	529
 _par6:
+	retlw	0B5h
+	retlw	062h
+	retlw	06h
+	retlw	01h
+	retlw	08h
+	retlw	0
+	retlw	09h
+	retlw	014h
+	retlw	01h
+	retlw	0
+	retlw	0
+	retlw	0
+	retlw	0
+	retlw	0
+	retlw	02Dh
+	retlw	07Dh
+	global	_par7
+psect	stringtext
+	file	"i2c.c"
+	line	533
+_par7:
 	retlw	0B5h
 	retlw	062h
 	retlw	09h
@@ -339,6 +374,7 @@ _par6:
 	global	_par5
 	global	_par1
 	global	_par6
+	global	_par7
 	global	_FSR
 _FSR	set	4
 	DABS	1,4,1	;_FSR
@@ -1790,12 +1826,8 @@ global __pcstackCOMMON
 __pcstackCOMMON:
 	global	?_POWER_INITIAL
 ?_POWER_INITIAL:	; 0 bytes @ 0x0
-	global	??_POWER_INITIAL
-??_POWER_INITIAL:	; 0 bytes @ 0x0
 	global	?_DelayUs
 ?_DelayUs:	; 0 bytes @ 0x0
-	global	??_DelayUs
-??_DelayUs:	; 0 bytes @ 0x0
 	global	?_DelayMs
 ?_DelayMs:	; 0 bytes @ 0x0
 	global	?_DelayS
@@ -1808,87 +1840,97 @@ __pcstackCOMMON:
 ?_IIC_Stop:	; 0 bytes @ 0x0
 	global	?_IIC_Send_Byte
 ?_IIC_Send_Byte:	; 0 bytes @ 0x0
+	global	?_ISR
+?_ISR:	; 0 bytes @ 0x0
+	global	??_ISR
+??_ISR:	; 0 bytes @ 0x0
 	global	?_main
 ?_main:	; 0 bytes @ 0x0
 	global	?_IIC_Wait_Ack
 ?_IIC_Wait_Ack:	; 1 bytes @ 0x0
+	ds	2
+	global	??_POWER_INITIAL
+??_POWER_INITIAL:	; 0 bytes @ 0x2
+	global	??_DelayUs
+??_DelayUs:	; 0 bytes @ 0x2
 	global	DelayUs@Time
-DelayUs@Time:	; 1 bytes @ 0x0
+DelayUs@Time:	; 1 bytes @ 0x2
 	ds	1
 	global	DelayUs@a
-DelayUs@a:	; 1 bytes @ 0x1
+DelayUs@a:	; 1 bytes @ 0x3
 	ds	1
 	global	??_DelayMs
-??_DelayMs:	; 0 bytes @ 0x2
+??_DelayMs:	; 0 bytes @ 0x4
 	global	??_IIC_Start
-??_IIC_Start:	; 0 bytes @ 0x2
+??_IIC_Start:	; 0 bytes @ 0x4
 	global	??_IIC_Stop
-??_IIC_Stop:	; 0 bytes @ 0x2
+??_IIC_Stop:	; 0 bytes @ 0x4
 	global	??_IIC_Wait_Ack
-??_IIC_Wait_Ack:	; 0 bytes @ 0x2
+??_IIC_Wait_Ack:	; 0 bytes @ 0x4
 	global	??_IIC_Send_Byte
-??_IIC_Send_Byte:	; 0 bytes @ 0x2
+??_IIC_Send_Byte:	; 0 bytes @ 0x4
 	global	DelayMs@Time
-DelayMs@Time:	; 1 bytes @ 0x2
+DelayMs@Time:	; 1 bytes @ 0x4
 	global	IIC_Wait_Ack@ucErrTime
-IIC_Wait_Ack@ucErrTime:	; 1 bytes @ 0x2
+IIC_Wait_Ack@ucErrTime:	; 1 bytes @ 0x4
 	ds	1
 	global	DelayMs@a
-DelayMs@a:	; 1 bytes @ 0x3
+DelayMs@a:	; 1 bytes @ 0x5
 	global	IIC_Send_Byte@txd
-IIC_Send_Byte@txd:	; 1 bytes @ 0x3
+IIC_Send_Byte@txd:	; 1 bytes @ 0x5
 	ds	1
 	global	DelayMs@b
-DelayMs@b:	; 1 bytes @ 0x4
+DelayMs@b:	; 1 bytes @ 0x6
 	global	IIC_Send_Byte@t
-IIC_Send_Byte@t:	; 1 bytes @ 0x4
+IIC_Send_Byte@t:	; 1 bytes @ 0x6
 	ds	1
 	global	??_DelayS
-??_DelayS:	; 0 bytes @ 0x5
+??_DelayS:	; 0 bytes @ 0x7
 	global	?_I2C_SendString
-?_I2C_SendString:	; 1 bytes @ 0x5
+?_I2C_SendString:	; 1 bytes @ 0x7
 	global	DelayS@Time
-DelayS@Time:	; 1 bytes @ 0x5
+DelayS@Time:	; 1 bytes @ 0x7
 	global	I2C_SendString@buffer
-I2C_SendString@buffer:	; 1 bytes @ 0x5
+I2C_SendString@buffer:	; 2 bytes @ 0x7
 	ds	1
 	global	DelayS@a
-DelayS@a:	; 1 bytes @ 0x6
-	global	I2C_SendString@Number
-I2C_SendString@Number:	; 2 bytes @ 0x6
+DelayS@a:	; 1 bytes @ 0x8
 	ds	1
 	global	DelayS@b
-DelayS@b:	; 1 bytes @ 0x7
+DelayS@b:	; 1 bytes @ 0x9
+	global	I2C_SendString@Number
+I2C_SendString@Number:	; 2 bytes @ 0x9
 	ds	1
 	global	??_DelayM
-??_DelayM:	; 0 bytes @ 0x8
-	global	??_I2C_SendString
-??_I2C_SendString:	; 0 bytes @ 0x8
+??_DelayM:	; 0 bytes @ 0xA
 	global	DelayM@Time
-DelayM@Time:	; 1 bytes @ 0x8
-	global	I2C_SendString@chip_addr
-I2C_SendString@chip_addr:	; 1 bytes @ 0x8
+DelayM@Time:	; 1 bytes @ 0xA
 	ds	1
+	global	??_I2C_SendString
+??_I2C_SendString:	; 0 bytes @ 0xB
 	global	DelayM@a
-DelayM@a:	; 1 bytes @ 0x9
+DelayM@a:	; 1 bytes @ 0xB
+	global	I2C_SendString@chip_addr
+I2C_SendString@chip_addr:	; 1 bytes @ 0xB
+	ds	1
 	global	I2C_SendString@i
-I2C_SendString@i:	; 1 bytes @ 0x9
+I2C_SendString@i:	; 1 bytes @ 0xC
 	ds	1
 	global	??_main
-??_main:	; 0 bytes @ 0xA
+??_main:	; 0 bytes @ 0xD
 	global	main@i
-main@i:	; 1 bytes @ 0xA
+main@i:	; 1 bytes @ 0xD
 	ds	1
-;;Data sizes: Strings 0, constant 232, data 0, bss 0, persistent 0 stack 0
+;;Data sizes: Strings 0, constant 248, data 0, bss 0, persistent 0 stack 0
 ;;Auto spaces:   Size  Autos    Used
-;; COMMON          62     11      11
+;; COMMON          62     14      14
 
 ;;
 ;; Pointer list with targets:
 
-;; I2C_SendString@buffer	PTR const unsigned char  size(1) Largest target is 68
-;;		 -> par6(CODE[12]), par5(CODE[40]), par4(CODE[48]), par3(CODE[44]), 
-;;		 -> par2(CODE[68]), par1(CODE[20]), 
+;; I2C_SendString@buffer	PTR const unsigned char  size(2) Largest target is 68
+;;		 -> par7(CODE[12]), par6(CODE[16]), par5(CODE[40]), par4(CODE[48]), 
+;;		 -> par3(CODE[44]), par2(CODE[68]), par1(CODE[20]), 
 ;;
 
 
@@ -1896,7 +1938,6 @@ main@i:	; 1 bytes @ 0xA
 ;; Critical Paths under _main in COMMON
 ;;
 ;;   _main->_I2C_SendString
-;;   _main->_DelayM
 ;;   _I2C_SendString->_IIC_Send_Byte
 ;;   _DelayM->_DelayS
 ;;   _IIC_Wait_Ack->_DelayUs
@@ -1905,6 +1946,10 @@ main@i:	; 1 bytes @ 0xA
 ;;   _IIC_Stop->_DelayUs
 ;;   _IIC_Start->_DelayUs
 ;;   _DelayMs->_DelayUs
+;;
+;; Critical Paths under _ISR in COMMON
+;;
+;;   None.
 
 ;;
 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
@@ -1917,35 +1962,35 @@ main@i:	; 1 bytes @ 0xA
 ;; (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
 ;; ---------------------------------------------------------------------------------
 ;; (0) _main                                                 1     1      0     720
-;;                                             10 COMMON     1     1      0
+;;                                             13 COMMON     1     1      0
 ;;                      _POWER_INITIAL
 ;;                             _DelayS
 ;;                     _I2C_SendString
 ;;                            _DelayMs
 ;;                             _DelayM
 ;; ---------------------------------------------------------------------------------
-;; (1) _I2C_SendString                                       5     2      3     270
-;;                                              5 COMMON     5     2      3
+;; (1) _I2C_SendString                                       6     2      4     270
+;;                                              7 COMMON     6     2      4
 ;;                          _IIC_Start
 ;;                      _IIC_Send_Byte
 ;;                       _IIC_Wait_Ack
 ;;                           _IIC_Stop
 ;; ---------------------------------------------------------------------------------
 ;; (1) _DelayM                                               2     2      0     180
-;;                                              8 COMMON     2     2      0
+;;                                             10 COMMON     2     2      0
 ;;                             _DelayS
 ;; ---------------------------------------------------------------------------------
 ;; (2) _IIC_Wait_Ack                                         1     1      0      75
-;;                                              2 COMMON     1     1      0
+;;                                              4 COMMON     1     1      0
 ;;                            _DelayUs
 ;;                           _IIC_Stop
 ;; ---------------------------------------------------------------------------------
 ;; (2) _DelayS                                               3     3      0     150
-;;                                              5 COMMON     3     3      0
+;;                                              7 COMMON     3     3      0
 ;;                            _DelayMs
 ;; ---------------------------------------------------------------------------------
 ;; (2) _IIC_Send_Byte                                        3     3      0      75
-;;                                              2 COMMON     3     3      0
+;;                                              4 COMMON     3     3      0
 ;;                            _DelayUs
 ;; ---------------------------------------------------------------------------------
 ;; (2) _IIC_Stop                                             0     0      0      30
@@ -1955,15 +2000,22 @@ main@i:	; 1 bytes @ 0xA
 ;;                            _DelayUs
 ;; ---------------------------------------------------------------------------------
 ;; (3) _DelayMs                                              3     3      0      90
-;;                                              2 COMMON     3     3      0
+;;                                              4 COMMON     3     3      0
 ;;                            _DelayUs
 ;; ---------------------------------------------------------------------------------
 ;; (4) _DelayUs                                              2     2      0      30
-;;                                              0 COMMON     2     2      0
+;;                                              2 COMMON     2     2      0
 ;; ---------------------------------------------------------------------------------
 ;; (1) _POWER_INITIAL                                        0     0      0       0
 ;; ---------------------------------------------------------------------------------
 ;; Estimated maximum stack depth 4
+;; ---------------------------------------------------------------------------------
+;; (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+;; ---------------------------------------------------------------------------------
+;; (5) _ISR                                                  2     2      0       0
+;;                                              0 COMMON     2     2      0
+;; ---------------------------------------------------------------------------------
+;; Estimated maximum stack depth 5
 ;; ---------------------------------------------------------------------------------
 
 ;; Call Graph Graphs:
@@ -1991,6 +2043,8 @@ main@i:	; 1 bytes @ 0xA
 ;;       _DelayMs
 ;;         _DelayUs
 ;;
+;; _ISR (ROOT)
+;;
 
 ;; Address spaces:
 
@@ -1999,7 +2053,7 @@ main@i:	; 1 bytes @ 0xA
 ;;EEDATA             100      0       0       0        0.0%
 ;;NULL                 0      0       0       0        0.0%
 ;;CODE                 0      0       0       0        0.0%
-;;COMMON              3E      B       B       1       17.7%
+;;COMMON              3E      E       E       1       22.6%
 ;;BITSFR0              0      0       0       1        0.0%
 ;;SFR0                 0      0       0       1        0.0%
 ;;BITSFR1              0      0       0       2        0.0%
@@ -2015,15 +2069,15 @@ __pmaintext:
 
 ;; *************** function _main *****************
 ;; Defined at:
-;;		line 382 in file "TEST_60F01x_IIC.c"
+;;		line 539 in file "i2c.c"
 ;; Parameters:    Size  Location     Type
 ;;		None
 ;; Auto vars:     Size  Location     Type
-;;  i               1   10[COMMON] unsigned char 
+;;  i               1   13[COMMON] unsigned char 
 ;; Return value:  Size  Location     Type
 ;;		None               void
 ;; Registers used:
-;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+;;		wreg, fsr0l, fsr0h, status,2, status,0, btemp+1, pclath, cstack
 ;; Tracked objects:
 ;;		On entry : 17F/0
 ;;		On exit  : 0/0
@@ -2034,7 +2088,7 @@ __pmaintext:
 ;;      Temps:          0
 ;;      Totals:         1
 ;;Total ram usage:        1 bytes
-;; Hardware stack levels required when called:    4
+;; Hardware stack levels required when called:    5
 ;; This function calls:
 ;;		_POWER_INITIAL
 ;;		_DelayS
@@ -2046,207 +2100,240 @@ __pmaintext:
 ;; This function uses a non-reentrant model
 ;;
 psect	maintext
-	file	"TEST_60F01x_IIC.c"
-	line	382
+	file	"i2c.c"
+	line	539
 	global	__size_of_main
 	__size_of_main	equ	__end_of_main-_main
 	
 _main:	
-	opt	stack 4
-; Regs used in _main: [wreg-fsr0h+status,2+status,0+pclath+cstack]
-	line	384
+	opt	stack 3
+; Regs used in _main: [wreg-fsr0h+status,2+status,0+btemp+1+pclath+cstack]
+	line	541
 	
-l1607:	
-;TEST_60F01x_IIC.c: 383: char i;
-;TEST_60F01x_IIC.c: 384: POWER_INITIAL();
+l1677:	
+;i2c.c: 540: char i;
+;i2c.c: 541: POWER_INITIAL();
 	fcall	_POWER_INITIAL
-	line	385
-;TEST_60F01x_IIC.c: 385: DelayS(1);
+	line	542
+;i2c.c: 542: DelayS(1);
 	movlw	(01h)
 	fcall	_DelayS
-	line	386
+	line	543
 	
-l1609:	
-;TEST_60F01x_IIC.c: 386: I2C_SendString(0x84,par1,sizeof(par1));
-	movlw	((_par1-__stringbase))&0ffh
+l1679:	
+;i2c.c: 543: I2C_SendString(0x84,par1,sizeof(par1));
+	movlw	low(_par1|8000h)
 	movwf	(?_I2C_SendString)
+	movlw	high(_par1|8000h)
+	movwf	((?_I2C_SendString))+1
 	movlw	014h
-	movwf	0+(?_I2C_SendString)+01h
-	clrf	1+(?_I2C_SendString)+01h
+	movwf	0+(?_I2C_SendString)+02h
+	clrf	1+(?_I2C_SendString)+02h
 	movlw	(084h)
 	fcall	_I2C_SendString
-	line	387
+	line	544
 	
-l1611:	
-;TEST_60F01x_IIC.c: 387: DelayMs(100);
+l1681:	
+;i2c.c: 544: DelayMs(100);
 	movlw	(064h)
 	fcall	_DelayMs
-	line	388
-;TEST_60F01x_IIC.c: 388: I2C_SendString(0x84,par2,sizeof(par2));
-	movlw	((_par2-__stringbase))&0ffh
+	line	545
+;i2c.c: 545: I2C_SendString(0x84,par2,sizeof(par2));
+	movlw	low(_par2|8000h)
 	movwf	(?_I2C_SendString)
+	movlw	high(_par2|8000h)
+	movwf	((?_I2C_SendString))+1
 	movlw	044h
-	movwf	0+(?_I2C_SendString)+01h
-	clrf	1+(?_I2C_SendString)+01h
+	movwf	0+(?_I2C_SendString)+02h
+	clrf	1+(?_I2C_SendString)+02h
 	movlw	(084h)
 	fcall	_I2C_SendString
-	line	389
+	line	546
 	
-l1613:	
-;TEST_60F01x_IIC.c: 389: DelayMs(100);
+l1683:	
+;i2c.c: 546: DelayMs(100);
 	movlw	(064h)
 	fcall	_DelayMs
-	line	390
+	line	547
 	
-l1615:	
-;TEST_60F01x_IIC.c: 390: I2C_SendString(0x84,par3,sizeof(par3));
-	movlw	((_par3-__stringbase))&0ffh
+l1685:	
+;i2c.c: 547: I2C_SendString(0x84,par3,sizeof(par3));
+	movlw	low(_par3|8000h)
 	movwf	(?_I2C_SendString)
+	movlw	high(_par3|8000h)
+	movwf	((?_I2C_SendString))+1
 	movlw	02Ch
-	movwf	0+(?_I2C_SendString)+01h
-	clrf	1+(?_I2C_SendString)+01h
+	movwf	0+(?_I2C_SendString)+02h
+	clrf	1+(?_I2C_SendString)+02h
 	movlw	(084h)
 	fcall	_I2C_SendString
-	line	391
-;TEST_60F01x_IIC.c: 391: DelayMs(100);
+	line	548
+;i2c.c: 548: DelayMs(100);
 	movlw	(064h)
 	fcall	_DelayMs
-	line	392
+	line	549
 	
-l1617:	
-;TEST_60F01x_IIC.c: 392: I2C_SendString(0x84,par4,sizeof(par4));
-	movlw	((_par4-__stringbase))&0ffh
+l1687:	
+;i2c.c: 549: I2C_SendString(0x84,par4,sizeof(par4));
+	movlw	low(_par4|8000h)
 	movwf	(?_I2C_SendString)
+	movlw	high(_par4|8000h)
+	movwf	((?_I2C_SendString))+1
 	movlw	030h
-	movwf	0+(?_I2C_SendString)+01h
-	clrf	1+(?_I2C_SendString)+01h
+	movwf	0+(?_I2C_SendString)+02h
+	clrf	1+(?_I2C_SendString)+02h
 	movlw	(084h)
 	fcall	_I2C_SendString
-	line	393
+	line	550
 	
-l1619:	
-;TEST_60F01x_IIC.c: 393: DelayMs(100);
+l1689:	
+;i2c.c: 550: DelayMs(100);
 	movlw	(064h)
 	fcall	_DelayMs
-	line	394
-;TEST_60F01x_IIC.c: 394: I2C_SendString(0x84,par5,sizeof(par5));
-	movlw	((_par5-__stringbase))&0ffh
+	line	551
+;i2c.c: 551: I2C_SendString(0x84,par5,sizeof(par5));
+	movlw	low(_par5|8000h)
 	movwf	(?_I2C_SendString)
+	movlw	high(_par5|8000h)
+	movwf	((?_I2C_SendString))+1
 	movlw	028h
-	movwf	0+(?_I2C_SendString)+01h
-	clrf	1+(?_I2C_SendString)+01h
+	movwf	0+(?_I2C_SendString)+02h
+	clrf	1+(?_I2C_SendString)+02h
 	movlw	(084h)
 	fcall	_I2C_SendString
-	line	395
+	line	552
 	
-l1621:	
-;TEST_60F01x_IIC.c: 395: DelayMs(100);
+l1691:	
+;i2c.c: 552: DelayMs(100);
 	movlw	(064h)
 	fcall	_DelayMs
-	line	396
+	line	553
 	
-l1623:	
-;TEST_60F01x_IIC.c: 396: for(i = 0;i < 30;i++) {
-	clrf	(main@i)
-	line	397
-	
-l1629:	
-;TEST_60F01x_IIC.c: 397: I2C_SendString(0x84,par6,sizeof(par6));
-	movlw	((_par6-__stringbase))&0ffh
+l1693:	
+;i2c.c: 553: I2C_SendString(0x84,par6,sizeof(par6));
+	movlw	low(_par6|8000h)
 	movwf	(?_I2C_SendString)
-	movlw	0Ch
-	movwf	0+(?_I2C_SendString)+01h
-	clrf	1+(?_I2C_SendString)+01h
+	movlw	high(_par6|8000h)
+	movwf	((?_I2C_SendString))+1
+	movlw	010h
+	movwf	0+(?_I2C_SendString)+02h
+	clrf	1+(?_I2C_SendString)+02h
 	movlw	(084h)
 	fcall	_I2C_SendString
-	line	398
+	line	554
+;i2c.c: 554: DelayMs(100);
+	movlw	(064h)
+	fcall	_DelayMs
+	line	559
 	
-l1631:	
-;TEST_60F01x_IIC.c: 398: DelayS(10);
-	movlw	(0Ah)
+l1695:	
+;i2c.c: 559: for(i = 0;i < 10;i++) {
+	clrf	(main@i)
+	line	560
+	
+l1701:	
+;i2c.c: 560: I2C_SendString(0x84,par7,sizeof(par7));
+	movlw	low(_par7|8000h)
+	movwf	(?_I2C_SendString)
+	movlw	high(_par7|8000h)
+	movwf	((?_I2C_SendString))+1
+	movlw	0Ch
+	movwf	0+(?_I2C_SendString)+02h
+	clrf	1+(?_I2C_SendString)+02h
+	movlw	(084h)
+	fcall	_I2C_SendString
+	line	561
+	
+l1703:	
+;i2c.c: 561: DelayS(30);
+	movlw	(01Eh)
 	fcall	_DelayS
-	line	396
+	line	559
 	
-l1633:	
+l1705:	
 	incf	(main@i),f
 	
-l1635:	
-	movlw	(01Eh)
+l1707:	
+	movlw	(0Ah)
 	subwf	(main@i),w
 	skipc
-	goto	u151
-	goto	u150
-u151:
-	goto	l1629
-u150:
-	line	401
+	goto	u201
+	goto	u200
+u201:
+	goto	l1701
+u200:
+	line	564
 	
-l1637:	
-;TEST_60F01x_IIC.c: 401: I2C_SendString(0x84,par6,sizeof(par6));
-	movlw	((_par6-__stringbase))&0ffh
+l1709:	
+;i2c.c: 564: I2C_SendString(0x84,par7,sizeof(par7));
+	movlw	low(_par7|8000h)
 	movwf	(?_I2C_SendString)
+	movlw	high(_par7|8000h)
+	movwf	((?_I2C_SendString))+1
 	movlw	0Ch
-	movwf	0+(?_I2C_SendString)+01h
-	clrf	1+(?_I2C_SendString)+01h
+	movwf	0+(?_I2C_SendString)+02h
+	clrf	1+(?_I2C_SendString)+02h
 	movlw	(084h)
 	fcall	_I2C_SendString
-	line	402
+	line	565
 	
-l1639:	
-;TEST_60F01x_IIC.c: 402: DelayM(5);
-	movlw	(05h)
+l1711:	
+;i2c.c: 565: DelayM(20);
+	movlw	(014h)
 	fcall	_DelayM
-	goto	l1637
-	line	409
+	goto	l1709
+	line	570
+;i2c.c: 570: while(1)
 	
-l1647:	
-;TEST_60F01x_IIC.c: 408: {
-;TEST_60F01x_IIC.c: 409: _nop();
+l583:	
+	line	572
+;i2c.c: 571: {
+;i2c.c: 572: _nop();
 	nop
-	goto	l1647
+	goto	l583
 	global	start
 	ljmp	start
 	opt stack 0
 psect	maintext
-	line	412
+	line	575
 GLOBAL	__end_of_main
 	__end_of_main:
 ;; =============== function _main ends ============
 
 	signat	_main,88
 	global	_I2C_SendString
-psect	text108,local,class=CODE,delta=2
-global __ptext108
-__ptext108:
+psect	text120,local,class=CODE,delta=2
+global __ptext120
+__ptext120:
 
 ;; *************** function _I2C_SendString *****************
 ;; Defined at:
-;;		line 354 in file "TEST_60F01x_IIC.c"
+;;		line 323 in file "i2c.c"
 ;; Parameters:    Size  Location     Type
 ;;  chip_addr       1    wreg     unsigned char 
-;;  buffer          1    5[COMMON] PTR const unsigned char 
-;;		 -> par6(12), par5(40), par4(48), par3(44), 
-;;		 -> par2(68), par1(20), 
-;;  Number          2    6[COMMON] int 
+;;  buffer          2    7[COMMON] PTR const unsigned char 
+;;		 -> par7(12), par6(16), par5(40), par4(48), 
+;;		 -> par3(44), par2(68), par1(20), 
+;;  Number          2    9[COMMON] int 
 ;; Auto vars:     Size  Location     Type
-;;  chip_addr       1    8[COMMON] unsigned char 
-;;  i               1    9[COMMON] unsigned char 
+;;  chip_addr       1   11[COMMON] unsigned char 
+;;  i               1   12[COMMON] unsigned char 
 ;; Return value:  Size  Location     Type
 ;;                  1    wreg      unsigned char 
 ;; Registers used:
-;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+;;		wreg, fsr0l, fsr0h, status,2, status,0, btemp+1, pclath, cstack
 ;; Tracked objects:
 ;;		On entry : 0/0
 ;;		On exit  : 0/0
 ;;		Unchanged: 0/0
 ;; Data sizes:     COMMON
-;;      Params:         3
+;;      Params:         4
 ;;      Locals:         2
 ;;      Temps:          0
-;;      Totals:         5
-;;Total ram usage:        5 bytes
+;;      Totals:         6
+;;Total ram usage:        6 bytes
 ;; Hardware stack levels used:    1
-;; Hardware stack levels required when called:    3
+;; Hardware stack levels required when called:    4
 ;; This function calls:
 ;;		_IIC_Start
 ;;		_IIC_Send_Byte
@@ -2256,100 +2343,105 @@ __ptext108:
 ;;		_main
 ;; This function uses a non-reentrant model
 ;;
-psect	text108
-	file	"TEST_60F01x_IIC.c"
-	line	354
+psect	text120
+	file	"i2c.c"
+	line	323
 	global	__size_of_I2C_SendString
 	__size_of_I2C_SendString	equ	__end_of_I2C_SendString-_I2C_SendString
 	
 _I2C_SendString:	
-	opt	stack 4
-; Regs used in _I2C_SendString: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+	opt	stack 3
+; Regs used in _I2C_SendString: [wreg-fsr0h+status,2+status,0+btemp+1+pclath+cstack]
 ;I2C_SendString@chip_addr stored from wreg
-	line	356
+	line	325
 	movwf	(I2C_SendString@chip_addr)
 	
-l1587:	
-;TEST_60F01x_IIC.c: 355: unsigned char i;
-;TEST_60F01x_IIC.c: 356: IIC_Start();
+l1657:	
+;i2c.c: 324: unsigned char i;
+;i2c.c: 325: IIC_Start();
 	fcall	_IIC_Start
-	line	357
-;TEST_60F01x_IIC.c: 357: IIC_Send_Byte(chip_addr);
+	line	326
+;i2c.c: 326: IIC_Send_Byte(chip_addr);
 	movf	(I2C_SendString@chip_addr),w
 	fcall	_IIC_Send_Byte
-	line	359
-;TEST_60F01x_IIC.c: 359: if(IIC_Wait_Ack()==1){
+	line	328
+;i2c.c: 328: if(IIC_Wait_Ack()==1){
 	fcall	_IIC_Wait_Ack
 	xorlw	01h
 	skipz
-	goto	u121
-	goto	u120
-u121:
-	goto	l1591
-u120:
-	goto	l523
-	line	364
+	goto	u171
+	goto	u170
+u171:
+	goto	l1661
+u170:
+	goto	l529
+	line	333
 	
-l1591:	
-;TEST_60F01x_IIC.c: 362: }
-;TEST_60F01x_IIC.c: 364: for(i=0; i<Number; i++) {
+l1661:	
+;i2c.c: 331: }
+;i2c.c: 333: for(i=0; i<Number; i++) {
 	clrf	(I2C_SendString@i)
-	goto	l1601
-	line	365
+	goto	l1671
+	line	334
 	
-l1593:	
-;TEST_60F01x_IIC.c: 365: IIC_Send_Byte(*buffer);
+l1663:	
+;i2c.c: 334: IIC_Send_Byte(*buffer);
+	movf	(I2C_SendString@buffer+1),w
+	bcf	status, 5	;RP0=0, select bank0
+	movwf	btemp+1
 	movf	(I2C_SendString@buffer),w
 	movwf	fsr0
-	fcall	stringdir
+	fcall	stringtab
 	fcall	_IIC_Send_Byte
-	line	366
+	line	335
 	
-l1595:	
-;TEST_60F01x_IIC.c: 366: if(IIC_Wait_Ack()==1) {
+l1665:	
+;i2c.c: 335: if(IIC_Wait_Ack()==1) {
 	fcall	_IIC_Wait_Ack
 	xorlw	01h
 	skipz
-	goto	u131
-	goto	u130
-u131:
-	goto	l1599
-u130:
-	goto	l523
-	line	370
+	goto	u181
+	goto	u180
+u181:
+	goto	l1669
+u180:
+	goto	l529
+	line	339
 	
-l1599:	
-;TEST_60F01x_IIC.c: 369: }
-;TEST_60F01x_IIC.c: 370: buffer++;
+l1669:	
+;i2c.c: 338: }
+;i2c.c: 339: buffer++;
 	incf	(I2C_SendString@buffer),f
-	line	364
+	skipnz
+	incf	(I2C_SendString@buffer+1),f
+	line	333
 	incf	(I2C_SendString@i),f
 	
-l1601:	
+l1671:	
 	movf	(I2C_SendString@Number+1),w
 	xorlw	80h
 	sublw	080h
 	skipz
-	goto	u145
+	goto	u195
 	movf	(I2C_SendString@Number),w
 	subwf	(I2C_SendString@i),w
-u145:
+u195:
 
 	skipc
-	goto	u141
-	goto	u140
-u141:
-	goto	l1593
-u140:
-	line	372
+	goto	u191
+	goto	u190
+u191:
+	goto	l1663
+u190:
+	line	341
 	
-l1603:	
-;TEST_60F01x_IIC.c: 371: }
-;TEST_60F01x_IIC.c: 372: IIC_Stop();
+l1673:	
+;i2c.c: 340: }
+;i2c.c: 341: IIC_Stop();
 	fcall	_IIC_Stop
-	line	374
+	line	343
 	
-l523:	
+l529:	
 	return
 	opt stack 0
 GLOBAL	__end_of_I2C_SendString
@@ -2358,18 +2450,18 @@ GLOBAL	__end_of_I2C_SendString
 
 	signat	_I2C_SendString,12409
 	global	_DelayM
-psect	text109,local,class=CODE,delta=2
-global __ptext109
-__ptext109:
+psect	text121,local,class=CODE,delta=2
+global __ptext121
+__ptext121:
 
 ;; *************** function _DelayM *****************
 ;; Defined at:
-;;		line 123 in file "TEST_60F01x_IIC.c"
+;;		line 131 in file "i2c.c"
 ;; Parameters:    Size  Location     Type
 ;;  Time            1    wreg     unsigned char 
 ;; Auto vars:     Size  Location     Type
-;;  Time            1    8[COMMON] unsigned char 
-;;  a               1    9[COMMON] unsigned char 
+;;  Time            1   10[COMMON] unsigned char 
+;;  a               1   11[COMMON] unsigned char 
 ;; Return value:  Size  Location     Type
 ;;		None               void
 ;; Registers used:
@@ -2385,55 +2477,55 @@ __ptext109:
 ;;      Totals:         2
 ;;Total ram usage:        2 bytes
 ;; Hardware stack levels used:    1
-;; Hardware stack levels required when called:    3
+;; Hardware stack levels required when called:    4
 ;; This function calls:
 ;;		_DelayS
 ;; This function is called by:
 ;;		_main
 ;; This function uses a non-reentrant model
 ;;
-psect	text109
-	file	"TEST_60F01x_IIC.c"
-	line	123
+psect	text121
+	file	"i2c.c"
+	line	131
 	global	__size_of_DelayM
 	__size_of_DelayM	equ	__end_of_DelayM-_DelayM
 	
 _DelayM:	
-	opt	stack 4
+	opt	stack 3
 ; Regs used in _DelayM: [wreg+status,2+status,0+pclath+cstack]
 ;DelayM@Time stored from wreg
-	line	125
+	line	133
 	movwf	(DelayM@Time)
 	
-l1579:	
-;TEST_60F01x_IIC.c: 124: unsigned char a;
-;TEST_60F01x_IIC.c: 125: for(a=0;a<Time;a++)
+l1649:	
+;i2c.c: 132: unsigned char a;
+;i2c.c: 133: for(a=0;a<Time;a++)
 	clrf	(DelayM@a)
-	goto	l1585
-	line	127
+	goto	l1655
+	line	135
 	
-l1581:	
-;TEST_60F01x_IIC.c: 126: {
-;TEST_60F01x_IIC.c: 127: DelayS(60);
+l1651:	
+;i2c.c: 134: {
+;i2c.c: 135: DelayS(60);
 	movlw	(03Ch)
 	fcall	_DelayS
-	line	125
+	line	133
 	
-l1583:	
+l1653:	
 	incf	(DelayM@a),f
 	
-l1585:	
+l1655:	
 	movf	(DelayM@Time),w
 	subwf	(DelayM@a),w
 	skipc
-	goto	u111
-	goto	u110
-u111:
-	goto	l1581
-u110:
-	line	129
+	goto	u161
+	goto	u160
+u161:
+	goto	l1651
+u160:
+	line	137
 	
-l473:	
+l479:	
 	return
 	opt stack 0
 GLOBAL	__end_of_DelayM
@@ -2442,17 +2534,17 @@ GLOBAL	__end_of_DelayM
 
 	signat	_DelayM,4216
 	global	_IIC_Wait_Ack
-psect	text110,local,class=CODE,delta=2
-global __ptext110
-__ptext110:
+psect	text122,local,class=CODE,delta=2
+global __ptext122
+__ptext122:
 
 ;; *************** function _IIC_Wait_Ack *****************
 ;; Defined at:
-;;		line 172 in file "TEST_60F01x_IIC.c"
+;;		line 180 in file "i2c.c"
 ;; Parameters:    Size  Location     Type
 ;;		None
 ;; Auto vars:     Size  Location     Type
-;;  ucErrTime       1    2[COMMON] unsigned char 
+;;  ucErrTime       1    4[COMMON] unsigned char 
 ;; Return value:  Size  Location     Type
 ;;                  1    wreg      unsigned char 
 ;; Registers used:
@@ -2468,7 +2560,7 @@ __ptext110:
 ;;      Totals:         1
 ;;Total ram usage:        1 bytes
 ;; Hardware stack levels used:    1
-;; Hardware stack levels required when called:    2
+;; Hardware stack levels required when called:    3
 ;; This function calls:
 ;;		_DelayUs
 ;;		_IIC_Stop
@@ -2476,109 +2568,109 @@ __ptext110:
 ;;		_I2C_SendString
 ;; This function uses a non-reentrant model
 ;;
-psect	text110
-	file	"TEST_60F01x_IIC.c"
-	line	172
+psect	text122
+	file	"i2c.c"
+	line	180
 	global	__size_of_IIC_Wait_Ack
 	__size_of_IIC_Wait_Ack	equ	__end_of_IIC_Wait_Ack-_IIC_Wait_Ack
 	
 _IIC_Wait_Ack:	
-	opt	stack 4
+	opt	stack 3
 ; Regs used in _IIC_Wait_Ack: [wreg+status,2+status,0+pclath+cstack]
-	line	173
-	
-l1553:	
-;TEST_60F01x_IIC.c: 173: unsigned char ucErrTime=0;
-	clrf	(IIC_Wait_Ack@ucErrTime)
-	line	174
-	
-l1555:	
-;TEST_60F01x_IIC.c: 174: TRISA2 =1;
-	bsf	status, 5	;RP0=1, select bank1
-	bsf	(1066/8)^080h,(1066)&7
-	line	175
-	
-l1557:	
-;TEST_60F01x_IIC.c: 175: RA2=1;
-	bcf	status, 5	;RP0=0, select bank0
-	bsf	(42/8),(42)&7
-	line	176
-	
-l1559:	
-;TEST_60F01x_IIC.c: 176: DelayUs(5);
-	movlw	(05h)
-	fcall	_DelayUs
-	line	177
-	
-l1561:	
-;TEST_60F01x_IIC.c: 177: RA4=1;
-	bcf	status, 5	;RP0=0, select bank0
-	bsf	(44/8),(44)&7
-	line	178
-	
-l1563:	
-;TEST_60F01x_IIC.c: 178: DelayUs(5);
-	movlw	(05h)
-	fcall	_DelayUs
-	line	179
-;TEST_60F01x_IIC.c: 179: while(RA2)
-	goto	l482
 	line	181
 	
-l1565:	
-;TEST_60F01x_IIC.c: 180: {
-;TEST_60F01x_IIC.c: 181: ucErrTime++;
-	incf	(IIC_Wait_Ack@ucErrTime),f
+l1623:	
+;i2c.c: 181: unsigned char ucErrTime=0;
+	clrf	(IIC_Wait_Ack@ucErrTime)
 	line	182
 	
-l1567:	
-;TEST_60F01x_IIC.c: 182: if(ucErrTime>250)
+l1625:	
+;i2c.c: 182: TRISA2 =1;
+	bsf	status, 5	;RP0=1, select bank1
+	bsf	(1066/8)^080h,(1066)&7
+	line	183
+	
+l1627:	
+;i2c.c: 183: RA2=1;
+	bcf	status, 5	;RP0=0, select bank0
+	bsf	(42/8),(42)&7
+	line	184
+	
+l1629:	
+;i2c.c: 184: DelayUs(5);
+	movlw	(05h)
+	fcall	_DelayUs
+	line	185
+	
+l1631:	
+;i2c.c: 185: RA4=1;
+	bcf	status, 5	;RP0=0, select bank0
+	bsf	(44/8),(44)&7
+	line	186
+	
+l1633:	
+;i2c.c: 186: DelayUs(5);
+	movlw	(05h)
+	fcall	_DelayUs
+	line	187
+;i2c.c: 187: while(RA2)
+	goto	l488
+	line	189
+	
+l1635:	
+;i2c.c: 188: {
+;i2c.c: 189: ucErrTime++;
+	incf	(IIC_Wait_Ack@ucErrTime),f
+	line	190
+	
+l1637:	
+;i2c.c: 190: if(ucErrTime>250)
 	movlw	(0FBh)
 	subwf	(IIC_Wait_Ack@ucErrTime),w
 	skipc
-	goto	u91
-	goto	u90
-u91:
-	goto	l482
-u90:
-	line	184
+	goto	u141
+	goto	u140
+u141:
+	goto	l488
+u140:
+	line	192
 	
-l1569:	
-;TEST_60F01x_IIC.c: 183: {
-;TEST_60F01x_IIC.c: 184: IIC_Stop();
+l1639:	
+;i2c.c: 191: {
+;i2c.c: 192: IIC_Stop();
 	fcall	_IIC_Stop
-	line	185
+	line	193
 	
-l1571:	
-;TEST_60F01x_IIC.c: 185: return 1;
+l1641:	
+;i2c.c: 193: return 1;
 	movlw	(01h)
-	goto	l485
-	line	187
+	goto	l491
+	line	195
 	
-l482:	
-	line	179
+l488:	
+	line	187
 	bcf	status, 5	;RP0=0, select bank0
 	btfsc	(42/8),(42)&7
-	goto	u101
-	goto	u100
-u101:
-	goto	l1565
-u100:
+	goto	u151
+	goto	u150
+u151:
+	goto	l1635
+u150:
 	
-l486:	
-	line	188
-;TEST_60F01x_IIC.c: 186: }
-;TEST_60F01x_IIC.c: 187: }
-;TEST_60F01x_IIC.c: 188: RA4=0;
+l492:	
+	line	196
+;i2c.c: 194: }
+;i2c.c: 195: }
+;i2c.c: 196: RA4=0;
 	bcf	(44/8),(44)&7
-	line	189
+	line	197
 	
-l1575:	
-;TEST_60F01x_IIC.c: 189: return 0;
+l1645:	
+;i2c.c: 197: return 0;
 	movlw	(0)
-	line	190
+	line	198
 	
-l485:	
+l491:	
 	return
 	opt stack 0
 GLOBAL	__end_of_IIC_Wait_Ack
@@ -2587,19 +2679,19 @@ GLOBAL	__end_of_IIC_Wait_Ack
 
 	signat	_IIC_Wait_Ack,89
 	global	_DelayS
-psect	text111,local,class=CODE,delta=2
-global __ptext111
-__ptext111:
+psect	text123,local,class=CODE,delta=2
+global __ptext123
+__ptext123:
 
 ;; *************** function _DelayS *****************
 ;; Defined at:
-;;		line 111 in file "TEST_60F01x_IIC.c"
+;;		line 119 in file "i2c.c"
 ;; Parameters:    Size  Location     Type
 ;;  Time            1    wreg     unsigned char 
 ;; Auto vars:     Size  Location     Type
-;;  Time            1    5[COMMON] unsigned char 
-;;  b               1    7[COMMON] unsigned char 
-;;  a               1    6[COMMON] unsigned char 
+;;  Time            1    7[COMMON] unsigned char 
+;;  b               1    9[COMMON] unsigned char 
+;;  a               1    8[COMMON] unsigned char 
 ;; Return value:  Size  Location     Type
 ;;		None               void
 ;; Registers used:
@@ -2615,7 +2707,7 @@ __ptext111:
 ;;      Totals:         3
 ;;Total ram usage:        3 bytes
 ;; Hardware stack levels used:    1
-;; Hardware stack levels required when called:    2
+;; Hardware stack levels required when called:    3
 ;; This function calls:
 ;;		_DelayMs
 ;; This function is called by:
@@ -2623,68 +2715,68 @@ __ptext111:
 ;;		_main
 ;; This function uses a non-reentrant model
 ;;
-psect	text111
-	file	"TEST_60F01x_IIC.c"
-	line	111
+psect	text123
+	file	"i2c.c"
+	line	119
 	global	__size_of_DelayS
 	__size_of_DelayS	equ	__end_of_DelayS-_DelayS
 	
 _DelayS:	
-	opt	stack 4
+	opt	stack 3
 ; Regs used in _DelayS: [wreg+status,2+status,0+pclath+cstack]
 ;DelayS@Time stored from wreg
-	line	113
+	line	121
 	movwf	(DelayS@Time)
 	
-l1535:	
-;TEST_60F01x_IIC.c: 112: unsigned char a,b;
-;TEST_60F01x_IIC.c: 113: for(a=0;a<Time;a++)
+l1605:	
+;i2c.c: 120: unsigned char a,b;
+;i2c.c: 121: for(a=0;a<Time;a++)
 	clrf	(DelayS@a)
-	goto	l1551
-	line	115
+	goto	l1621
+	line	123
 	
-l1537:	
-;TEST_60F01x_IIC.c: 114: {
-;TEST_60F01x_IIC.c: 115: for(b=0;b<10;b++)
+l1607:	
+;i2c.c: 122: {
+;i2c.c: 123: for(b=0;b<10;b++)
 	clrf	(DelayS@b)
-	line	117
+	line	125
 	
-l1543:	
-;TEST_60F01x_IIC.c: 116: {
-;TEST_60F01x_IIC.c: 117: DelayMs(100);
+l1613:	
+;i2c.c: 124: {
+;i2c.c: 125: DelayMs(100);
 	movlw	(064h)
 	fcall	_DelayMs
-	line	115
+	line	123
 	
-l1545:	
+l1615:	
 	incf	(DelayS@b),f
 	
-l1547:	
+l1617:	
 	movlw	(0Ah)
 	subwf	(DelayS@b),w
 	skipc
-	goto	u71
-	goto	u70
-u71:
-	goto	l1543
-u70:
-	line	113
+	goto	u121
+	goto	u120
+u121:
+	goto	l1613
+u120:
+	line	121
 	
-l1549:	
+l1619:	
 	incf	(DelayS@a),f
 	
-l1551:	
+l1621:	
 	movf	(DelayS@Time),w
 	subwf	(DelayS@a),w
 	skipc
-	goto	u81
-	goto	u80
-u81:
-	goto	l1537
-u80:
-	line	120
+	goto	u131
+	goto	u130
+u131:
+	goto	l1607
+u130:
+	line	128
 	
-l467:	
+l473:	
 	return
 	opt stack 0
 GLOBAL	__end_of_DelayS
@@ -2693,18 +2785,18 @@ GLOBAL	__end_of_DelayS
 
 	signat	_DelayS,4216
 	global	_IIC_Send_Byte
-psect	text112,local,class=CODE,delta=2
-global __ptext112
-__ptext112:
+psect	text124,local,class=CODE,delta=2
+global __ptext124
+__ptext124:
 
 ;; *************** function _IIC_Send_Byte *****************
 ;; Defined at:
-;;		line 230 in file "TEST_60F01x_IIC.c"
+;;		line 238 in file "i2c.c"
 ;; Parameters:    Size  Location     Type
 ;;  txd             1    wreg     unsigned char 
 ;; Auto vars:     Size  Location     Type
-;;  txd             1    3[COMMON] unsigned char 
-;;  t               1    4[COMMON] unsigned char 
+;;  txd             1    5[COMMON] unsigned char 
+;;  t               1    6[COMMON] unsigned char 
 ;; Return value:  Size  Location     Type
 ;;		None               void
 ;; Registers used:
@@ -2720,124 +2812,124 @@ __ptext112:
 ;;      Totals:         3
 ;;Total ram usage:        3 bytes
 ;; Hardware stack levels used:    1
-;; Hardware stack levels required when called:    1
+;; Hardware stack levels required when called:    2
 ;; This function calls:
 ;;		_DelayUs
 ;; This function is called by:
 ;;		_I2C_SendString
 ;; This function uses a non-reentrant model
 ;;
-psect	text112
-	file	"TEST_60F01x_IIC.c"
-	line	230
+psect	text124
+	file	"i2c.c"
+	line	238
 	global	__size_of_IIC_Send_Byte
 	__size_of_IIC_Send_Byte	equ	__end_of_IIC_Send_Byte-_IIC_Send_Byte
 	
 _IIC_Send_Byte:	
-	opt	stack 5
+	opt	stack 4
 ; Regs used in _IIC_Send_Byte: [wreg+status,2+status,0+pclath+cstack]
 ;IIC_Send_Byte@txd stored from wreg
-	line	232
+	line	240
 	movwf	(IIC_Send_Byte@txd)
 	
-l1513:	
-;TEST_60F01x_IIC.c: 231: unsigned char t;
-;TEST_60F01x_IIC.c: 232: TRISA2 =0;
+l1583:	
+;i2c.c: 239: unsigned char t;
+;i2c.c: 240: TRISA2 =0;
 	bsf	status, 5	;RP0=1, select bank1
 	bcf	(1066/8)^080h,(1066)&7
-	line	233
-;TEST_60F01x_IIC.c: 233: RA4=0;
+	line	241
+;i2c.c: 241: RA4=0;
 	bcf	status, 5	;RP0=0, select bank0
 	bcf	(44/8),(44)&7
-	line	234
+	line	242
 	
-l1515:	
-;TEST_60F01x_IIC.c: 234: for(t=0;t<8;t++)
+l1585:	
+;i2c.c: 242: for(t=0;t<8;t++)
 	clrf	(IIC_Send_Byte@t)
-	line	236
+	line	244
 	
-l1521:	
-;TEST_60F01x_IIC.c: 235: {
-;TEST_60F01x_IIC.c: 236: if((txd&0x80)>>7)
+l1591:	
+;i2c.c: 243: {
+;i2c.c: 244: if((txd&0x80)>>7)
 	movf	(IIC_Send_Byte@txd),w
 	movwf	(??_IIC_Send_Byte+0)+0
 	movlw	07h
-u45:
+u95:
 	clrc
 	rrf	(??_IIC_Send_Byte+0)+0,f
 	addlw	-1
 	skipz
-	goto	u45
+	goto	u95
 	btfss	0+(??_IIC_Send_Byte+0)+0,(0)&7
-	goto	u51
-	goto	u50
-u51:
-	goto	l497
-u50:
-	line	237
+	goto	u101
+	goto	u100
+u101:
+	goto	l503
+u100:
+	line	245
 	
-l1523:	
-;TEST_60F01x_IIC.c: 237: RA2=1;
+l1593:	
+;i2c.c: 245: RA2=1;
 	bcf	status, 5	;RP0=0, select bank0
 	bsf	(42/8),(42)&7
-	goto	l498
-	line	238
+	goto	l504
+	line	246
 	
-l497:	
-	line	239
-;TEST_60F01x_IIC.c: 238: else
-;TEST_60F01x_IIC.c: 239: RA2=0;
+l503:	
+	line	247
+;i2c.c: 246: else
+;i2c.c: 247: RA2=0;
 	bcf	status, 5	;RP0=0, select bank0
 	bcf	(42/8),(42)&7
 	
-l498:	
-	line	240
-;TEST_60F01x_IIC.c: 240: txd<<=1;
+l504:	
+	line	248
+;i2c.c: 248: txd<<=1;
 	clrc
 	rlf	(IIC_Send_Byte@txd),f
-	line	241
+	line	249
 	
-l1525:	
-;TEST_60F01x_IIC.c: 241: DelayUs(5);
+l1595:	
+;i2c.c: 249: DelayUs(5);
+	movlw	(05h)
+	fcall	_DelayUs
+	line	250
+	
+l1597:	
+;i2c.c: 250: RA4=1;
+	bcf	status, 5	;RP0=0, select bank0
+	bsf	(44/8),(44)&7
+	line	251
+;i2c.c: 251: DelayUs(5);
+	movlw	(05h)
+	fcall	_DelayUs
+	line	252
+	
+l1599:	
+;i2c.c: 252: RA4=0;
+	bcf	status, 5	;RP0=0, select bank0
+	bcf	(44/8),(44)&7
+	line	253
+;i2c.c: 253: DelayUs(5);
 	movlw	(05h)
 	fcall	_DelayUs
 	line	242
 	
-l1527:	
-;TEST_60F01x_IIC.c: 242: RA4=1;
-	bcf	status, 5	;RP0=0, select bank0
-	bsf	(44/8),(44)&7
-	line	243
-;TEST_60F01x_IIC.c: 243: DelayUs(5);
-	movlw	(05h)
-	fcall	_DelayUs
-	line	244
-	
-l1529:	
-;TEST_60F01x_IIC.c: 244: RA4=0;
-	bcf	status, 5	;RP0=0, select bank0
-	bcf	(44/8),(44)&7
-	line	245
-;TEST_60F01x_IIC.c: 245: DelayUs(5);
-	movlw	(05h)
-	fcall	_DelayUs
-	line	234
-	
-l1531:	
+l1601:	
 	incf	(IIC_Send_Byte@t),f
 	
-l1533:	
+l1603:	
 	movlw	(08h)
 	subwf	(IIC_Send_Byte@t),w
 	skipc
-	goto	u61
-	goto	u60
-u61:
-	goto	l1521
-u60:
-	line	247
+	goto	u111
+	goto	u110
+u111:
+	goto	l1591
+u110:
+	line	255
 	
-l499:	
+l505:	
 	return
 	opt stack 0
 GLOBAL	__end_of_IIC_Send_Byte
@@ -2846,13 +2938,13 @@ GLOBAL	__end_of_IIC_Send_Byte
 
 	signat	_IIC_Send_Byte,4216
 	global	_IIC_Stop
-psect	text113,local,class=CODE,delta=2
-global __ptext113
-__ptext113:
+psect	text125,local,class=CODE,delta=2
+global __ptext125
+__ptext125:
 
 ;; *************** function _IIC_Stop *****************
 ;; Defined at:
-;;		line 154 in file "TEST_60F01x_IIC.c"
+;;		line 162 in file "i2c.c"
 ;; Parameters:    Size  Location     Type
 ;;		None
 ;; Auto vars:     Size  Location     Type
@@ -2872,7 +2964,7 @@ __ptext113:
 ;;      Totals:         0
 ;;Total ram usage:        0 bytes
 ;; Hardware stack levels used:    1
-;; Hardware stack levels required when called:    1
+;; Hardware stack levels required when called:    2
 ;; This function calls:
 ;;		_DelayUs
 ;; This function is called by:
@@ -2880,57 +2972,57 @@ __ptext113:
 ;;		_I2C_SendString
 ;; This function uses a non-reentrant model
 ;;
-psect	text113
-	file	"TEST_60F01x_IIC.c"
-	line	154
+psect	text125
+	file	"i2c.c"
+	line	162
 	global	__size_of_IIC_Stop
 	__size_of_IIC_Stop	equ	__end_of_IIC_Stop-_IIC_Stop
 	
 _IIC_Stop:	
-	opt	stack 5
+	opt	stack 4
 ; Regs used in _IIC_Stop: [wreg+status,2+status,0+pclath+cstack]
-	line	155
-	
-l1505:	
-;TEST_60F01x_IIC.c: 155: TRISA2 =0;
-	bsf	status, 5	;RP0=1, select bank1
-	bcf	(1066/8)^080h,(1066)&7
-	line	156
-;TEST_60F01x_IIC.c: 156: RA4=0;
-	bcf	status, 5	;RP0=0, select bank0
-	bcf	(44/8),(44)&7
-	line	157
-;TEST_60F01x_IIC.c: 157: RA2=0;
-	bcf	(42/8),(42)&7
-	line	158
-	
-l1507:	
-;TEST_60F01x_IIC.c: 158: DelayUs(10);
-	movlw	(0Ah)
-	fcall	_DelayUs
-	line	159
-	
-l1509:	
-;TEST_60F01x_IIC.c: 159: RA4=1;
-	bcf	status, 5	;RP0=0, select bank0
-	bsf	(44/8),(44)&7
-	line	160
-;TEST_60F01x_IIC.c: 160: DelayUs(10);
-	movlw	(0Ah)
-	fcall	_DelayUs
-	line	161
-	
-l1511:	
-;TEST_60F01x_IIC.c: 161: RA2=1;
-	bcf	status, 5	;RP0=0, select bank0
-	bsf	(42/8),(42)&7
-	line	162
-;TEST_60F01x_IIC.c: 162: DelayUs(10);
-	movlw	(0Ah)
-	fcall	_DelayUs
 	line	163
 	
-l479:	
+l1575:	
+;i2c.c: 163: TRISA2 =0;
+	bsf	status, 5	;RP0=1, select bank1
+	bcf	(1066/8)^080h,(1066)&7
+	line	164
+;i2c.c: 164: RA4=0;
+	bcf	status, 5	;RP0=0, select bank0
+	bcf	(44/8),(44)&7
+	line	165
+;i2c.c: 165: RA2=0;
+	bcf	(42/8),(42)&7
+	line	166
+	
+l1577:	
+;i2c.c: 166: DelayUs(10);
+	movlw	(0Ah)
+	fcall	_DelayUs
+	line	167
+	
+l1579:	
+;i2c.c: 167: RA4=1;
+	bcf	status, 5	;RP0=0, select bank0
+	bsf	(44/8),(44)&7
+	line	168
+;i2c.c: 168: DelayUs(10);
+	movlw	(0Ah)
+	fcall	_DelayUs
+	line	169
+	
+l1581:	
+;i2c.c: 169: RA2=1;
+	bcf	status, 5	;RP0=0, select bank0
+	bsf	(42/8),(42)&7
+	line	170
+;i2c.c: 170: DelayUs(10);
+	movlw	(0Ah)
+	fcall	_DelayUs
+	line	171
+	
+l485:	
 	return
 	opt stack 0
 GLOBAL	__end_of_IIC_Stop
@@ -2939,13 +3031,13 @@ GLOBAL	__end_of_IIC_Stop
 
 	signat	_IIC_Stop,88
 	global	_IIC_Start
-psect	text114,local,class=CODE,delta=2
-global __ptext114
-__ptext114:
+psect	text126,local,class=CODE,delta=2
+global __ptext126
+__ptext126:
 
 ;; *************** function _IIC_Start *****************
 ;; Defined at:
-;;		line 137 in file "TEST_60F01x_IIC.c"
+;;		line 145 in file "i2c.c"
 ;; Parameters:    Size  Location     Type
 ;;		None
 ;; Auto vars:     Size  Location     Type
@@ -2965,64 +3057,64 @@ __ptext114:
 ;;      Totals:         0
 ;;Total ram usage:        0 bytes
 ;; Hardware stack levels used:    1
-;; Hardware stack levels required when called:    1
+;; Hardware stack levels required when called:    2
 ;; This function calls:
 ;;		_DelayUs
 ;; This function is called by:
 ;;		_I2C_SendString
 ;; This function uses a non-reentrant model
 ;;
-psect	text114
-	file	"TEST_60F01x_IIC.c"
-	line	137
+psect	text126
+	file	"i2c.c"
+	line	145
 	global	__size_of_IIC_Start
 	__size_of_IIC_Start	equ	__end_of_IIC_Start-_IIC_Start
 	
 _IIC_Start:	
-	opt	stack 5
+	opt	stack 4
 ; Regs used in _IIC_Start: [wreg+status,2+status,0+pclath+cstack]
-	line	138
-	
-l1497:	
-;TEST_60F01x_IIC.c: 138: TRISA2 =0;
-	bsf	status, 5	;RP0=1, select bank1
-	bcf	(1066/8)^080h,(1066)&7
-	line	139
-;TEST_60F01x_IIC.c: 139: RA2=1;
-	bcf	status, 5	;RP0=0, select bank0
-	bsf	(42/8),(42)&7
-	line	140
-;TEST_60F01x_IIC.c: 140: RA4=1;
-	bsf	(44/8),(44)&7
-	line	141
-	
-l1499:	
-;TEST_60F01x_IIC.c: 141: DelayUs(10);
-	movlw	(0Ah)
-	fcall	_DelayUs
-	line	142
-	
-l1501:	
-;TEST_60F01x_IIC.c: 142: RA2=0;
-	bcf	status, 5	;RP0=0, select bank0
-	bcf	(42/8),(42)&7
-	line	143
-;TEST_60F01x_IIC.c: 143: DelayUs(10);
-	movlw	(0Ah)
-	fcall	_DelayUs
-	line	144
-	
-l1503:	
-;TEST_60F01x_IIC.c: 144: RA4=0;
-	bcf	status, 5	;RP0=0, select bank0
-	bcf	(44/8),(44)&7
-	line	145
-;TEST_60F01x_IIC.c: 145: DelayUs(10);
-	movlw	(0Ah)
-	fcall	_DelayUs
 	line	146
 	
-l476:	
+l1567:	
+;i2c.c: 146: TRISA2 =0;
+	bsf	status, 5	;RP0=1, select bank1
+	bcf	(1066/8)^080h,(1066)&7
+	line	147
+;i2c.c: 147: RA2=1;
+	bcf	status, 5	;RP0=0, select bank0
+	bsf	(42/8),(42)&7
+	line	148
+;i2c.c: 148: RA4=1;
+	bsf	(44/8),(44)&7
+	line	149
+	
+l1569:	
+;i2c.c: 149: DelayUs(10);
+	movlw	(0Ah)
+	fcall	_DelayUs
+	line	150
+	
+l1571:	
+;i2c.c: 150: RA2=0;
+	bcf	status, 5	;RP0=0, select bank0
+	bcf	(42/8),(42)&7
+	line	151
+;i2c.c: 151: DelayUs(10);
+	movlw	(0Ah)
+	fcall	_DelayUs
+	line	152
+	
+l1573:	
+;i2c.c: 152: RA4=0;
+	bcf	status, 5	;RP0=0, select bank0
+	bcf	(44/8),(44)&7
+	line	153
+;i2c.c: 153: DelayUs(10);
+	movlw	(0Ah)
+	fcall	_DelayUs
+	line	154
+	
+l482:	
 	return
 	opt stack 0
 GLOBAL	__end_of_IIC_Start
@@ -3031,19 +3123,19 @@ GLOBAL	__end_of_IIC_Start
 
 	signat	_IIC_Start,88
 	global	_DelayMs
-psect	text115,local,class=CODE,delta=2
-global __ptext115
-__ptext115:
+psect	text127,local,class=CODE,delta=2
+global __ptext127
+__ptext127:
 
 ;; *************** function _DelayMs *****************
 ;; Defined at:
-;;		line 94 in file "TEST_60F01x_IIC.c"
+;;		line 102 in file "i2c.c"
 ;; Parameters:    Size  Location     Type
 ;;  Time            1    wreg     unsigned char 
 ;; Auto vars:     Size  Location     Type
-;;  Time            1    2[COMMON] unsigned char 
-;;  b               1    4[COMMON] unsigned char 
-;;  a               1    3[COMMON] unsigned char 
+;;  Time            1    4[COMMON] unsigned char 
+;;  b               1    6[COMMON] unsigned char 
+;;  a               1    5[COMMON] unsigned char 
 ;; Return value:  Size  Location     Type
 ;;		None               void
 ;; Registers used:
@@ -3059,7 +3151,7 @@ __ptext115:
 ;;      Totals:         3
 ;;Total ram usage:        3 bytes
 ;; Hardware stack levels used:    1
-;; Hardware stack levels required when called:    1
+;; Hardware stack levels required when called:    2
 ;; This function calls:
 ;;		_DelayUs
 ;; This function is called by:
@@ -3067,68 +3159,68 @@ __ptext115:
 ;;		_main
 ;; This function uses a non-reentrant model
 ;;
-psect	text115
-	file	"TEST_60F01x_IIC.c"
-	line	94
+psect	text127
+	file	"i2c.c"
+	line	102
 	global	__size_of_DelayMs
 	__size_of_DelayMs	equ	__end_of_DelayMs-_DelayMs
 	
 _DelayMs:	
-	opt	stack 4
+	opt	stack 3
 ; Regs used in _DelayMs: [wreg+status,2+status,0+pclath+cstack]
 ;DelayMs@Time stored from wreg
-	line	96
+	line	104
 	movwf	(DelayMs@Time)
 	
-l1479:	
-;TEST_60F01x_IIC.c: 95: unsigned char a,b;
-;TEST_60F01x_IIC.c: 96: for(a=0;a<Time;a++)
+l1549:	
+;i2c.c: 103: unsigned char a,b;
+;i2c.c: 104: for(a=0;a<Time;a++)
 	clrf	(DelayMs@a)
-	goto	l1495
-	line	98
+	goto	l1565
+	line	106
 	
-l1481:	
-;TEST_60F01x_IIC.c: 97: {
-;TEST_60F01x_IIC.c: 98: for(b=0;b<5;b++)
+l1551:	
+;i2c.c: 105: {
+;i2c.c: 106: for(b=0;b<5;b++)
 	clrf	(DelayMs@b)
-	line	100
+	line	108
 	
-l1487:	
-;TEST_60F01x_IIC.c: 99: {
-;TEST_60F01x_IIC.c: 100: DelayUs(98);
+l1557:	
+;i2c.c: 107: {
+;i2c.c: 108: DelayUs(98);
 	movlw	(062h)
 	fcall	_DelayUs
-	line	98
+	line	106
 	
-l1489:	
+l1559:	
 	incf	(DelayMs@b),f
 	
-l1491:	
+l1561:	
 	movlw	(05h)
 	subwf	(DelayMs@b),w
 	skipc
-	goto	u21
-	goto	u20
-u21:
-	goto	l1487
-u20:
-	line	96
+	goto	u71
+	goto	u70
+u71:
+	goto	l1557
+u70:
+	line	104
 	
-l1493:	
+l1563:	
 	incf	(DelayMs@a),f
 	
-l1495:	
+l1565:	
 	movf	(DelayMs@Time),w
 	subwf	(DelayMs@a),w
 	skipc
-	goto	u31
-	goto	u30
-u31:
-	goto	l1481
-u30:
-	line	103
+	goto	u81
+	goto	u80
+u81:
+	goto	l1551
+u80:
+	line	111
 	
-l459:	
+l465:	
 	return
 	opt stack 0
 GLOBAL	__end_of_DelayMs
@@ -3137,18 +3229,18 @@ GLOBAL	__end_of_DelayMs
 
 	signat	_DelayMs,4216
 	global	_DelayUs
-psect	text116,local,class=CODE,delta=2
-global __ptext116
-__ptext116:
+psect	text128,local,class=CODE,delta=2
+global __ptext128
+__ptext128:
 
 ;; *************** function _DelayUs *****************
 ;; Defined at:
-;;		line 80 in file "TEST_60F01x_IIC.c"
+;;		line 88 in file "i2c.c"
 ;; Parameters:    Size  Location     Type
 ;;  Time            1    wreg     unsigned char 
 ;; Auto vars:     Size  Location     Type
-;;  Time            1    0[COMMON] unsigned char 
-;;  a               1    1[COMMON] unsigned char 
+;;  Time            1    2[COMMON] unsigned char 
+;;  a               1    3[COMMON] unsigned char 
 ;; Return value:  Size  Location     Type
 ;;		None               void
 ;; Registers used:
@@ -3164,6 +3256,7 @@ __ptext116:
 ;;      Totals:         2
 ;;Total ram usage:        2 bytes
 ;; Hardware stack levels used:    1
+;; Hardware stack levels required when called:    1
 ;; This function calls:
 ;;		Nothing
 ;; This function is called by:
@@ -3174,48 +3267,48 @@ __ptext116:
 ;;		_IIC_Send_Byte
 ;; This function uses a non-reentrant model
 ;;
-psect	text116
-	file	"TEST_60F01x_IIC.c"
-	line	80
+psect	text128
+	file	"i2c.c"
+	line	88
 	global	__size_of_DelayUs
 	__size_of_DelayUs	equ	__end_of_DelayUs-_DelayUs
 	
 _DelayUs:	
-	opt	stack 4
+	opt	stack 3
 ; Regs used in _DelayUs: [wreg+status,2+status,0]
 ;DelayUs@Time stored from wreg
-	line	82
+	line	90
 	movwf	(DelayUs@Time)
 	
-l1473:	
-;TEST_60F01x_IIC.c: 81: unsigned char a;
-;TEST_60F01x_IIC.c: 82: for(a=0;a<Time;a++)
+l1543:	
+;i2c.c: 89: unsigned char a;
+;i2c.c: 90: for(a=0;a<Time;a++)
 	clrf	(DelayUs@a)
-	goto	l1477
-	line	83
+	goto	l1547
+	line	91
 	
-l449:	
-	line	84
-;TEST_60F01x_IIC.c: 83: {
-;TEST_60F01x_IIC.c: 84: _nop();
+l455:	
+	line	92
+;i2c.c: 91: {
+;i2c.c: 92: _nop();
 	nop
-	line	82
+	line	90
 	
-l1475:	
+l1545:	
 	incf	(DelayUs@a),f
 	
-l1477:	
+l1547:	
 	movf	(DelayUs@Time),w
 	subwf	(DelayUs@a),w
 	skipc
-	goto	u11
-	goto	u10
-u11:
-	goto	l449
-u10:
-	line	86
+	goto	u61
+	goto	u60
+u61:
+	goto	l455
+u60:
+	line	94
 	
-l451:	
+l457:	
 	return
 	opt stack 0
 GLOBAL	__end_of_DelayUs
@@ -3224,13 +3317,13 @@ GLOBAL	__end_of_DelayUs
 
 	signat	_DelayUs,4216
 	global	_POWER_INITIAL
-psect	text117,local,class=CODE,delta=2
-global __ptext117
-__ptext117:
+psect	text129,local,class=CODE,delta=2
+global __ptext129
+__ptext129:
 
 ;; *************** function _POWER_INITIAL *****************
 ;; Defined at:
-;;		line 54 in file "TEST_60F01x_IIC.c"
+;;		line 62 in file "i2c.c"
 ;; Parameters:    Size  Location     Type
 ;;		None
 ;; Auto vars:     Size  Location     Type
@@ -3250,62 +3343,63 @@ __ptext117:
 ;;      Totals:         0
 ;;Total ram usage:        0 bytes
 ;; Hardware stack levels used:    1
+;; Hardware stack levels required when called:    1
 ;; This function calls:
 ;;		Nothing
 ;; This function is called by:
 ;;		_main
 ;; This function uses a non-reentrant model
 ;;
-psect	text117
-	file	"TEST_60F01x_IIC.c"
-	line	54
+psect	text129
+	file	"i2c.c"
+	line	62
 	global	__size_of_POWER_INITIAL
 	__size_of_POWER_INITIAL	equ	__end_of_POWER_INITIAL-_POWER_INITIAL
 	
 _POWER_INITIAL:	
-	opt	stack 7
+	opt	stack 6
 ; Regs used in _POWER_INITIAL: [wreg+status,2]
-	line	55
+	line	63
 	
-l1463:	
-;TEST_60F01x_IIC.c: 55: OSCCON = 0X00|0X70|0X01;
+l1511:	
+;i2c.c: 63: OSCCON = 0X00|0X70|0X01;
 	movlw	(071h)
 	bsf	status, 5	;RP0=1, select bank1
 	movwf	(143)^080h	;volatile
-	line	59
+	line	67
 	
-l1465:	
-;TEST_60F01x_IIC.c: 59: INTCON = 0;
+l1513:	
+;i2c.c: 67: INTCON = 0;
 	clrf	(11)	;volatile
-	line	60
+	line	68
 	
-l1467:	
-;TEST_60F01x_IIC.c: 60: PORTA = 0B00000000;
+l1515:	
+;i2c.c: 68: PORTA = 0B00000000;
 	bcf	status, 5	;RP0=0, select bank0
 	clrf	(5)	;volatile
-	line	61
-;TEST_60F01x_IIC.c: 61: TRISA = 0B11101011;
+	line	69
+;i2c.c: 69: TRISA = 0B11101011;
 	movlw	(0EBh)
 	bsf	status, 5	;RP0=1, select bank1
 	movwf	(133)^080h	;volatile
-	line	62
+	line	70
 	
-l1469:	
-;TEST_60F01x_IIC.c: 62: WPUA = 0B00000000;
+l1517:	
+;i2c.c: 70: WPUA = 0B00000000;
 	clrf	(149)^080h	;volatile
-	line	65
+	line	73
 	
-l1471:	
-;TEST_60F01x_IIC.c: 65: OPTION = 0B00001000;
+l1519:	
+;i2c.c: 73: OPTION = 0B00001000;
 	movlw	(08h)
 	movwf	(129)^080h	;volatile
-	line	67
-;TEST_60F01x_IIC.c: 67: MSCKCON = 0B00000000;
+	line	75
+;i2c.c: 75: MSCKCON = 0B00000000;
 	bcf	status, 5	;RP0=0, select bank0
 	clrf	(27)	;volatile
-	line	72
+	line	80
 	
-l445:	
+l451:	
 	return
 	opt stack 0
 GLOBAL	__end_of_POWER_INITIAL
@@ -3313,9 +3407,168 @@ GLOBAL	__end_of_POWER_INITIAL
 ;; =============== function _POWER_INITIAL ends ============
 
 	signat	_POWER_INITIAL,88
-psect	text118,local,class=CODE,delta=2
-global __ptext118
-__ptext118:
+	global	_ISR
+psect	text130,local,class=CODE,delta=2
+global __ptext130
+__ptext130:
+
+;; *************** function _ISR *****************
+;; Defined at:
+;;		line 391 in file "i2c.c"
+;; Parameters:    Size  Location     Type
+;;		None
+;; Auto vars:     Size  Location     Type
+;;		None
+;; Return value:  Size  Location     Type
+;;		None               void
+;; Registers used:
+;;		wreg
+;; Tracked objects:
+;;		On entry : 0/0
+;;		On exit  : 0/0
+;;		Unchanged: FFFDF/0
+;; Data sizes:     COMMON
+;;      Params:         0
+;;      Locals:         0
+;;      Temps:          2
+;;      Totals:         2
+;;Total ram usage:        2 bytes
+;; Hardware stack levels used:    1
+;; This function calls:
+;;		Nothing
+;; This function is called by:
+;;		Interrupt level 1
+;; This function uses a non-reentrant model
+;;
+psect	text130
+	file	"i2c.c"
+	line	391
+	global	__size_of_ISR
+	__size_of_ISR	equ	__end_of_ISR-_ISR
+	
+_ISR:	
+	opt	stack 3
+; Regs used in _ISR: [wreg]
+psect	intentry,class=CODE,delta=2
+global __pintentry
+__pintentry:
+global interrupt_function
+interrupt_function:
+	global saved_w
+	saved_w	set	btemp+0
+	movwf	saved_w
+	swapf	status,w
+	movwf	(??_ISR+0)
+	movf	pclath,w
+	movwf	(??_ISR+1)
+	ljmp	_ISR
+psect	text130
+	line	394
+	
+i1l1521:	
+;i2c.c: 394: if(T0IE && T0IF)
+	btfss	(93/8),(93)&7
+	goto	u1_21
+	goto	u1_20
+u1_21:
+	goto	i1l1531
+u1_20:
+	
+i1l1523:	
+	btfss	(90/8),(90)&7
+	goto	u2_21
+	goto	u2_20
+u2_21:
+	goto	i1l1531
+u2_20:
+	line	396
+	
+i1l1525:	
+;i2c.c: 395: {
+;i2c.c: 396: TMR0 = 49;
+	movlw	(031h)
+	bcf	status, 5	;RP0=0, select bank0
+	movwf	(1)	;volatile
+	line	398
+	
+i1l1527:	
+;i2c.c: 398: T0IF = 0;
+	bcf	(90/8),(90)&7
+	line	399
+	
+i1l1529:	
+;i2c.c: 399: T0IE = 0;
+	bcf	(93/8),(93)&7
+	line	403
+	
+i1l1531:	
+;i2c.c: 400: }
+;i2c.c: 403: if(PAIE && PAIF)
+	btfss	(91/8),(91)&7
+	goto	u3_21
+	goto	u3_20
+u3_21:
+	goto	i1l548
+u3_20:
+	
+i1l1533:	
+	btfss	(88/8),(88)&7
+	goto	u4_21
+	goto	u4_20
+u4_21:
+	goto	i1l548
+u4_20:
+	line	405
+	
+i1l1535:	
+;i2c.c: 404: {
+;i2c.c: 405: ReadAPin = PORTA;
+	bcf	status, 5	;RP0=0, select bank0
+	movf	(5),w	;volatile
+	line	406
+	
+i1l1537:	
+;i2c.c: 406: PAIF = 0;
+	bcf	(88/8),(88)&7
+	line	407
+	
+i1l1539:	
+;i2c.c: 407: if(RA1 == 0)
+	btfsc	(41/8),(41)&7
+	goto	u5_21
+	goto	u5_20
+u5_21:
+	goto	i1l548
+u5_20:
+	line	409
+	
+i1l1541:	
+;i2c.c: 408: {
+;i2c.c: 409: PAIE = 0;
+	bcf	(91/8),(91)&7
+	line	410
+;i2c.c: 411: RXFLAG = 1;
+	bsf	status, 5	;RP0=1, select bank1
+	bcf	(1202/8)^080h,(1202)&7
+	line	414
+	
+i1l548:	
+	movf	(??_ISR+1),w
+	movwf	pclath
+	swapf	(??_ISR+0)^0FFFFFF80h,w
+	movwf	status
+	swapf	saved_w,f
+	swapf	saved_w,w
+	retfie
+	opt stack 0
+GLOBAL	__end_of_ISR
+	__end_of_ISR:
+;; =============== function _ISR ends ============
+
+	signat	_ISR,88
+psect	text131,local,class=CODE,delta=2
+global __ptext131
+__ptext131:
 	global	btemp
 	btemp set 07Eh
 

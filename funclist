@@ -1,12 +1,13 @@
-_IIC_Stop: CODE, 809 0 15
-_IIC_Wait_Ack: CODE, 856 0 24
-_DelayUs: CODE, 760 0 9
-_DelayM: CODE, 769 0 10
-_main: CODE, 949 0 75
-_IIC_Send_Byte: CODE, 910 0 39
-_DelayS: CODE, 840 0 16
-_DelayMs: CODE, 824 0 16
-_IIC_Start: CODE, 794 0 15
-_POWER_INITIAL: CODE, 779 0 15
-_I2C_SendString: CODE, 880 0 30
-Total: 264
+_IIC_Stop: CODE, 778 0 15
+_IIC_Wait_Ack: CODE, 722 0 24
+_DelayUs: CODE, 833 0 9
+_ISR: CODE, 696 0 26
+_DelayM: CODE, 823 0 10
+_main: CODE, 522 0 100
+_IIC_Send_Byte: CODE, 622 0 39
+_DelayS: CODE, 746 0 16
+_DelayMs: CODE, 762 0 16
+_IIC_Start: CODE, 793 0 15
+_POWER_INITIAL: CODE, 808 0 15
+_I2C_SendString: CODE, 661 0 35
+Total: 320

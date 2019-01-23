@@ -515,13 +515,28 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _SFR9E `Vuc  1 e@158 ]
 "634 C:\Program Files (x86)\HI-TECH Software\PICC\9.83\include\pic16f684.h
 [v _SFR9F `Vuc  1 e@159 ]
-"50 TEST_60F01x_IIC.c
+"53 i2c.c
 [v _RXFLAG `uc  1 e ]
-"51 TEST_60F01x_IIC.c
+"54 i2c.c
 [v _ReadAPin `uc  1 e ]
 "28 C:\Program Files (x86)\HI-TECH Software\PICC\9.83\include\SYSCFG.h
 [v __nop `(v  0 ef ]
 [p i __nop ]
+"496 i2c.c
+[v _par1 `Cuc  -> 0 `x e ]
+"500 i2c.c
+[v _par2 `Cuc  -> 0 `x e ]
+"510 i2c.c
+[v _par3 `Cuc  -> 0 `x e ]
+"516 i2c.c
+[v _par4 `Cuc  -> 0 `x e ]
+"522 i2c.c
+[v _par5 `Cuc  -> 0 `x e ]
+"529 i2c.c
+[v _par6 `Cuc  -> 0 `x e ]
+"533 i2c.c
+[v _par7 `Cuc  -> 0 `x e ]
+[p mainexit ]
 [; ;pic16f684.h: 90: volatile unsigned char INDF @ 0x000;
 [; ;pic16f684.h: 94: volatile unsigned char TMR0 @ 0x001;
 [; ;pic16f684.h: 98: volatile unsigned char PCL @ 0x002;
@@ -940,1086 +955,1566 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;eeprom_routines.h: 43: extern void eecpymem(volatile unsigned char *to, eeprom unsigned char *from, unsigned char size);
 [; ;eeprom_routines.h: 44: extern void memcpyee(eeprom unsigned char *to, const unsigned char *from, unsigned char size);
 [; ;SYSCFG.h: 154: extern void _delay(unsigned long);
-"50 TEST_60F01x_IIC.c
+"53 i2c.c
 [i _RXFLAG
 -> -> 0 `i `uc
 ]
-[; ;TEST_60F01x_IIC.c: 50: unsigned char RXFLAG = 0;
-[; ;TEST_60F01x_IIC.c: 51: unsigned char ReadAPin;
-"59
+[; ;i2c.c: 53: unsigned char RXFLAG = 0;
+[; ;i2c.c: 54: unsigned char ReadAPin;
+"62
 [v _POWER_INITIAL `(v  1 ef ]
 {
-[; ;TEST_60F01x_IIC.c: 58: void POWER_INITIAL (void)
-[; ;TEST_60F01x_IIC.c: 59: {
+[; ;i2c.c: 61: void POWER_INITIAL (void)
+[; ;i2c.c: 62: {
 [e :U _POWER_INITIAL ]
 [f ]
-[; ;TEST_60F01x_IIC.c: 60: OSCCON = 0X00|0X70|0X01;
-"60
+[; ;i2c.c: 63: OSCCON = 0X00|0X70|0X01;
+"63
 [e = _OSCCON -> | | -> 0 `i -> 112 `i -> 1 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 64: INTCON = 0;
-"64
-[e = _INTCON -> -> 0 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 65: PORTA = 0B00000000;
-"65
-[e = _PORTA -> -> 0 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 66: TRISA = 0B11001011;
-"66
-[e = _TRISA -> -> 203 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 67: WPUA = 0B00000000;
+[; ;i2c.c: 67: INTCON = 0;
 "67
-[e = _WPUA -> -> 0 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 70: OPTION = 0B00001000;
+[e = _INTCON -> -> 0 `i `uc ]
+[; ;i2c.c: 68: PORTA = 0B00000000;
+"68
+[e = _PORTA -> -> 0 `i `uc ]
+[; ;i2c.c: 69: TRISA = 0B11101011;
+"69
+[e = _TRISA -> -> 235 `i `uc ]
+[; ;i2c.c: 70: WPUA = 0B00000000;
 "70
+[e = _WPUA -> -> 0 `i `uc ]
+[; ;i2c.c: 73: OPTION = 0B00001000;
+"73
 [e = _OPTION -> -> 8 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 72: MSCKCON = 0B00000000;
-"72
+[; ;i2c.c: 75: MSCKCON = 0B00000000;
+"75
 [e = _MSCKCON -> -> 0 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 77: }
-"77
+[; ;i2c.c: 80: }
+"80
 [e :UE 45 ]
 }
-"85
+"88
 [v _DelayUs `(v  1 ef1`uc ]
 {
-[; ;TEST_60F01x_IIC.c: 84: void DelayUs(unsigned char Time)
-[; ;TEST_60F01x_IIC.c: 85: {
+[; ;i2c.c: 87: void DelayUs(unsigned char Time)
+[; ;i2c.c: 88: {
 [e :U _DelayUs ]
 [v _Time `uc  1 r1 ]
 [f ]
-"86
+"89
 [v _a `uc  1 a ]
-[; ;TEST_60F01x_IIC.c: 86: unsigned char a;
-[; ;TEST_60F01x_IIC.c: 87: for(a=0;a<Time;a++)
-"87
+[; ;i2c.c: 89: unsigned char a;
+[; ;i2c.c: 90: for(a=0;a<Time;a++)
+"90
 {
 [e = _a -> -> 0 `i `uc ]
 [e $U 50  ]
-"88
+"91
 [e :U 47 ]
-[; ;TEST_60F01x_IIC.c: 88: {
+[; ;i2c.c: 91: {
 {
-[; ;TEST_60F01x_IIC.c: 89: _nop();
-"89
+[; ;i2c.c: 92: _nop();
+"92
 [e ( __nop ..  ]
-"90
+"93
 }
-"87
+"90
 [e ++ _a -> -> 1 `i `uc ]
 [e :U 50 ]
 [e $ < -> _a `i -> _Time `i 47  ]
 [e :U 48 ]
-"90
+"93
 }
-[; ;TEST_60F01x_IIC.c: 90: }
-[; ;TEST_60F01x_IIC.c: 91: }
-"91
+[; ;i2c.c: 93: }
+[; ;i2c.c: 94: }
+"94
 [e :UE 46 ]
 }
-"99
+"102
 [v _DelayMs `(v  1 ef1`uc ]
 {
-[; ;TEST_60F01x_IIC.c: 98: void DelayMs(unsigned char Time)
-[; ;TEST_60F01x_IIC.c: 99: {
+[; ;i2c.c: 101: void DelayMs(unsigned char Time)
+[; ;i2c.c: 102: {
 [e :U _DelayMs ]
 [v _Time `uc  1 r1 ]
 [f ]
-"100
+"103
 [v _a `uc  1 a ]
 [v _b `uc  1 a ]
-[; ;TEST_60F01x_IIC.c: 100: unsigned char a,b;
-[; ;TEST_60F01x_IIC.c: 101: for(a=0;a<Time;a++)
-"101
+[; ;i2c.c: 103: unsigned char a,b;
+[; ;i2c.c: 104: for(a=0;a<Time;a++)
+"104
 {
 [e = _a -> -> 0 `i `uc ]
 [e $U 55  ]
-"102
+"105
 [e :U 52 ]
-[; ;TEST_60F01x_IIC.c: 102: {
+[; ;i2c.c: 105: {
 {
-[; ;TEST_60F01x_IIC.c: 103: for(b=0;b<5;b++)
-"103
+[; ;i2c.c: 106: for(b=0;b<5;b++)
+"106
 {
 [e = _b -> -> 0 `i `uc ]
 [e $ < -> _b `i -> 5 `i 56  ]
 [e $U 57  ]
-"104
+"107
 [e :U 56 ]
-[; ;TEST_60F01x_IIC.c: 104: {
+[; ;i2c.c: 107: {
 {
-[; ;TEST_60F01x_IIC.c: 105: DelayUs(98);
-"105
+[; ;i2c.c: 108: DelayUs(98);
+"108
 [e ( _DelayUs (1 -> -> 98 `i `uc ]
-"106
+"109
 }
-"103
+"106
 [e ++ _b -> -> 1 `i `uc ]
 [e $ < -> _b `i -> 5 `i 56  ]
 [e :U 57 ]
-"106
+"109
 }
-"107
+"110
 }
-"101
+"104
 [e ++ _a -> -> 1 `i `uc ]
 [e :U 55 ]
 [e $ < -> _a `i -> _Time `i 52  ]
 [e :U 53 ]
-"107
+"110
 }
-[; ;TEST_60F01x_IIC.c: 106: }
-[; ;TEST_60F01x_IIC.c: 107: }
-[; ;TEST_60F01x_IIC.c: 108: }
-"108
+[; ;i2c.c: 109: }
+[; ;i2c.c: 110: }
+[; ;i2c.c: 111: }
+"111
 [e :UE 51 ]
 }
-"116
+"119
 [v _DelayS `(v  1 ef1`uc ]
 {
-[; ;TEST_60F01x_IIC.c: 115: void DelayS(unsigned char Time)
-[; ;TEST_60F01x_IIC.c: 116: {
+[; ;i2c.c: 118: void DelayS(unsigned char Time)
+[; ;i2c.c: 119: {
 [e :U _DelayS ]
 [v _Time `uc  1 r1 ]
 [f ]
-"117
+"120
 [v _a `uc  1 a ]
 [v _b `uc  1 a ]
-[; ;TEST_60F01x_IIC.c: 117: unsigned char a,b;
-[; ;TEST_60F01x_IIC.c: 118: for(a=0;a<Time;a++)
-"118
+[; ;i2c.c: 120: unsigned char a,b;
+[; ;i2c.c: 121: for(a=0;a<Time;a++)
+"121
 {
 [e = _a -> -> 0 `i `uc ]
 [e $U 63  ]
-"119
+"122
 [e :U 60 ]
-[; ;TEST_60F01x_IIC.c: 119: {
+[; ;i2c.c: 122: {
 {
-[; ;TEST_60F01x_IIC.c: 120: for(b=0;b<10;b++)
-"120
+[; ;i2c.c: 123: for(b=0;b<10;b++)
+"123
 {
 [e = _b -> -> 0 `i `uc ]
 [e $ < -> _b `i -> 10 `i 64  ]
 [e $U 65  ]
-"121
+"124
 [e :U 64 ]
-[; ;TEST_60F01x_IIC.c: 121: {
+[; ;i2c.c: 124: {
 {
-[; ;TEST_60F01x_IIC.c: 122: DelayMs(100);
-"122
+[; ;i2c.c: 125: DelayMs(100);
+"125
 [e ( _DelayMs (1 -> -> 100 `i `uc ]
-"123
+"126
 }
-"120
+"123
 [e ++ _b -> -> 1 `i `uc ]
 [e $ < -> _b `i -> 10 `i 64  ]
 [e :U 65 ]
-"123
+"126
 }
-"124
+"127
 }
-"118
+"121
 [e ++ _a -> -> 1 `i `uc ]
 [e :U 63 ]
 [e $ < -> _a `i -> _Time `i 60  ]
 [e :U 61 ]
-"124
+"127
 }
-[; ;TEST_60F01x_IIC.c: 123: }
-[; ;TEST_60F01x_IIC.c: 124: }
-[; ;TEST_60F01x_IIC.c: 125: }
-"125
+[; ;i2c.c: 126: }
+[; ;i2c.c: 127: }
+[; ;i2c.c: 128: }
+"128
 [e :UE 59 ]
 }
-"128
+"131
 [v _DelayM `(v  1 ef1`uc ]
 {
-[; ;TEST_60F01x_IIC.c: 127: void DelayM(unsigned char Time)
-[; ;TEST_60F01x_IIC.c: 128: {
+[; ;i2c.c: 130: void DelayM(unsigned char Time)
+[; ;i2c.c: 131: {
 [e :U _DelayM ]
 [v _Time `uc  1 r1 ]
 [f ]
-"129
+"132
 [v _a `uc  1 a ]
-[; ;TEST_60F01x_IIC.c: 129: unsigned char a;
-[; ;TEST_60F01x_IIC.c: 130: for(a=0;a<Time;a++)
-"130
+[; ;i2c.c: 132: unsigned char a;
+[; ;i2c.c: 133: for(a=0;a<Time;a++)
+"133
 {
 [e = _a -> -> 0 `i `uc ]
 [e $U 71  ]
-"131
+"134
 [e :U 68 ]
-[; ;TEST_60F01x_IIC.c: 131: {
+[; ;i2c.c: 134: {
 {
-[; ;TEST_60F01x_IIC.c: 132: DelayS(60);
-"132
+[; ;i2c.c: 135: DelayS(60);
+"135
 [e ( _DelayS (1 -> -> 60 `i `uc ]
-"133
+"136
 }
-"130
+"133
 [e ++ _a -> -> 1 `i `uc ]
 [e :U 71 ]
 [e $ < -> _a `i -> _Time `i 68  ]
 [e :U 69 ]
-"133
+"136
 }
-[; ;TEST_60F01x_IIC.c: 133: }
-[; ;TEST_60F01x_IIC.c: 134: }
-"134
+[; ;i2c.c: 136: }
+[; ;i2c.c: 137: }
+"137
 [e :UE 67 ]
 }
-"142
+"145
 [v _IIC_Start `(v  1 ef ]
 {
-[; ;TEST_60F01x_IIC.c: 141: void IIC_Start(void)
-[; ;TEST_60F01x_IIC.c: 142: {
+[; ;i2c.c: 144: void IIC_Start(void)
+[; ;i2c.c: 145: {
 [e :U _IIC_Start ]
 [f ]
-[; ;TEST_60F01x_IIC.c: 143: TRISA2 =0;
-"143
-[e = _TRISA2 -> -> 0 `i `b ]
-[; ;TEST_60F01x_IIC.c: 144: RA2=1;
-"144
-[e = _RA2 -> -> 1 `i `b ]
-[; ;TEST_60F01x_IIC.c: 145: RA4=1;
-"145
-[e = _RA4 -> -> 1 `i `b ]
-[; ;TEST_60F01x_IIC.c: 146: DelayUs(10);
+[; ;i2c.c: 146: TRISA2 =0;
 "146
-[e ( _DelayUs (1 -> -> 10 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 147: RA2=0;
+[e = _TRISA2 -> -> 0 `i `b ]
+[; ;i2c.c: 147: RA2=1;
 "147
-[e = _RA2 -> -> 0 `i `b ]
-[; ;TEST_60F01x_IIC.c: 148: DelayUs(10);
+[e = _RA2 -> -> 1 `i `b ]
+[; ;i2c.c: 148: RA4=1;
 "148
-[e ( _DelayUs (1 -> -> 10 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 149: RA4=0;
+[e = _RA4 -> -> 1 `i `b ]
+[; ;i2c.c: 149: DelayUs(10);
 "149
-[e = _RA4 -> -> 0 `i `b ]
-[; ;TEST_60F01x_IIC.c: 150: DelayUs(10);
-"150
 [e ( _DelayUs (1 -> -> 10 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 151: }
+[; ;i2c.c: 150: RA2=0;
+"150
+[e = _RA2 -> -> 0 `i `b ]
+[; ;i2c.c: 151: DelayUs(10);
 "151
+[e ( _DelayUs (1 -> -> 10 `i `uc ]
+[; ;i2c.c: 152: RA4=0;
+"152
+[e = _RA4 -> -> 0 `i `b ]
+[; ;i2c.c: 153: DelayUs(10);
+"153
+[e ( _DelayUs (1 -> -> 10 `i `uc ]
+[; ;i2c.c: 154: }
+"154
 [e :UE 72 ]
 }
-"159
+"162
 [v _IIC_Stop `(v  1 ef ]
 {
-[; ;TEST_60F01x_IIC.c: 158: void IIC_Stop(void)
-[; ;TEST_60F01x_IIC.c: 159: {
+[; ;i2c.c: 161: void IIC_Stop(void)
+[; ;i2c.c: 162: {
 [e :U _IIC_Stop ]
 [f ]
-[; ;TEST_60F01x_IIC.c: 160: TRISA2 =0;
-"160
-[e = _TRISA2 -> -> 0 `i `b ]
-[; ;TEST_60F01x_IIC.c: 161: RA4=0;
-"161
-[e = _RA4 -> -> 0 `i `b ]
-[; ;TEST_60F01x_IIC.c: 162: RA2=0;
-"162
-[e = _RA2 -> -> 0 `i `b ]
-[; ;TEST_60F01x_IIC.c: 163: DelayUs(10);
+[; ;i2c.c: 163: TRISA2 =0;
 "163
-[e ( _DelayUs (1 -> -> 10 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 164: RA4=1;
+[e = _TRISA2 -> -> 0 `i `b ]
+[; ;i2c.c: 164: RA4=0;
 "164
-[e = _RA4 -> -> 1 `i `b ]
-[; ;TEST_60F01x_IIC.c: 165: DelayUs(10);
+[e = _RA4 -> -> 0 `i `b ]
+[; ;i2c.c: 165: RA2=0;
 "165
-[e ( _DelayUs (1 -> -> 10 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 166: RA2=1;
+[e = _RA2 -> -> 0 `i `b ]
+[; ;i2c.c: 166: DelayUs(10);
 "166
-[e = _RA2 -> -> 1 `i `b ]
-[; ;TEST_60F01x_IIC.c: 167: DelayUs(10);
-"167
 [e ( _DelayUs (1 -> -> 10 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 168: }
+[; ;i2c.c: 167: RA4=1;
+"167
+[e = _RA4 -> -> 1 `i `b ]
+[; ;i2c.c: 168: DelayUs(10);
 "168
+[e ( _DelayUs (1 -> -> 10 `i `uc ]
+[; ;i2c.c: 169: RA2=1;
+"169
+[e = _RA2 -> -> 1 `i `b ]
+[; ;i2c.c: 170: DelayUs(10);
+"170
+[e ( _DelayUs (1 -> -> 10 `i `uc ]
+[; ;i2c.c: 171: }
+"171
 [e :UE 73 ]
 }
-"177
+"180
 [v _IIC_Wait_Ack `(uc  1 ef ]
 {
-[; ;TEST_60F01x_IIC.c: 176: unsigned char IIC_Wait_Ack(void)
-[; ;TEST_60F01x_IIC.c: 177: {
+[; ;i2c.c: 179: unsigned char IIC_Wait_Ack(void)
+[; ;i2c.c: 180: {
 [e :U _IIC_Wait_Ack ]
 [f ]
-"178
-[v _ucErrTime `uc  1 a ]
-[; ;TEST_60F01x_IIC.c: 178: unsigned char ucErrTime=0;
-[e = _ucErrTime -> -> 0 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 179: TRISA2 =1;
-"179
-[e = _TRISA2 -> -> 1 `i `b ]
-[; ;TEST_60F01x_IIC.c: 180: RA2=1;
-"180
-[e = _RA2 -> -> 1 `i `b ]
-[; ;TEST_60F01x_IIC.c: 181: DelayUs(5);
 "181
-[e ( _DelayUs (1 -> -> 5 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 182: RA4=1;
+[v _ucErrTime `uc  1 a ]
+[; ;i2c.c: 181: unsigned char ucErrTime=0;
+[e = _ucErrTime -> -> 0 `i `uc ]
+[; ;i2c.c: 182: TRISA2 =1;
 "182
-[e = _RA4 -> -> 1 `i `b ]
-[; ;TEST_60F01x_IIC.c: 183: DelayUs(5);
+[e = _TRISA2 -> -> 1 `i `b ]
+[; ;i2c.c: 183: RA2=1;
 "183
-[e ( _DelayUs (1 -> -> 5 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 184: while(RA2)
+[e = _RA2 -> -> 1 `i `b ]
+[; ;i2c.c: 184: DelayUs(5);
 "184
+[e ( _DelayUs (1 -> -> 5 `i `uc ]
+[; ;i2c.c: 185: RA4=1;
+"185
+[e = _RA4 -> -> 1 `i `b ]
+[; ;i2c.c: 186: DelayUs(5);
+"186
+[e ( _DelayUs (1 -> -> 5 `i `uc ]
+[; ;i2c.c: 187: while(RA2)
+"187
 [e $U 75  ]
 [e :U 76 ]
-[; ;TEST_60F01x_IIC.c: 185: {
-"185
-{
-[; ;TEST_60F01x_IIC.c: 186: ucErrTime++;
-"186
-[e ++ _ucErrTime -> -> 1 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 187: if(ucErrTime>250)
-"187
-[e $ ! > -> _ucErrTime `i -> 250 `i 78  ]
-[; ;TEST_60F01x_IIC.c: 188: {
+[; ;i2c.c: 188: {
 "188
 {
-[; ;TEST_60F01x_IIC.c: 189: IIC_Stop();
+[; ;i2c.c: 189: ucErrTime++;
 "189
-[e ( _IIC_Stop ..  ]
-[; ;TEST_60F01x_IIC.c: 190: return 1;
+[e ++ _ucErrTime -> -> 1 `i `uc ]
+[; ;i2c.c: 190: if(ucErrTime>250)
 "190
+[e $ ! > -> _ucErrTime `i -> 250 `i 78  ]
+[; ;i2c.c: 191: {
+"191
+{
+[; ;i2c.c: 192: IIC_Stop();
+"192
+[e ( _IIC_Stop ..  ]
+[; ;i2c.c: 193: return 1;
+"193
 [e ) -> -> 1 `i `uc ]
 [e $UE 74  ]
-"191
+"194
 }
 [e :U 78 ]
-"192
+"195
 }
 [e :U 75 ]
-"184
+"187
 [e $ _RA2 76  ]
 [e :U 77 ]
-[; ;TEST_60F01x_IIC.c: 191: }
-[; ;TEST_60F01x_IIC.c: 192: }
-[; ;TEST_60F01x_IIC.c: 193: RA4=0;
-"193
+[; ;i2c.c: 194: }
+[; ;i2c.c: 195: }
+[; ;i2c.c: 196: RA4=0;
+"196
 [e = _RA4 -> -> 0 `i `b ]
-[; ;TEST_60F01x_IIC.c: 194: return 0;
-"194
+[; ;i2c.c: 197: return 0;
+"197
 [e ) -> -> 0 `i `uc ]
 [e $UE 74  ]
-[; ;TEST_60F01x_IIC.c: 195: }
-"195
+[; ;i2c.c: 198: }
+"198
 [e :UE 74 ]
 }
-"203
+"206
 [v _IIC_Ack `(v  1 ef ]
 {
-[; ;TEST_60F01x_IIC.c: 202: void IIC_Ack(void)
-[; ;TEST_60F01x_IIC.c: 203: {
+[; ;i2c.c: 205: void IIC_Ack(void)
+[; ;i2c.c: 206: {
 [e :U _IIC_Ack ]
 [f ]
-[; ;TEST_60F01x_IIC.c: 204: RA4=0;
-"204
-[e = _RA4 -> -> 0 `i `b ]
-[; ;TEST_60F01x_IIC.c: 205: TRISA2 =0;
-"205
-[e = _TRISA2 -> -> 0 `i `b ]
-[; ;TEST_60F01x_IIC.c: 206: RA2=0;
-"206
-[e = _RA2 -> -> 0 `i `b ]
-[; ;TEST_60F01x_IIC.c: 207: DelayUs(5);
+[; ;i2c.c: 207: RA4=0;
 "207
-[e ( _DelayUs (1 -> -> 5 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 208: RA4=1;
-"208
-[e = _RA4 -> -> 1 `i `b ]
-[; ;TEST_60F01x_IIC.c: 209: DelayUs(5);
-"209
-[e ( _DelayUs (1 -> -> 5 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 210: RA4=0;
-"210
 [e = _RA4 -> -> 0 `i `b ]
-[; ;TEST_60F01x_IIC.c: 211: }
+[; ;i2c.c: 208: TRISA2 =0;
+"208
+[e = _TRISA2 -> -> 0 `i `b ]
+[; ;i2c.c: 209: RA2=0;
+"209
+[e = _RA2 -> -> 0 `i `b ]
+[; ;i2c.c: 210: DelayUs(5);
+"210
+[e ( _DelayUs (1 -> -> 5 `i `uc ]
+[; ;i2c.c: 211: RA4=1;
 "211
+[e = _RA4 -> -> 1 `i `b ]
+[; ;i2c.c: 212: DelayUs(5);
+"212
+[e ( _DelayUs (1 -> -> 5 `i `uc ]
+[; ;i2c.c: 213: RA4=0;
+"213
+[e = _RA4 -> -> 0 `i `b ]
+[; ;i2c.c: 214: }
+"214
 [e :UE 79 ]
 }
-"219
+"222
 [v _IIC_NAck `(v  1 ef ]
 {
-[; ;TEST_60F01x_IIC.c: 218: void IIC_NAck(void)
-[; ;TEST_60F01x_IIC.c: 219: {
+[; ;i2c.c: 221: void IIC_NAck(void)
+[; ;i2c.c: 222: {
 [e :U _IIC_NAck ]
 [f ]
-[; ;TEST_60F01x_IIC.c: 220: RA4=0;
-"220
-[e = _RA4 -> -> 0 `i `b ]
-[; ;TEST_60F01x_IIC.c: 221: TRISA2 =0;
-"221
-[e = _TRISA2 -> -> 0 `i `b ]
-[; ;TEST_60F01x_IIC.c: 222: RA2=1;
-"222
-[e = _RA2 -> -> 1 `i `b ]
-[; ;TEST_60F01x_IIC.c: 223: DelayUs(5);
+[; ;i2c.c: 223: RA4=0;
 "223
-[e ( _DelayUs (1 -> -> 5 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 224: RA4=1;
-"224
-[e = _RA4 -> -> 1 `i `b ]
-[; ;TEST_60F01x_IIC.c: 225: DelayUs(5);
-"225
-[e ( _DelayUs (1 -> -> 5 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 226: RA4=0;
-"226
 [e = _RA4 -> -> 0 `i `b ]
-[; ;TEST_60F01x_IIC.c: 227: }
+[; ;i2c.c: 224: TRISA2 =0;
+"224
+[e = _TRISA2 -> -> 0 `i `b ]
+[; ;i2c.c: 225: RA2=1;
+"225
+[e = _RA2 -> -> 1 `i `b ]
+[; ;i2c.c: 226: DelayUs(5);
+"226
+[e ( _DelayUs (1 -> -> 5 `i `uc ]
+[; ;i2c.c: 227: RA4=1;
 "227
+[e = _RA4 -> -> 1 `i `b ]
+[; ;i2c.c: 228: DelayUs(5);
+"228
+[e ( _DelayUs (1 -> -> 5 `i `uc ]
+[; ;i2c.c: 229: RA4=0;
+"229
+[e = _RA4 -> -> 0 `i `b ]
+[; ;i2c.c: 230: }
+"230
 [e :UE 80 ]
 }
-"235
+"238
 [v _IIC_Send_Byte `(v  1 ef1`uc ]
 {
-[; ;TEST_60F01x_IIC.c: 234: void IIC_Send_Byte(unsigned char txd)
-[; ;TEST_60F01x_IIC.c: 235: {
+[; ;i2c.c: 237: void IIC_Send_Byte(unsigned char txd)
+[; ;i2c.c: 238: {
 [e :U _IIC_Send_Byte ]
 [v _txd `uc  1 r1 ]
 [f ]
-"236
-[v _t `uc  1 a ]
-[; ;TEST_60F01x_IIC.c: 236: unsigned char t;
-[; ;TEST_60F01x_IIC.c: 237: TRISA2 =0;
-"237
-[e = _TRISA2 -> -> 0 `i `b ]
-[; ;TEST_60F01x_IIC.c: 238: RA4=0;
-"238
-[e = _RA4 -> -> 0 `i `b ]
-[; ;TEST_60F01x_IIC.c: 239: for(t=0;t<8;t++)
 "239
+[v _t `uc  1 a ]
+[; ;i2c.c: 239: unsigned char t;
+[; ;i2c.c: 240: TRISA2 =0;
+"240
+[e = _TRISA2 -> -> 0 `i `b ]
+[; ;i2c.c: 241: RA4=0;
+"241
+[e = _RA4 -> -> 0 `i `b ]
+[; ;i2c.c: 242: for(t=0;t<8;t++)
+"242
 {
 [e = _t -> -> 0 `i `uc ]
 [e $ < -> _t `i -> 8 `i 82  ]
 [e $U 83  ]
-"240
+"243
 [e :U 82 ]
-[; ;TEST_60F01x_IIC.c: 240: {
+[; ;i2c.c: 243: {
 {
-[; ;TEST_60F01x_IIC.c: 241: if((txd&0x80)>>7)
-"241
+[; ;i2c.c: 244: if((txd&0x80)>>7)
+"244
 [e $ ! != >> & -> _txd `i -> 128 `i -> 7 `i -> 0 `i 85  ]
-[; ;TEST_60F01x_IIC.c: 242: RA2=1;
-"242
+[; ;i2c.c: 245: RA2=1;
+"245
 [e = _RA2 -> -> 1 `i `b ]
 [e $U 86  ]
-"243
+"246
 [e :U 85 ]
-[; ;TEST_60F01x_IIC.c: 243: else
-[; ;TEST_60F01x_IIC.c: 244: RA2=0;
-"244
+[; ;i2c.c: 246: else
+[; ;i2c.c: 247: RA2=0;
+"247
 [e = _RA2 -> -> 0 `i `b ]
 [e :U 86 ]
-[; ;TEST_60F01x_IIC.c: 245: txd<<=1;
-"245
-[e =<< _txd -> 1 `i ]
-[; ;TEST_60F01x_IIC.c: 246: DelayUs(5);
-"246
-[e ( _DelayUs (1 -> -> 5 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 247: RA4=1;
-"247
-[e = _RA4 -> -> 1 `i `b ]
-[; ;TEST_60F01x_IIC.c: 248: DelayUs(5);
+[; ;i2c.c: 248: txd<<=1;
 "248
-[e ( _DelayUs (1 -> -> 5 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 249: RA4=0;
+[e =<< _txd -> 1 `i ]
+[; ;i2c.c: 249: DelayUs(5);
 "249
-[e = _RA4 -> -> 0 `i `b ]
-[; ;TEST_60F01x_IIC.c: 250: DelayUs(5);
-"250
 [e ( _DelayUs (1 -> -> 5 `i `uc ]
+[; ;i2c.c: 250: RA4=1;
+"250
+[e = _RA4 -> -> 1 `i `b ]
+[; ;i2c.c: 251: DelayUs(5);
 "251
+[e ( _DelayUs (1 -> -> 5 `i `uc ]
+[; ;i2c.c: 252: RA4=0;
+"252
+[e = _RA4 -> -> 0 `i `b ]
+[; ;i2c.c: 253: DelayUs(5);
+"253
+[e ( _DelayUs (1 -> -> 5 `i `uc ]
+"254
 }
-"239
+"242
 [e ++ _t -> -> 1 `i `uc ]
 [e $ < -> _t `i -> 8 `i 82  ]
 [e :U 83 ]
-"251
+"254
 }
-[; ;TEST_60F01x_IIC.c: 251: }
-[; ;TEST_60F01x_IIC.c: 252: }
-"252
+[; ;i2c.c: 254: }
+[; ;i2c.c: 255: }
+"255
 [e :UE 81 ]
 }
-"260
+"263
 [v _IIC_Read_Byte `(uc  1 ef ]
 {
-[; ;TEST_60F01x_IIC.c: 259: unsigned char IIC_Read_Byte(void)
-[; ;TEST_60F01x_IIC.c: 260: {
+[; ;i2c.c: 262: unsigned char IIC_Read_Byte(void)
+[; ;i2c.c: 263: {
 [e :U _IIC_Read_Byte ]
 [f ]
-"261
+"264
 [v _i `uc  1 a ]
 [v _receive `uc  1 a ]
-[; ;TEST_60F01x_IIC.c: 261: unsigned char i,receive=0;
+[; ;i2c.c: 264: unsigned char i,receive=0;
 [e = _receive -> -> 0 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 262: TRISA2 =1;
-"262
+[; ;i2c.c: 265: TRISA2 =1;
+"265
 [e = _TRISA2 -> -> 1 `i `b ]
-[; ;TEST_60F01x_IIC.c: 263: for(i=0;i<8;i++ )
-"263
+[; ;i2c.c: 266: for(i=0;i<8;i++ )
+"266
 {
 [e = _i -> -> 0 `i `uc ]
 [e $ < -> _i `i -> 8 `i 88  ]
 [e $U 89  ]
-"264
-[e :U 88 ]
-[; ;TEST_60F01x_IIC.c: 264: {
-{
-[; ;TEST_60F01x_IIC.c: 265: RA4=0;
-"265
-[e = _RA4 -> -> 0 `i `b ]
-[; ;TEST_60F01x_IIC.c: 266: DelayUs(5);
-"266
-[e ( _DelayUs (1 -> -> 5 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 267: RA4=1;
 "267
-[e = _RA4 -> -> 1 `i `b ]
-[; ;TEST_60F01x_IIC.c: 268: receive<<=1;
+[e :U 88 ]
+[; ;i2c.c: 267: {
+{
+[; ;i2c.c: 268: RA4=0;
 "268
-[e =<< _receive -> 1 `i ]
-[; ;TEST_60F01x_IIC.c: 269: if(RA2)receive++;
+[e = _RA4 -> -> 0 `i `b ]
+[; ;i2c.c: 269: DelayUs(5);
 "269
+[e ( _DelayUs (1 -> -> 5 `i `uc ]
+[; ;i2c.c: 270: RA4=1;
+"270
+[e = _RA4 -> -> 1 `i `b ]
+[; ;i2c.c: 271: receive<<=1;
+"271
+[e =<< _receive -> 1 `i ]
+[; ;i2c.c: 272: if(RA2)receive++;
+"272
 [e $ ! _RA2 91  ]
 [e ++ _receive -> -> 1 `i `uc ]
 [e :U 91 ]
-[; ;TEST_60F01x_IIC.c: 270: DelayUs(5);
-"270
+[; ;i2c.c: 273: DelayUs(5);
+"273
 [e ( _DelayUs (1 -> -> 5 `i `uc ]
-"271
+"274
 }
-"263
+"266
 [e ++ _i -> -> 1 `i `uc ]
 [e $ < -> _i `i -> 8 `i 88  ]
 [e :U 89 ]
-"271
-}
-[; ;TEST_60F01x_IIC.c: 271: }
-[; ;TEST_60F01x_IIC.c: 272: IIC_NAck();
-"272
-[e ( _IIC_NAck ..  ]
-[; ;TEST_60F01x_IIC.c: 274: return receive;
 "274
+}
+[; ;i2c.c: 274: }
+[; ;i2c.c: 275: IIC_NAck();
+"275
+[e ( _IIC_NAck ..  ]
+[; ;i2c.c: 277: return receive;
+"277
 [e ) _receive ]
 [e $UE 87  ]
-[; ;TEST_60F01x_IIC.c: 275: }
-"275
+[; ;i2c.c: 278: }
+"278
 [e :UE 87 ]
 }
-"283
+"286
 [v _IIC_READ `(uc  1 ef1`uc ]
 {
-[; ;TEST_60F01x_IIC.c: 282: unsigned char IIC_READ(unsigned char address)
-[; ;TEST_60F01x_IIC.c: 283: {
+[; ;i2c.c: 285: unsigned char IIC_READ(unsigned char address)
+[; ;i2c.c: 286: {
 [e :U _IIC_READ ]
 [v _address `uc  1 r1 ]
 [f ]
-"284
-[v _iicdata `uc  1 a ]
-[; ;TEST_60F01x_IIC.c: 284: unsigned char iicdata = 0;
-[e = _iicdata -> -> 0 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 285: IIC_READ_Begin:
-"285
-[e :U 93 ]
-[; ;TEST_60F01x_IIC.c: 286: IIC_Start();
-"286
-[e ( _IIC_Start ..  ]
-[; ;TEST_60F01x_IIC.c: 287: IIC_Send_Byte(0xa0);
 "287
-[e ( _IIC_Send_Byte (1 -> -> 160 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 288: if(IIC_Wait_Ack())goto IIC_READ_Begin;
+[v _iicdata `uc  1 a ]
+[; ;i2c.c: 287: unsigned char iicdata = 0;
+[e = _iicdata -> -> 0 `i `uc ]
+[; ;i2c.c: 288: IIC_READ_Begin:
 "288
+[e :U 93 ]
+[; ;i2c.c: 289: IIC_Start();
+"289
+[e ( _IIC_Start ..  ]
+[; ;i2c.c: 290: IIC_Send_Byte(0xa0);
+"290
+[e ( _IIC_Send_Byte (1 -> -> 160 `i `uc ]
+[; ;i2c.c: 291: if(IIC_Wait_Ack())goto IIC_READ_Begin;
+"291
 [e $ ! != -> ( _IIC_Wait_Ack ..  `i -> -> -> 0 `i `uc `i 94  ]
 [e $U 93  ]
 [e :U 94 ]
-[; ;TEST_60F01x_IIC.c: 289: IIC_Send_Byte(address);
-"289
+[; ;i2c.c: 292: IIC_Send_Byte(address);
+"292
 [e ( _IIC_Send_Byte (1 _address ]
-[; ;TEST_60F01x_IIC.c: 290: if(IIC_Wait_Ack())goto IIC_READ_Begin;
-"290
+[; ;i2c.c: 293: if(IIC_Wait_Ack())goto IIC_READ_Begin;
+"293
 [e $ ! != -> ( _IIC_Wait_Ack ..  `i -> -> -> 0 `i `uc `i 95  ]
 [e $U 93  ]
 [e :U 95 ]
-[; ;TEST_60F01x_IIC.c: 291: IIC_Start();
-"291
+[; ;i2c.c: 294: IIC_Start();
+"294
 [e ( _IIC_Start ..  ]
-[; ;TEST_60F01x_IIC.c: 292: IIC_Send_Byte(0xa1);
-"292
+[; ;i2c.c: 295: IIC_Send_Byte(0xa1);
+"295
 [e ( _IIC_Send_Byte (1 -> -> 161 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 293: if(IIC_Wait_Ack())goto IIC_READ_Begin;
-"293
+[; ;i2c.c: 296: if(IIC_Wait_Ack())goto IIC_READ_Begin;
+"296
 [e $ ! != -> ( _IIC_Wait_Ack ..  `i -> -> -> 0 `i `uc `i 96  ]
 [e $U 93  ]
 [e :U 96 ]
-[; ;TEST_60F01x_IIC.c: 294: iicdata=IIC_Read_Byte();
-"294
+[; ;i2c.c: 297: iicdata=IIC_Read_Byte();
+"297
 [e = _iicdata ( _IIC_Read_Byte ..  ]
-[; ;TEST_60F01x_IIC.c: 295: IIC_Stop();
-"295
+[; ;i2c.c: 298: IIC_Stop();
+"298
 [e ( _IIC_Stop ..  ]
-[; ;TEST_60F01x_IIC.c: 296: return iicdata;
-"296
+[; ;i2c.c: 299: return iicdata;
+"299
 [e ) _iicdata ]
 [e $UE 92  ]
-[; ;TEST_60F01x_IIC.c: 297: }
-"297
+[; ;i2c.c: 300: }
+"300
 [e :UE 92 ]
 }
-"305
+"308
 [v _IIC_WRITE `(v  1 ef2`uc`uc ]
 {
-[; ;TEST_60F01x_IIC.c: 304: void IIC_WRITE(unsigned char address,unsigned char data)
-[; ;TEST_60F01x_IIC.c: 305: {
+[; ;i2c.c: 307: void IIC_WRITE(unsigned char address,unsigned char data)
+[; ;i2c.c: 308: {
 [e :U _IIC_WRITE ]
 [v _address `uc  1 r1 ]
 [v _data `uc  1 r2 ]
 [f ]
-[; ;TEST_60F01x_IIC.c: 306: IIC_WRITE_Begin:
-"306
-[e :U 98 ]
-[; ;TEST_60F01x_IIC.c: 307: IIC_Start();
-"307
-[e ( _IIC_Start ..  ]
-[; ;TEST_60F01x_IIC.c: 308: IIC_Send_Byte(0xa0);
-"308
-[e ( _IIC_Send_Byte (1 -> -> 160 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 309: if(IIC_Wait_Ack())goto IIC_WRITE_Begin;
+[; ;i2c.c: 309: IIC_WRITE_Begin:
 "309
+[e :U 98 ]
+[; ;i2c.c: 310: IIC_Start();
+"310
+[e ( _IIC_Start ..  ]
+[; ;i2c.c: 311: IIC_Send_Byte(0xa0);
+"311
+[e ( _IIC_Send_Byte (1 -> -> 160 `i `uc ]
+[; ;i2c.c: 312: if(IIC_Wait_Ack())goto IIC_WRITE_Begin;
+"312
 [e $ ! != -> ( _IIC_Wait_Ack ..  `i -> -> -> 0 `i `uc `i 99  ]
 [e $U 98  ]
 [e :U 99 ]
-[; ;TEST_60F01x_IIC.c: 311: IIC_Send_Byte(address);
-"311
+[; ;i2c.c: 314: IIC_Send_Byte(address);
+"314
 [e ( _IIC_Send_Byte (1 _address ]
-[; ;TEST_60F01x_IIC.c: 312: if(IIC_Wait_Ack())goto IIC_WRITE_Begin;
-"312
+[; ;i2c.c: 315: if(IIC_Wait_Ack())goto IIC_WRITE_Begin;
+"315
 [e $ ! != -> ( _IIC_Wait_Ack ..  `i -> -> -> 0 `i `uc `i 100  ]
 [e $U 98  ]
 [e :U 100 ]
-[; ;TEST_60F01x_IIC.c: 314: IIC_Send_Byte(data);
-"314
+[; ;i2c.c: 317: IIC_Send_Byte(data);
+"317
 [e ( _IIC_Send_Byte (1 _data ]
-[; ;TEST_60F01x_IIC.c: 315: if(IIC_Wait_Ack())goto IIC_WRITE_Begin;
-"315
+[; ;i2c.c: 318: if(IIC_Wait_Ack())goto IIC_WRITE_Begin;
+"318
 [e $ ! != -> ( _IIC_Wait_Ack ..  `i -> -> -> 0 `i `uc `i 101  ]
 [e $U 98  ]
 [e :U 101 ]
-[; ;TEST_60F01x_IIC.c: 317: IIC_Stop();
-"317
+[; ;i2c.c: 320: IIC_Stop();
+"320
 [e ( _IIC_Stop ..  ]
-[; ;TEST_60F01x_IIC.c: 318: }
-"318
+[; ;i2c.c: 321: }
+"321
 [e :UE 97 ]
 }
-"320
+"323
 [v _I2C_SendString `(uc  1 ef3`uc`*Cuc`i ]
 {
-[; ;TEST_60F01x_IIC.c: 319: unsigned char I2C_SendString(unsigned char chip_addr, unsigned char const *buffer,int Number)
-[; ;TEST_60F01x_IIC.c: 320: {
+[; ;i2c.c: 322: unsigned char I2C_SendString(unsigned char chip_addr, unsigned char const *buffer,int Number)
+[; ;i2c.c: 323: {
 [e :U _I2C_SendString ]
 [v _chip_addr `uc  1 r1 ]
 [v _buffer `*Cuc  1 r2 ]
 [v _Number `i  1 r3 ]
 [f ]
-"321
+"324
 [v _i `uc  1 a ]
-[; ;TEST_60F01x_IIC.c: 321: unsigned char i;
-[; ;TEST_60F01x_IIC.c: 322: IIC_Start();
-"322
-[e ( _IIC_Start ..  ]
-[; ;TEST_60F01x_IIC.c: 323: IIC_Send_Byte(chip_addr);
-"323
-[e ( _IIC_Send_Byte (1 _chip_addr ]
-[; ;TEST_60F01x_IIC.c: 325: if(IIC_Wait_Ack()==1){
+[; ;i2c.c: 324: unsigned char i;
+[; ;i2c.c: 325: IIC_Start();
 "325
+[e ( _IIC_Start ..  ]
+[; ;i2c.c: 326: IIC_Send_Byte(chip_addr);
+"326
+[e ( _IIC_Send_Byte (1 _chip_addr ]
+[; ;i2c.c: 328: if(IIC_Wait_Ack()==1){
+"328
 [e $ ! == -> ( _IIC_Wait_Ack ..  `i -> 1 `i 103  ]
 {
-[; ;TEST_60F01x_IIC.c: 327: return 0;
-"327
+[; ;i2c.c: 330: return 0;
+"330
 [e ) -> -> 0 `i `uc ]
 [e $UE 102  ]
-"328
+"331
 }
 [e :U 103 ]
-[; ;TEST_60F01x_IIC.c: 328: }
-[; ;TEST_60F01x_IIC.c: 330: for(i=0; i<Number; i++) {
-"330
+[; ;i2c.c: 331: }
+[; ;i2c.c: 333: for(i=0; i<Number; i++) {
+"333
 {
 [e = _i -> -> 0 `i `uc ]
 [e $U 107  ]
 [e :U 104 ]
 {
-[; ;TEST_60F01x_IIC.c: 331: IIC_Send_Byte(*buffer);
-"331
+[; ;i2c.c: 334: IIC_Send_Byte(*buffer);
+"334
 [e ( _IIC_Send_Byte (1 *U _buffer ]
-[; ;TEST_60F01x_IIC.c: 332: if(IIC_Wait_Ack()==1) {
-"332
+[; ;i2c.c: 335: if(IIC_Wait_Ack()==1) {
+"335
 [e $ ! == -> ( _IIC_Wait_Ack ..  `i -> 1 `i 108  ]
 {
-[; ;TEST_60F01x_IIC.c: 334: return 0;
-"334
+[; ;i2c.c: 337: return 0;
+"337
 [e ) -> -> 0 `i `uc ]
 [e $UE 102  ]
-"335
+"338
 }
 [e :U 108 ]
-[; ;TEST_60F01x_IIC.c: 335: }
-[; ;TEST_60F01x_IIC.c: 336: buffer++;
-"336
+[; ;i2c.c: 338: }
+[; ;i2c.c: 339: buffer++;
+"339
 [e ++ _buffer * -> -> 1 `i `x -> -> # *U _buffer `i `x ]
-"337
+"340
 }
-"330
+"333
 [e ++ _i -> -> 1 `i `uc ]
 [e :U 107 ]
 [e $ < -> _i `i _Number 104  ]
 [e :U 105 ]
-"337
+"340
 }
-[; ;TEST_60F01x_IIC.c: 337: }
-[; ;TEST_60F01x_IIC.c: 338: IIC_Stop();
-"338
+[; ;i2c.c: 340: }
+[; ;i2c.c: 341: IIC_Stop();
+"341
 [e ( _IIC_Stop ..  ]
-[; ;TEST_60F01x_IIC.c: 339: return 1;
-"339
+[; ;i2c.c: 342: return 1;
+"342
 [e ) -> -> 1 `i `uc ]
 [e $UE 102  ]
-[; ;TEST_60F01x_IIC.c: 340: }
-"340
+[; ;i2c.c: 343: }
+"343
 [e :UE 102 ]
 }
-"349
+"352
 [v _TIMER0_INITIAL `(v  1 ef ]
 {
-[; ;TEST_60F01x_IIC.c: 348: void TIMER0_INITIAL (void)
-[; ;TEST_60F01x_IIC.c: 349: {
+[; ;i2c.c: 351: void TIMER0_INITIAL (void)
+[; ;i2c.c: 352: {
 [e :U _TIMER0_INITIAL ]
 [f ]
-[; ;TEST_60F01x_IIC.c: 350: OPTION = 0B00000000;
-"350
+[; ;i2c.c: 353: OPTION = 0B00000000;
+"353
 [e = _OPTION -> -> 0 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 355: TMR0 = 49;
-"355
+[; ;i2c.c: 358: TMR0 = 49;
+"358
 [e = _TMR0 -> -> 49 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 356: T0IF = 0;
-"356
+[; ;i2c.c: 359: T0IF = 0;
+"359
 [e = _T0IF -> -> 0 `i `b ]
-[; ;TEST_60F01x_IIC.c: 357: }
-"357
+[; ;i2c.c: 360: }
+"360
 [e :UE 109 ]
 }
-"365
+"368
 [v _PA2_Level_Change_INITIAL `(v  1 ef ]
 {
-[; ;TEST_60F01x_IIC.c: 364: void PA2_Level_Change_INITIAL(void)
-[; ;TEST_60F01x_IIC.c: 365: {
+[; ;i2c.c: 367: void PA2_Level_Change_INITIAL(void)
+[; ;i2c.c: 368: {
 [e :U _PA2_Level_Change_INITIAL ]
 [f ]
-[; ;TEST_60F01x_IIC.c: 366: TRISA2 =1;
-"366
-[e = _TRISA2 -> -> 1 `i `b ]
-[; ;TEST_60F01x_IIC.c: 367: ReadAPin = PORTA;
-"367
-[e = _ReadAPin _PORTA ]
-[; ;TEST_60F01x_IIC.c: 368: PAIF =0;
-"368
-[e = _PAIF -> -> 0 `i `b ]
-[; ;TEST_60F01x_IIC.c: 369: IOCA2 =1;
+[; ;i2c.c: 369: TRISA2 =1;
 "369
-[e = _IOCA2 -> -> 1 `i `b ]
-[; ;TEST_60F01x_IIC.c: 370: PAIE =1;
+[e = _TRISA2 -> -> 1 `i `b ]
+[; ;i2c.c: 370: ReadAPin = PORTA;
 "370
-[e = _PAIE -> -> 1 `i `b ]
-[; ;TEST_60F01x_IIC.c: 372: }
+[e = _ReadAPin _PORTA ]
+[; ;i2c.c: 371: PAIF =0;
+"371
+[e = _PAIF -> -> 0 `i `b ]
+[; ;i2c.c: 372: IOCA2 =1;
 "372
+[e = _IOCA2 -> -> 1 `i `b ]
+[; ;i2c.c: 373: PAIE =1;
+"373
+[e = _PAIE -> -> 1 `i `b ]
+[; ;i2c.c: 375: }
+"375
 [e :UE 110 ]
 }
-"381
-[v F590 `(v  1 tf ]
-[v _ISR `IF590  1 e ]
+"376
+[v _uartInit `(v  1 ef ]
 {
-[; ;TEST_60F01x_IIC.c: 380: void interrupt ISR(void)
-[; ;TEST_60F01x_IIC.c: 381: {
-[e :U _ISR ]
+[; ;i2c.c: 376: void uartInit() {
+[e :U _uartInit ]
 [f ]
-[; ;TEST_60F01x_IIC.c: 384: if(T0IE && T0IF)
-"384
-[e $ ! && _T0IE _T0IF 112  ]
-[; ;TEST_60F01x_IIC.c: 385: {
-"385
-{
-[; ;TEST_60F01x_IIC.c: 386: TMR0 = 49;
-"386
-[e = _TMR0 -> -> 49 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 388: T0IF = 0;
-"388
-[e = _T0IF -> -> 0 `i `b ]
-[; ;TEST_60F01x_IIC.c: 389: T0IE = 0;
-"389
-[e = _T0IE -> -> 0 `i `b ]
-"390
-}
-[e :U 112 ]
-[; ;TEST_60F01x_IIC.c: 390: }
-[; ;TEST_60F01x_IIC.c: 393: if(PAIE && PAIF)
-"393
-[e $ ! && _PAIE _PAIF 113  ]
-[; ;TEST_60F01x_IIC.c: 394: {
-"394
-{
-[; ;TEST_60F01x_IIC.c: 395: ReadAPin = PORTA;
-"395
-[e = _ReadAPin _PORTA ]
-[; ;TEST_60F01x_IIC.c: 396: PAIF = 0;
-"396
-[e = _PAIF -> -> 0 `i `b ]
-[; ;TEST_60F01x_IIC.c: 397: if(RA1 == 0)
-"397
-[e $ ! == -> _RA1 `i -> 0 `i 114  ]
-[; ;TEST_60F01x_IIC.c: 398: {
-"398
-{
-[; ;TEST_60F01x_IIC.c: 399: PAIE = 0;
-"399
-[e = _PAIE -> -> 0 `i `b ]
-[; ;TEST_60F01x_IIC.c: 400: IOCA2 =0;
-"400
-[e = _IOCA2 -> -> 0 `i `b ]
-[; ;TEST_60F01x_IIC.c: 401: RXFLAG = 1;
-"401
-[e = _RXFLAG -> -> 1 `i `uc ]
-"402
-}
-[e :U 114 ]
-"403
-}
-[e :U 113 ]
-[; ;TEST_60F01x_IIC.c: 402: }
-[; ;TEST_60F01x_IIC.c: 403: }
-[; ;TEST_60F01x_IIC.c: 404: }
-"404
+[; ;i2c.c: 377: POWER_INITIAL();
+"377
+[e ( _POWER_INITIAL ..  ]
+[; ;i2c.c: 378: TIMER0_INITIAL();
+"378
+[e ( _TIMER0_INITIAL ..  ]
+[; ;i2c.c: 379: PA2_Level_Change_INITIAL();
+"379
+[e ( _PA2_Level_Change_INITIAL ..  ]
+[; ;i2c.c: 380: GIE = 1;
+"380
+[e = _GIE -> -> 1 `i `b ]
+[; ;i2c.c: 381: T0IE = 1;
+"381
+[e = _T0IE -> -> 1 `i `b ]
+[; ;i2c.c: 382: }
+"382
 [e :UE 111 ]
 }
-"412
-[v _WaitTF0 `(v  1 ef ]
+"391
+[v F591 `(v  1 tf ]
+[v _ISR `IF591  1 e ]
 {
-[; ;TEST_60F01x_IIC.c: 411: void WaitTF0( void )
-[; ;TEST_60F01x_IIC.c: 412: {
-[e :U _WaitTF0 ]
+[; ;i2c.c: 390: void interrupt ISR(void)
+[; ;i2c.c: 391: {
+[e :U _ISR ]
 [f ]
-[; ;TEST_60F01x_IIC.c: 413: while(T0IE);
+[; ;i2c.c: 394: if(T0IE && T0IF)
+"394
+[e $ ! && _T0IE _T0IF 113  ]
+[; ;i2c.c: 395: {
+"395
+{
+[; ;i2c.c: 396: TMR0 = 49;
+"396
+[e = _TMR0 -> -> 49 `i `uc ]
+[; ;i2c.c: 398: T0IF = 0;
+"398
+[e = _T0IF -> -> 0 `i `b ]
+[; ;i2c.c: 399: T0IE = 0;
+"399
+[e = _T0IE -> -> 0 `i `b ]
+"400
+}
+[e :U 113 ]
+[; ;i2c.c: 400: }
+[; ;i2c.c: 403: if(PAIE && PAIF)
+"403
+[e $ ! && _PAIE _PAIF 114  ]
+[; ;i2c.c: 404: {
+"404
+{
+[; ;i2c.c: 405: ReadAPin = PORTA;
+"405
+[e = _ReadAPin _PORTA ]
+[; ;i2c.c: 406: PAIF = 0;
+"406
+[e = _PAIF -> -> 0 `i `b ]
+[; ;i2c.c: 407: if(RA1 == 0)
+"407
+[e $ ! == -> _RA1 `i -> 0 `i 115  ]
+[; ;i2c.c: 408: {
+"408
+{
+[; ;i2c.c: 409: PAIE = 0;
+"409
+[e = _PAIE -> -> 0 `i `b ]
+[; ;i2c.c: 410: IOCA2 =0;
+"410
+[e = _IOCA2 -> -> 0 `i `b ]
+[; ;i2c.c: 411: RXFLAG = 1;
+"411
+[e = _RXFLAG -> -> 1 `i `uc ]
+"412
+}
+[e :U 115 ]
 "413
-[e $U 116  ]
-[e :U 117 ]
-[e :U 116 ]
-[e $ _T0IE 117  ]
-[e :U 118 ]
-[; ;TEST_60F01x_IIC.c: 414: T0IE=1;
+}
+[e :U 114 ]
+[; ;i2c.c: 412: }
+[; ;i2c.c: 413: }
+[; ;i2c.c: 414: }
 "414
-[e = _T0IE -> -> 1 `i `b ]
-[; ;TEST_60F01x_IIC.c: 415: }
-"415
-[e :UE 115 ]
+[e :UE 112 ]
 }
 "422
+[v _WaitTF0 `(v  1 ef ]
+{
+[; ;i2c.c: 421: void WaitTF0( void )
+[; ;i2c.c: 422: {
+[e :U _WaitTF0 ]
+[f ]
+[; ;i2c.c: 423: while(T0IE);
+"423
+[e $U 117  ]
+[e :U 118 ]
+[e :U 117 ]
+[e $ _T0IE 118  ]
+[e :U 119 ]
+[; ;i2c.c: 424: T0IE=1;
+"424
+[e = _T0IE -> -> 1 `i `b ]
+[; ;i2c.c: 425: }
+"425
+[e :UE 116 ]
+}
+"432
 [v _WByte `(v  1 ef1`uc ]
 {
-[; ;TEST_60F01x_IIC.c: 422: void WByte(unsigned char input) {
+[; ;i2c.c: 432: void WByte(unsigned char input) {
 [e :U _WByte ]
 [v _input `uc  1 r1 ]
 [f ]
-"424
-[v _i `uc  1 a ]
-[; ;TEST_60F01x_IIC.c: 424: unsigned char i=8;
-[e = _i -> -> 8 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 425: RA5 = 1;
-"425
-[e = _RA5 -> -> 1 `i `b ]
-[; ;TEST_60F01x_IIC.c: 426: TMR0 = 49;
-"426
-[e = _TMR0 -> -> 49 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 427: T0IE = 1;
-"427
-[e = _T0IE -> -> 1 `i `b ]
-[; ;TEST_60F01x_IIC.c: 428: WaitTF0();
-"428
-[e ( _WaitTF0 ..  ]
-[; ;TEST_60F01x_IIC.c: 429: RA5=0;
-"429
-[e = _RA5 -> -> 0 `i `b ]
-[; ;TEST_60F01x_IIC.c: 430: WaitTF0();
-"430
-[e ( _WaitTF0 ..  ]
-[; ;TEST_60F01x_IIC.c: 432: while(i--)
-"432
-[e $U 120  ]
-[e :U 121 ]
-[; ;TEST_60F01x_IIC.c: 433: {
-"433
-{
-[; ;TEST_60F01x_IIC.c: 434: if(input&0x01)
 "434
-[e $ ! != & -> _input `i -> 1 `i -> 0 `i 123  ]
-[; ;TEST_60F01x_IIC.c: 435: {
+[v _i `uc  1 a ]
+[; ;i2c.c: 434: unsigned char i=8;
+[e = _i -> -> 8 `i `uc ]
+[; ;i2c.c: 435: RA0 = 1;
 "435
-{
-[; ;TEST_60F01x_IIC.c: 436: RA5=1;
+[e = _RA0 -> -> 1 `i `b ]
+[; ;i2c.c: 436: TMR0 = 49;
 "436
-[e = _RA5 -> -> 1 `i `b ]
+[e = _TMR0 -> -> 49 `i `uc ]
+[; ;i2c.c: 437: T0IE = 1;
 "437
-}
-[; ;TEST_60F01x_IIC.c: 437: }
-[e $U 124  ]
+[e = _T0IE -> -> 1 `i `b ]
+[; ;i2c.c: 438: WaitTF0();
 "438
-[e :U 123 ]
-[; ;TEST_60F01x_IIC.c: 438: else
-[; ;TEST_60F01x_IIC.c: 439: {
-"439
-{
-[; ;TEST_60F01x_IIC.c: 440: RA5 = 0;
-"440
-[e = _RA5 -> -> 0 `i `b ]
-"441
-}
-[e :U 124 ]
-[; ;TEST_60F01x_IIC.c: 441: }
-[; ;TEST_60F01x_IIC.c: 442: WaitTF0();
-"442
 [e ( _WaitTF0 ..  ]
-[; ;TEST_60F01x_IIC.c: 443: input=input>>1;
-"443
-[e = _input -> >> -> _input `i -> 1 `i `uc ]
-"444
-}
-[e :U 120 ]
-"432
-[e $ != -> -- _i -> -> 1 `i `uc `i -> -> -> 0 `i `uc `i 121  ]
+[; ;i2c.c: 439: RA0=0;
+"439
+[e = _RA0 -> -> 0 `i `b ]
+[; ;i2c.c: 440: WaitTF0();
+"440
+[e ( _WaitTF0 ..  ]
+[; ;i2c.c: 442: while(i--)
+"442
+[e $U 121  ]
 [e :U 122 ]
-[; ;TEST_60F01x_IIC.c: 444: }
-[; ;TEST_60F01x_IIC.c: 447: RA5=(bit)1;
-"447
-[e = _RA5 -> -> 1 `i `b ]
-[; ;TEST_60F01x_IIC.c: 448: T0IE=0;
-"448
-[e = _T0IE -> -> 0 `i `b ]
-[; ;TEST_60F01x_IIC.c: 449: }
-"449
-[e :UE 119 ]
+[; ;i2c.c: 443: {
+"443
+{
+[; ;i2c.c: 444: if(input&0x01) {
+"444
+[e $ ! != & -> _input `i -> 1 `i -> 0 `i 124  ]
+{
+[; ;i2c.c: 445: RA0=1;
+"445
+[e = _RA0 -> -> 1 `i `b ]
+"446
 }
+[; ;i2c.c: 446: } else {
+[e $U 125  ]
+[e :U 124 ]
+{
+[; ;i2c.c: 447: RA0 = 0;
+"447
+[e = _RA0 -> -> 0 `i `b ]
+"448
+}
+[e :U 125 ]
+[; ;i2c.c: 448: }
+[; ;i2c.c: 449: WaitTF0();
+"449
+[e ( _WaitTF0 ..  ]
+[; ;i2c.c: 450: input=input>>1;
 "450
+[e = _input -> >> -> _input `i -> 1 `i `uc ]
+"451
+}
+[e :U 121 ]
+"442
+[e $ != -> -- _i -> -> 1 `i `uc `i -> -> -> 0 `i `uc `i 122  ]
+[e :U 123 ]
+[; ;i2c.c: 451: }
+[; ;i2c.c: 454: RA0=(bit)1;
+"454
+[e = _RA0 -> -> 1 `i `b ]
+[; ;i2c.c: 455: T0IE=0;
+"455
+[e = _T0IE -> -> 0 `i `b ]
+[; ;i2c.c: 456: }
+"456
+[e :UE 120 ]
+}
+"457
 [v _WString `(v  1 ef2`*Cuc`i ]
 {
-[; ;TEST_60F01x_IIC.c: 450: void WString(unsigned char const *buffer,int Number) {
+[; ;i2c.c: 457: void WString(unsigned char const *buffer,int Number) {
 [e :U _WString ]
 [v _buffer `*Cuc  1 r1 ]
 [v _Number `i  1 r2 ]
 [f ]
-"451
+"458
 [v _i `uc  1 a ]
-[; ;TEST_60F01x_IIC.c: 451: unsigned char i;
-[; ;TEST_60F01x_IIC.c: 453: for(i=0; i<Number; i++) {
-"453
+[; ;i2c.c: 458: unsigned char i;
+[; ;i2c.c: 460: TRISA0 = 0;
+"460
+[e = _TRISA0 -> -> 0 `i `b ]
+[; ;i2c.c: 461: for(i=0; i<Number; i++) {
+"461
 {
 [e = _i -> -> 0 `i `uc ]
-[e $U 129  ]
-[e :U 126 ]
-{
-[; ;TEST_60F01x_IIC.c: 454: WByte(*buffer);
-"454
-[e ( _WByte (1 *U _buffer ]
-[; ;TEST_60F01x_IIC.c: 455: buffer++;
-"455
-[e ++ _buffer * -> -> 1 `i `x -> -> # *U _buffer `i `x ]
-"456
-}
-"453
-[e ++ _i -> -> 1 `i `uc ]
-[e :U 129 ]
-[e $ < -> _i `i _Number 126  ]
+[e $U 130  ]
 [e :U 127 ]
-"456
+{
+[; ;i2c.c: 462: WByte(*buffer);
+"462
+[e ( _WByte (1 *U _buffer ]
+[; ;i2c.c: 463: buffer++;
+"463
+[e ++ _buffer * -> -> 1 `i `x -> -> # *U _buffer `i `x ]
+"464
 }
-[; ;TEST_60F01x_IIC.c: 456: }
-[; ;TEST_60F01x_IIC.c: 457: }
-"457
-[e :UE 125 ]
+"461
+[e ++ _i -> -> 1 `i `uc ]
+[e :U 130 ]
+[e $ < -> _i `i _Number 127  ]
+[e :U 128 ]
+"464
 }
+[; ;i2c.c: 464: }
+[; ;i2c.c: 465: TRISA0 = 1;
 "465
+[e = _TRISA0 -> -> 1 `i `b ]
+[; ;i2c.c: 466: }
+"466
+[e :UE 126 ]
+}
+"474
 [v _RByte `(uc  1 ef ]
 {
-[; ;TEST_60F01x_IIC.c: 464: unsigned char RByte()
-[; ;TEST_60F01x_IIC.c: 465: {
+[; ;i2c.c: 473: unsigned char RByte()
+[; ;i2c.c: 474: {
 [e :U _RByte ]
 [f ]
-"466
-[v _Output `uc  1 a ]
-[; ;TEST_60F01x_IIC.c: 466: unsigned char Output=0;
-[e = _Output -> -> 0 `i `uc ]
-"467
-[v _i `uc  1 a ]
-[; ;TEST_60F01x_IIC.c: 467: unsigned char i=8;
-[e = _i -> -> 8 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 468: T0IE=1;
-"468
-[e = _T0IE -> -> 1 `i `b ]
-[; ;TEST_60F01x_IIC.c: 469: TMR0 = 49;
-"469
-[e = _TMR0 -> -> 49 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 470: WaitTF0();
-"470
-[e ( _WaitTF0 ..  ]
-[; ;TEST_60F01x_IIC.c: 471: T0IE=1;
-"471
-[e = _T0IE -> -> 1 `i `b ]
-[; ;TEST_60F01x_IIC.c: 472: TMR0 = 49;
-"472
-[e = _TMR0 -> -> 49 `i `uc ]
-[; ;TEST_60F01x_IIC.c: 473: WaitTF0();
-"473
-[e ( _WaitTF0 ..  ]
-[; ;TEST_60F01x_IIC.c: 475: while(i--)
 "475
-[e $U 131  ]
-[e :U 132 ]
-[; ;TEST_60F01x_IIC.c: 476: {
+[v _Output `uc  1 a ]
+[; ;i2c.c: 475: unsigned char Output=0;
+[e = _Output -> -> 0 `i `uc ]
 "476
-{
-[; ;TEST_60F01x_IIC.c: 477: Output >>=1;
+[v _i `uc  1 a ]
+[; ;i2c.c: 476: unsigned char i=8;
+[e = _i -> -> 8 `i `uc ]
+[; ;i2c.c: 477: T0IE=1;
 "477
-[e =>> _Output -> 1 `i ]
-[; ;TEST_60F01x_IIC.c: 478: if(RA1)
+[e = _T0IE -> -> 1 `i `b ]
+[; ;i2c.c: 478: TMR0 = 49;
 "478
-[e $ ! _RA1 134  ]
-[; ;TEST_60F01x_IIC.c: 479: {
+[e = _TMR0 -> -> 49 `i `uc ]
+[; ;i2c.c: 479: WaitTF0();
 "479
-{
-[; ;TEST_60F01x_IIC.c: 480: Output|=0x80;
+[e ( _WaitTF0 ..  ]
+[; ;i2c.c: 480: T0IE=1;
 "480
-[e =| _Output -> -> 128 `i `uc ]
+[e = _T0IE -> -> 1 `i `b ]
+[; ;i2c.c: 481: TMR0 = 49;
 "481
-}
-[e :U 134 ]
-[; ;TEST_60F01x_IIC.c: 481: }
-[; ;TEST_60F01x_IIC.c: 482: WaitTF0();
+[e = _TMR0 -> -> 49 `i `uc ]
+[; ;i2c.c: 482: WaitTF0();
 "482
 [e ( _WaitTF0 ..  ]
-"483
-}
-[e :U 131 ]
-"475
-[e $ != -> -- _i -> -> 1 `i `uc `i -> -> -> 0 `i `uc `i 132  ]
-[e :U 133 ]
-[; ;TEST_60F01x_IIC.c: 483: }
-[; ;TEST_60F01x_IIC.c: 484: T0IE=0;
+[; ;i2c.c: 484: while(i--)
 "484
-[e = _T0IE -> -> 0 `i `b ]
-[; ;TEST_60F01x_IIC.c: 485: return Output;
+[e $U 132  ]
+[e :U 133 ]
+[; ;i2c.c: 485: {
 "485
-[e ) _Output ]
-[e $UE 130  ]
-[; ;TEST_60F01x_IIC.c: 486: }
+{
+[; ;i2c.c: 486: Output >>=1;
 "486
-[e :UE 130 ]
+[e =>> _Output -> 1 `i ]
+[; ;i2c.c: 487: if(RA1)
+"487
+[e $ ! _RA1 135  ]
+[; ;i2c.c: 488: {
+"488
+{
+[; ;i2c.c: 489: Output|=0x80;
+"489
+[e =| _Output -> -> 128 `i `uc ]
+"490
+}
+[e :U 135 ]
+[; ;i2c.c: 490: }
+[; ;i2c.c: 491: WaitTF0();
+"491
+[e ( _WaitTF0 ..  ]
+"492
+}
+[e :U 132 ]
+"484
+[e $ != -> -- _i -> -> 1 `i `uc `i -> -> -> 0 `i `uc `i 133  ]
+[e :U 134 ]
+[; ;i2c.c: 492: }
+[; ;i2c.c: 493: T0IE=0;
+"493
+[e = _T0IE -> -> 0 `i `b ]
+[; ;i2c.c: 494: return Output;
+"494
+[e ) _Output ]
+[e $UE 131  ]
+[; ;i2c.c: 495: }
+"495
+[e :UE 131 ]
+}
+"496
+[i _par1
+:U ..
+"498
+-> -> 181 `i `uc
+-> -> 98 `i `uc
+-> -> 6 `i `uc
+-> -> 65 `i `uc
+-> -> 12 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 3 `i `uc
+-> -> 31 `i `uc
+-> -> 120 `i `uc
+-> -> 183 `i `uc
+-> -> 88 `i `uc
+-> -> 183 `i `uc
+-> -> 255 `i `uc
+-> -> 118 `i `uc
+-> -> 207 `i `uc
+-> -> 255 `i `uc
+-> -> 246 `i `uc
+-> -> 107 `i `uc
+..
+]
+[; ;i2c.c: 496: unsigned char const par1[] = {
+[; ;i2c.c: 498: 0xB5,0x62,0x06,0x41,0x0C,0x00,0x00,0x00,0x03,0x1F,0x78,0xB7,0x58,0xB7,0xFF,0x76,0xCF,0xFF,0xF6,0x6B,
+[; ;i2c.c: 499: };
+"500
+[i _par2
+:U ..
+"502
+-> -> 181 `i `uc
+-> -> 98 `i `uc
+-> -> 6 `i `uc
+-> -> 62 `i `uc
+-> -> 60 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 32 `i `uc
+-> -> 7 `i `uc
+-> -> 0 `i `uc
+"503
+-> -> 8 `i `uc
+-> -> 16 `i `uc
+-> -> 0 `i `uc
+-> -> 1 `i `uc
+-> -> 0 `i `uc
+-> -> 1 `i `uc
+-> -> 1 `i `uc
+-> -> 1 `i `uc
+-> -> 1 `i `uc
+-> -> 3 `i `uc
+-> -> 0 `i `uc
+"504
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 1 `i `uc
+-> -> 1 `i `uc
+-> -> 2 `i `uc
+-> -> 4 `i `uc
+-> -> 8 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 1 `i `uc
+"505
+-> -> 1 `i `uc
+-> -> 3 `i `uc
+-> -> 8 `i `uc
+-> -> 16 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 1 `i `uc
+-> -> 1 `i `uc
+-> -> 4 `i `uc
+-> -> 0 `i `uc
+"506
+-> -> 8 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 1 `i `uc
+-> -> 1 `i `uc
+-> -> 5 `i `uc
+-> -> 0 `i `uc
+-> -> 3 `i `uc
+-> -> 0 `i `uc
+-> -> 1 `i `uc
+"507
+-> -> 0 `i `uc
+-> -> 1 `i `uc
+-> -> 1 `i `uc
+-> -> 6 `i `uc
+-> -> 8 `i `uc
+-> -> 14 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 1 `i `uc
+-> -> 1 `i `uc
+"508
+-> -> 45 `i `uc
+-> -> 89 `i `uc
+..
+]
+[; ;i2c.c: 500: unsigned char const par2[] = {
+[; ;i2c.c: 502: 0xB5,0x62,0x06,0x3E,0x3C,0x00,0x00,0x00,0x20,0x07,0x00,
+[; ;i2c.c: 503: 0x08,0x10,0x00,0x01,0x00,0x01,0x01,0x01,0x01,0x03,0x00,
+[; ;i2c.c: 504: 0x00,0x00,0x01,0x01,0x02,0x04,0x08,0x00,0x00,0x00,0x01,
+[; ;i2c.c: 505: 0x01,0x03,0x08,0x10,0x00,0x00,0x00,0x01,0x01,0x04,0x00,
+[; ;i2c.c: 506: 0x08,0x00,0x00,0x00,0x01,0x01,0x05,0x00,0x03,0x00,0x01,
+[; ;i2c.c: 507: 0x00,0x01,0x01,0x06,0x08,0x0E,0x00,0x00,0x00,0x01,0x01,
+[; ;i2c.c: 508: 0x2D,0x59,
+[; ;i2c.c: 509: };
+"510
+[i _par3
+:U ..
+"512
+-> -> 181 `i `uc
+-> -> 98 `i `uc
+-> -> 6 `i `uc
+-> -> 36 `i `uc
+-> -> 36 `i `uc
+-> -> 0 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 0 `i `uc
+-> -> 3 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 16 `i `uc
+-> -> 39 `i `uc
+"513
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 94 `i `uc
+-> -> 1 `i `uc
+-> -> 94 `i `uc
+-> -> 1 `i `uc
+-> -> 144 `i `uc
+-> -> 1 `i `uc
+-> -> 94 `i `uc
+-> -> 1 `i `uc
+-> -> 100 `i `uc
+-> -> 60 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+"514
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 10 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 222 `i `uc
+-> -> 69 `i `uc
+..
+]
+[; ;i2c.c: 510: unsigned char const par3[] = {
+[; ;i2c.c: 512: 0xB5,0x62,0x06,0x24,0x24,0x00,0xFF,0xFF,0x00,0x03,0x00,0x00,0x00,0x00,0x10,0x27,
+[; ;i2c.c: 513: 0x00,0x00,0x00,0x00,0x5E,0x01,0x5E,0x01,0x90,0x01,0x5E,0x01,0x64,0x3C,0x00,0x00,
+[; ;i2c.c: 514: 0x00,0x00,0x0A,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0xDE,0x45,
+[; ;i2c.c: 515: };
+"516
+[i _par4
+:U ..
+"518
+-> -> 181 `i `uc
+-> -> 98 `i `uc
+-> -> 6 `i `uc
+-> -> 35 `i `uc
+-> -> 40 `i `uc
+-> -> 0 `i `uc
+-> -> 2 `i `uc
+-> -> 0 `i `uc
+-> -> 76 `i `uc
+-> -> 102 `i `uc
+-> -> 64 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+"519
+-> -> 3 `i `uc
+-> -> 32 `i `uc
+-> -> 6 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 75 `i `uc
+-> -> 7 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+"520
+-> -> 0 `i `uc
+-> -> 1 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 44 `i `uc
+-> -> 1 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 238 `i `uc
+-> -> 68 `i `uc
+..
+]
+[; ;i2c.c: 516: unsigned char const par4[] = {
+[; ;i2c.c: 518: 0xB5,0x62,0x06,0x23,0x28,0x00,0x02,0x00,0x4C,0x66,0x40,0x00,0x00,0x00,0x00,0x00,
+[; ;i2c.c: 519: 0x03,0x20,0x06,0x00,0x00,0x00,0x00,0x00,0x4B,0x07,0x00,0x00,0x00,0x00,0x00,0x00,
+[; ;i2c.c: 520: 0x00,0x01,0x00,0x00,0x2C,0x01,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0xEE,0x44,
+[; ;i2c.c: 521: };
+"522
+[i _par5
+:U ..
+"524
+-> -> 181 `i `uc
+-> -> 98 `i `uc
+-> -> 6 `i `uc
+-> -> 49 `i `uc
+-> -> 32 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 1 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+"525
+-> -> 50 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 64 `i `uc
+-> -> 66 `i `uc
+-> -> 15 `i `uc
+-> -> 0 `i `uc
+-> -> 64 `i `uc
+-> -> 66 `i `uc
+"526
+-> -> 15 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 160 `i `uc
+-> -> 134 `i `uc
+-> -> 1 `i `uc
+-> -> 0 `i `uc
+"527
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 247 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 202 `i `uc
+-> -> 182 `i `uc
+..
+]
+[; ;i2c.c: 522: unsigned char const par5[] = {
+[; ;i2c.c: 524: 0xB5,0x62,0x06,0x31,0x20,0x00,0x00,0x01,0x00,0x00,
+[; ;i2c.c: 525: 0x32,0x00,0x00,0x00,0x40,0x42,0x0F,0x00,0x40,0x42,
+[; ;i2c.c: 526: 0x0F,0x00,0x00,0x00,0x00,0x00,0xA0,0x86,0x01,0x00,
+[; ;i2c.c: 527: 0x00,0x00,0x00,0x00,0xF7,0x00,0x00,0x00,0xCA,0xB6,
+[; ;i2c.c: 528: };
+"529
+[i _par6
+:U ..
+"531
+-> -> 181 `i `uc
+-> -> 98 `i `uc
+-> -> 6 `i `uc
+-> -> 1 `i `uc
+-> -> 8 `i `uc
+-> -> 0 `i `uc
+-> -> 9 `i `uc
+-> -> 20 `i `uc
+-> -> 1 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 45 `i `uc
+-> -> 125 `i `uc
+..
+]
+[; ;i2c.c: 529: unsigned char const par6[] = {
+[; ;i2c.c: 531: 0xB5,0x62,0x06,0x01,0x08,0x00,0x09,0x14,0x01,0x00,0x00,0x00,0x00,0x00,0x2D,0x7D,
+[; ;i2c.c: 532: };
+"533
+[i _par7
+:U ..
+"535
+-> -> 181 `i `uc
+-> -> 98 `i `uc
+-> -> 9 `i `uc
+-> -> 20 `i `uc
+-> -> 4 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 33 `i `uc
+-> -> 236 `i `uc
+..
+]
+[; ;i2c.c: 533: unsigned char const par7[] = {
+[; ;i2c.c: 535: 0xB5,0x62,0x09,0x14,0x04,0x00,0x00,0x00,0x00,0x00,0x21,0xEC,
+[; ;i2c.c: 537: };
+"539
+[v _main `(v  1 ef ]
+{
+[; ;i2c.c: 538: void main()
+[; ;i2c.c: 539: {
+[e :U _main ]
+[f ]
+"540
+[v _i `uc  1 a ]
+[; ;i2c.c: 540: char i;
+[; ;i2c.c: 541: POWER_INITIAL();
+"541
+[e ( _POWER_INITIAL ..  ]
+[; ;i2c.c: 542: DelayS(1);
+"542
+[e ( _DelayS (1 -> -> 1 `i `uc ]
+[; ;i2c.c: 543: I2C_SendString(0x84,par1,sizeof(par1));
+"543
+[e ( _I2C_SendString (3 , , -> -> 132 `i `uc &U _par1 -> -> # _par1 `ui `i ]
+[; ;i2c.c: 544: DelayMs(100);
+"544
+[e ( _DelayMs (1 -> -> 100 `i `uc ]
+[; ;i2c.c: 545: I2C_SendString(0x84,par2,sizeof(par2));
+"545
+[e ( _I2C_SendString (3 , , -> -> 132 `i `uc &U _par2 -> -> # _par2 `ui `i ]
+[; ;i2c.c: 546: DelayMs(100);
+"546
+[e ( _DelayMs (1 -> -> 100 `i `uc ]
+[; ;i2c.c: 547: I2C_SendString(0x84,par3,sizeof(par3));
+"547
+[e ( _I2C_SendString (3 , , -> -> 132 `i `uc &U _par3 -> -> # _par3 `ui `i ]
+[; ;i2c.c: 548: DelayMs(100);
+"548
+[e ( _DelayMs (1 -> -> 100 `i `uc ]
+[; ;i2c.c: 549: I2C_SendString(0x84,par4,sizeof(par4));
+"549
+[e ( _I2C_SendString (3 , , -> -> 132 `i `uc &U _par4 -> -> # _par4 `ui `i ]
+[; ;i2c.c: 550: DelayMs(100);
+"550
+[e ( _DelayMs (1 -> -> 100 `i `uc ]
+[; ;i2c.c: 551: I2C_SendString(0x84,par5,sizeof(par5));
+"551
+[e ( _I2C_SendString (3 , , -> -> 132 `i `uc &U _par5 -> -> # _par5 `ui `i ]
+[; ;i2c.c: 552: DelayMs(100);
+"552
+[e ( _DelayMs (1 -> -> 100 `i `uc ]
+[; ;i2c.c: 553: I2C_SendString(0x84,par6,sizeof(par6));
+"553
+[e ( _I2C_SendString (3 , , -> -> 132 `i `uc &U _par6 -> -> # _par6 `ui `i ]
+[; ;i2c.c: 554: DelayMs(100);
+"554
+[e ( _DelayMs (1 -> -> 100 `i `uc ]
+[; ;i2c.c: 559: for(i = 0;i < 10;i++) {
+"559
+{
+[e = _i -> -> 0 `i `uc ]
+[e $ < -> _i `i -> 10 `i 137  ]
+[e $U 138  ]
+[e :U 137 ]
+{
+[; ;i2c.c: 560: I2C_SendString(0x84,par7,sizeof(par7));
+"560
+[e ( _I2C_SendString (3 , , -> -> 132 `i `uc &U _par7 -> -> # _par7 `ui `i ]
+[; ;i2c.c: 561: DelayS(30);
+"561
+[e ( _DelayS (1 -> -> 30 `i `uc ]
+"562
+}
+"559
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 10 `i 137  ]
+[e :U 138 ]
+"562
+}
+[; ;i2c.c: 562: }
+[; ;i2c.c: 563: while(1){
+"563
+[e :U 141 ]
+{
+[; ;i2c.c: 564: I2C_SendString(0x84,par7,sizeof(par7));
+"564
+[e ( _I2C_SendString (3 , , -> -> 132 `i `uc &U _par7 -> -> # _par7 `ui `i ]
+[; ;i2c.c: 565: DelayM(20);
+"565
+[e ( _DelayM (1 -> -> 20 `i `uc ]
+"566
+}
+[e :U 140 ]
+"563
+[e $U 141  ]
+[e :U 142 ]
+[; ;i2c.c: 566: }
+[; ;i2c.c: 568: TRISA2 =1;
+"568
+[e = _TRISA2 -> -> 1 `i `b ]
+[; ;i2c.c: 569: TRISA4 =1;
+"569
+[e = _TRISA4 -> -> 1 `i `b ]
+[; ;i2c.c: 570: while(1)
+"570
+[e :U 144 ]
+[; ;i2c.c: 571: {
+"571
+{
+[; ;i2c.c: 572: _nop();
+"572
+[e ( __nop ..  ]
+"574
+}
+[e :U 143 ]
+"570
+[e $U 144  ]
+[e :U 145 ]
+[; ;i2c.c: 574: }
+[; ;i2c.c: 575: }
+"575
+[e :UE 136 ]
 }
