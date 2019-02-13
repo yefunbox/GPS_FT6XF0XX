@@ -337,9 +337,9 @@
 [v _WByte `(v  1 e 0 0 ]
 "457
 [v _WString `(v  1 e 0 0 ]
-"474
+"473
 [v _RByte `(uc  1 e 1 0 ]
-"539
+"558
 [v _main `(v  1 e 0 0 ]
 "90 /hitech/products/compilers/pic/pro/9.83/dist/linux/include/pic16f684.h
 [v _INDF `VEuc  1 e 1 @0 ]
@@ -1057,26 +1057,38 @@
 [v _SFR9E `VEuc  1 e 1 @158 ]
 "634
 [v _SFR9F `VEuc  1 e 1 @159 ]
-"496 i2c.c
+"495 i2c.c
 [v _par1 `DC[20]uc  1 e 20 0 ]
-"500
+"499
 [v _par2 `DC[68]uc  1 e 68 0 ]
-"510
-[v _par3 `DC[44]uc  1 e 44 0 ]
-"516
-[v _par4 `DC[48]uc  1 e 48 0 ]
-"522
-[v _par5 `DC[40]uc  1 e 40 0 ]
-"529
-[v _par6 `DC[16]uc  1 e 16 0 ]
-"533
-[v _par7 `DC[12]uc  1 e 12 0 ]
-"539
+"507
+[v _par3 `DC[48]uc  1 e 48 0 ]
+"513
+[v _par4 `DC[44]uc  1 e 44 0 ]
+"519
+[v _par5 `DC[28]uc  1 e 28 0 ]
+"524
+[v _par6 `DC[14]uc  1 e 14 0 ]
+"528
+[v _par7 `DC[16]uc  1 e 16 0 ]
+"532
+[v _par8 `DC[16]uc  1 e 16 0 ]
+"536
+[v _par9 `DC[16]uc  1 e 16 0 ]
+"540
+[v _par10 `DC[16]uc  1 e 16 0 ]
+"544
+[v _par11 `DC[16]uc  1 e 16 0 ]
+"548
+[v _par12 `DC[16]uc  1 e 16 0 ]
+"552
+[v _par13 `DC[12]uc  1 e 12 0 ]
+"558
 [v _main `(v  1 e 0 0 ]
 {
-"540
-[v main@i `uc  1 a 1 13 ]
-"575
+"559
+[v main@i `uc  1 a 1 15 ]
+"607
 } 0
 "323
 [v _I2C_SendString `(uc  1 e 1 0 ]
@@ -1095,7 +1107,7 @@
 {
 [v DelayM@Time `uc  1 a 1 wreg ]
 "132
-[v DelayM@a `uc  1 a 1 11 ]
+[v DelayM@a `uc  1 a 1 14 ]
 "131
 [v DelayM@Time `uc  1 a 1 wreg ]
 "137
@@ -1112,8 +1124,8 @@
 {
 [v DelayS@Time `uc  1 a 1 wreg ]
 "120
-[v DelayS@b `uc  1 a 1 9 ]
-[v DelayS@a `uc  1 a 1 8 ]
+[v DelayS@b `uc  1 a 1 12 ]
+[v DelayS@a `uc  1 a 1 11 ]
 "119
 [v DelayS@Time `uc  1 a 1 wreg ]
 "128
@@ -1141,12 +1153,11 @@
 "102
 [v _DelayMs `(v  1 e 0 0 ]
 {
-[v DelayMs@Time `uc  1 a 1 wreg ]
 "103
-[v DelayMs@b `uc  1 a 1 6 ]
-[v DelayMs@a `uc  1 a 1 5 ]
+[v DelayMs@b `ui  1 a 2 8 ]
+[v DelayMs@a `ui  1 a 2 6 ]
 "102
-[v DelayMs@Time `uc  1 a 1 wreg ]
+[v DelayMs@Time `ui  1 p 2 4 ]
 "111
 } 0
 "88

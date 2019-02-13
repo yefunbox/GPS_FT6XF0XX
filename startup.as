@@ -9,8 +9,8 @@
 	; Compiler options:
 	;
 	; -otest_60f01x_iic.cof -mtest_60f01x_iic.map --summary=default \
-	; --output=default main.p1 i2c.p1 uart.p1 --chip=16F684 -P \
-	; --runtime=default --opt=default -D__DEBUG=1 -g --asmlist \
+	; --output=default i2c.p1 --chip=16F684 -P --runtime=default \
+	; --opt=default -D__DEBUG=1 -g --asmlist \
 	; --errformat=Error   [%n] %f; %l.%c %s --msgformat=Advisory[%n] %s \
 	; --warnformat=Warning [%n] %f; %l.%c %s
 	;
