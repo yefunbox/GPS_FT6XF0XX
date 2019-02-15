@@ -339,7 +339,7 @@
 [v _WString `(v  1 e 0 0 ]
 "473
 [v _RByte `(uc  1 e 1 0 ]
-"558
+"541
 [v _main `(v  1 e 0 0 ]
 "90 /hitech/products/compilers/pic/pro/9.83/dist/linux/include/pic16f684.h
 [v _INDF `VEuc  1 e 1 @0 ]
@@ -1062,33 +1062,23 @@
 "499
 [v _par2 `DC[68]uc  1 e 68 0 ]
 "507
-[v _par3 `DC[48]uc  1 e 48 0 ]
+[v _par3 `DC[44]uc  1 e 44 0 ]
 "513
-[v _par4 `DC[44]uc  1 e 44 0 ]
-"519
-[v _par5 `DC[28]uc  1 e 28 0 ]
+[v _par4 `DC[28]uc  1 e 28 0 ]
+"518
+[v _par5 `DC[48]uc  1 e 48 0 ]
 "524
-[v _par6 `DC[14]uc  1 e 14 0 ]
-"528
+[v _par6 `DC[40]uc  1 e 40 0 ]
+"531
 [v _par7 `DC[16]uc  1 e 16 0 ]
-"532
-[v _par8 `DC[16]uc  1 e 16 0 ]
-"536
-[v _par9 `DC[16]uc  1 e 16 0 ]
-"540
-[v _par10 `DC[16]uc  1 e 16 0 ]
-"544
-[v _par11 `DC[16]uc  1 e 16 0 ]
-"548
-[v _par12 `DC[16]uc  1 e 16 0 ]
-"552
-[v _par13 `DC[12]uc  1 e 12 0 ]
-"558
+"535
+[v _par_back_AOP `DC[12]uc  1 e 12 0 ]
+"541
 [v _main `(v  1 e 0 0 ]
 {
-"559
+"542
 [v main@i `uc  1 a 1 15 ]
-"607
+"579
 } 0
 "323
 [v _I2C_SendString `(uc  1 e 1 0 ]
